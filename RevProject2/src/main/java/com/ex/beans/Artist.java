@@ -26,17 +26,22 @@ public class Artist implements Serializable{
 	
 	@Column(name="ARTIST_FNAME")
 	private String firstName;
+	
 	@Column(name="ARTIST_LNAME")
 	private String lastName;
+	
 	@Column(name="ARTIST_USRNAME")
 	private String username;
+	
 	@Column(name="ARTIST_PSWRD")
 	private String password;
+	
 	@Column(name="ARTIST_EMAIL")
 	private String email;
-	//private int roleId;
+		
 	@Column(name="ARTIST_XCOOR")
 	private double xCoordinate;
+	
 	@Column(name="ARTIST_YCOOR")
 	private double yCoordinate;
 
