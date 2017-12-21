@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class LoginService {
 
-  constructor() { }
+  loginSubject = new BehaviorSubject<User>(null);
+
+  constructor(private http: HttpClient) { }
 
 }
