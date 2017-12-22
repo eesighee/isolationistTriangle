@@ -26,8 +26,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.login.loginSubject.subscribe(u => {
-      if (u == null) {
-      } else {
+      if (u != null) {
         this.router.navigate(["home"]);
       }
     });
@@ -53,7 +52,7 @@ export class RegisterComponent implements OnInit {
     
     if (!this.passwordValid()) {
       this.passwordMessage = "Your password must be at least 8 characters long and contain at leat 1 upper case, 1 lower case, and 1 number";
-    } else if (this.password != this.confirmPassword) {
+    } else if (this.password != this.confirmPassword && this.confirmPassword) {
       this.passwordMessage = "Your passwords do not match";
     } else this.passwordMessage = "";
   }

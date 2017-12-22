@@ -10,16 +10,13 @@ import * as $ from "jquery";
 })
 export class HomeComponent implements OnInit {
 
-  user = new User();
+  private user = new User({username: "bob"});
 
   constructor(private login: LoginService) { }
 
   ngOnInit() {
-    this.login.loginSubject.subscribe(u => {
-      this.user = u;
-      console.log(u);
-    });
-    
+    this.user = this.login.loginSubject.getValue();
+    console.log(this.user);
   }
 
 }
