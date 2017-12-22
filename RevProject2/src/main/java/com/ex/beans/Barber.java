@@ -1,14 +1,14 @@
 package com.ex.beans;
 
 import java.io.Serializable;
-import java.util.Set;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -16,33 +16,27 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name="BH_BARBERS")
-public class Barber implements Serializable{
+@AttributeOverrides({
+	@AttributeOverride(name="userId", column=@Column(name="BARBER_ID")),
+	@AttributeOverride(name="firstName", column=@Column(name="BARBER_FNAME")),
+	@AttributeOverride(name="lastName", column=@Column(name="BARBER_LNAME")),
+	@AttributeOverride(name="userName", column=@Column(name="BARBER_UNAME")),
+	@AttributeOverride(name="pasword", column=@Column(name="BARBER_PASSWORD")),
+	@AttributeOverride(name="email", column=@Column(name="BARBER_EMAIL")),
+	@AttributeOverride(name="xCoordimate", column=@Column(name="BARBER_XCOOR")),
+	@AttributeOverride(name="yCoordimate", column=@Column(name="BARBER_YCOOR")),
+	@AttributeOverride(name="userRole", column=@Column(name="BARBER_ROLE"))	
+})
+public class Barber extends HarborUser implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9216678735514954595L;
 	
-	@Id
-	@Column(name="ARTIST_ID")
-	@SequenceGenerator(name="ARTIST_SEQ", sequenceName="ARTIST_ID_SEQ")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ARTIST_SEQ")
-	private int barberId;
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="SHOP_ID", nullable = false)
+	private Shop shop;
 	
-	@Column(name="ARTIST_FNAME")
-	private String firstName;
-	
-	@Column(name="ARTIST_LNAME")
-	private String lastName;
-	
-	@Column(name="ARTIST_USRNAME")
-	private String username;
-	
-	@Column(name="ARTIST_PSWRD")
-	private String password;
-	
-	@Column(name="ARTIST_EMAIL")
-	private String email;
-		
-	@Column(name="ARTIST_XCOOR")
-	private double xCoordinate;
-	
-	@Column(name="ARTIST_YCOOR")
-	private double yCoordinate;
 
 }

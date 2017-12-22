@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Entity
-@Table(name="PH_APPOINTMENTS")
+@Table(name="BH_APPOINTMENTS")
 public class Appointment implements Serializable {
 	
 	/**
@@ -44,95 +44,23 @@ public class Appointment implements Serializable {
 	@Column(name="APPNTMNT_END", nullable = false)
 	private Time endTime;
 	
-	@OneToMany(fetch=FetchType.EAGER) //One appointment to Many StylingService(s)
+	//TODO Make this a  many to many relationship
+	@ManyToOne(fetch=FetchType.EAGER) //Many appointment to One StylingService
 	@JoinColumn(name="SERVICE_ID", nullable = false)
-	private Set<Integer> services;
+	private StylingService service;
 	
 	@ManyToOne(fetch=FetchType.EAGER) //Many appointments to One client
 	@JoinColumn(name="CLIENT_ID", nullable = false)
-	private int clientId;
+	private HarborUser client;
+	
+	@ManyToOne(fetch=FetchType.EAGER) //Many appointments to One client
+	@JoinColumn(name="STATUS_ID", nullable = false)
+	private AppointmentStatus appointmentStatus;
 	
 	public Appointment() {
 		super();
 	}
 
-	public Appointment(Date date, Time startTime, Time endTime, Set<Integer> services, int clientId) {
-		super();
-		this.date = date;
-		this.startTime = startTime;
-		this.endTime = endTime;
-		this.services = services;
-		this.clientId = clientId;
-	}
-
-	public Appointment(int appointmentId, Date date, Time startTime, Time endTime, Set<Integer> services,
-			int clientId) {
-		super();
-		this.appointmentId = appointmentId;
-		this.date = date;
-		this.startTime = startTime;
-		this.endTime = endTime;
-		this.services = services;
-		this.clientId = clientId;
-	}
-	
-	public int getAppointmentId() {
-		return appointmentId;
-	}
-
-	public void setAppointmentId(int appointmentId) {
-		this.appointmentId = appointmentId;
-	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	public Time getStartTime() {
-		return startTime;
-	}
-
-	public void setStartTime(Time startTime) {
-		this.startTime = startTime;
-	}
-
-	public Time getEndTime() {
-		return endTime;
-	}
-
-	public void setEndTime(Time endTime) {
-		this.endTime = endTime;
-	}
-
-	public Set<Integer> getservices() {
-		return services;
-	}
-
-	public void setservices(Set<Integer> services) {
-		this.services = services;
-	}
-
-	public int getClientId() {
-		return clientId;
-	}
-
-	public void setClientId(int clientId) {
-		this.clientId = clientId;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	@Override
-	public String toString() {
-		return "Appointment [appointmentId=" + appointmentId + ", date=" + date + ", startTime=" + startTime
-				+ ", endTime=" + endTime + ", services=" + services + ", clientId=" + clientId + "]";
-	}
 		
 	
 }
