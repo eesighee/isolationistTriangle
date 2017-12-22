@@ -1,0 +1,6 @@
+/.metadata/
+/.recommenders/
+*.properties
+*.MF
+RevProject2/.project
+RevProject2/.classpath
