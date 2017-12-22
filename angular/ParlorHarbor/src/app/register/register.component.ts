@@ -22,10 +22,10 @@ export class RegisterComponent implements OnInit {
   passwordMessage = "";
   emailMessage = "";
 
-  constructor(private login: LoginService, private router: Router) { }
+  constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
-    this.login.loginSubject.subscribe(u => {
+    this.loginService.loginSubject.subscribe(u => {
       if (u != null) {
         this.router.navigate(["home"]);
       }
@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
   }
 
   usernameBlur() {
-    if (!this.login.usernameAvailable(this.username)) {
+    if (!this.loginService.usernameAvailable(this.username)) {
       this.usernameMessage = "That username is already taken";
     } else {
       this.usernameMessage = "";
@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit {
   }
 
   emailBlur() {
-    if (!this.login.emailAvailable(this.email)) {
+    if (!this.loginService.emailAvailable(this.email)) {
       this.emailMessage = "That email is already taken";
     } else {
       this.emailMessage = "";
@@ -71,7 +71,7 @@ export class RegisterComponent implements OnInit {
     u.password = this.password;
     u.fname = this.fname;
     u.lname = this.lname;
-    if (!(this.passwordMessage || this.usernameMessage || this.emailMessage)) this.login.addUser(u);
+    if (!(this.passwordMessage || this.usernameMessage || this.emailMessage)) this.loginService.addUser(u);
   }
 
 }
