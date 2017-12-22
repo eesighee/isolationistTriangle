@@ -33,7 +33,7 @@ public class Appointment implements Serializable {
 	@Column(name="APPNTMNT_ID")
 	@SequenceGenerator(name="APPNTMNT_SEQ", sequenceName="APPNTMNT_ID_SEQ")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="APPNTMNT_SEQ")
-	private int appointmentId;
+	private Integer appointmentId;
 	
 	@Column(name="APPNTMNT_DATE", nullable = false)
 	private Date date;

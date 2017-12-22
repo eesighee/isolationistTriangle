@@ -2,7 +2,7 @@ package com.ex.beans;
 
 import java.util.Set;
 
-public class Client {
+public class HarborUser {
 	
 	private int userId;
 	private String firstName;

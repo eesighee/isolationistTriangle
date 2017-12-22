@@ -4,9 +4,8 @@ import java.util.List;
 
 public class Shop {
 	
-	private int locationId;
+	private int shopId;
 	private String locationName;
 	private double xCoordinate;
 	private double yCoordinate;
-
 }

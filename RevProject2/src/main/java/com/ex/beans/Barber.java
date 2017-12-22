@@ -15,8 +15,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Entity
-@Table(name="PH_ARTISTS")
-public class Artist implements Serializable{
+@Table(name="BH_BARBERS")
+public class Barber implements Serializable{
 	
 	@Id
 	@Column(name="ARTIST_ID")
