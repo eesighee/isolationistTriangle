@@ -1,29 +1,32 @@
 <div>
   <div>
     <label for="username">Username</label>
-    <input type="text" name="username" placeholder="Username">
+    <input type="text" name="username" [(ngModel)]="username" (blur)="usernameBlur()" placeholder="Username">
     <div>{{usernameMessage}}</div>
   </div>
   <div>
     <label for="email">Email</label>
-    <input type="email" name="email" placeholder="Email">
+    <input type="email" name="email" [(ngModel)]="email" (blur)="emailBlur()" placeholder="Email">
     <div>{{emailMessage}}</div>
   </div>
   <div>
     <label for="fname">First Name</label>
-    <input type="text" name="fname" placeholder="First Name">
+    <input type="text" name="fname" [(ngModel)]="fname" placeholder="First Name">
   </div>
   <div>
     <label for="lname">Last Name</label>
-    <input type="text" name="lname" placeholder="Last Name">
+    <input type="text" name="lname" [(ngModel)]="lname" placeholder="Last Name">
   </div>
   <div>
     <label for="password">Password</label>
-    <input type="password" name="password" placeholder="Password">
+    <input type="password" name="password" [(ngModel)]="password" (blur)="passwordBlur()" placeholder="Password">
     <div>{{passwordMessage}}</div>
   </div>
   <div>
     <label for="confirmPassword">Confirm Password</label>
-    <input type="password" name="confirmPassword" placeholder="Confirm Password">
+    <input type="password" name="confirmPassword" [(ngModel)]="confirmPassword" (blur)="passwordBlur()" placeholder="Confirm Password">
+  </div>
+  <div>
+    <button (click)="register()">Register</button>
   </div>
 </div>
