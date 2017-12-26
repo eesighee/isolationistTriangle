@@ -37,4 +37,57 @@ public class BarberReview implements Serializable {
 	
 	@Column(name="COMMENT")
 	private String comment;
+
+	public BarberReview() {
+		super();
+	}
+
+	public BarberReview(Barber barber, double rating, String comment) {
+		super();
+		this.barber = barber;
+		this.rating = rating;
+		this.comment = comment;
+	}
+
+	public BarberReview(Long id, Barber barber, double rating, String comment) {
+		super();
+		this.id = id;
+		this.barber = barber;
+		this.rating = rating;
+		this.comment = comment;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Barber getBarber() {
+		return barber;
+	}
+
+	public void setBarber(Barber barber) {
+		this.barber = barber;
+	}
+
+	public double getRating() {
+		return rating;
+	}
+
+	public void setRating(double rating) {
+		this.rating = rating;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+	
+	
 }

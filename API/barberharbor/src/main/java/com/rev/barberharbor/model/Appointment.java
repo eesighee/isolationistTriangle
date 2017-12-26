@@ -48,6 +48,78 @@ public class Appointment implements Serializable {
 	@JoinColumn(name="STATUS_ID")
 	private AppointmentStatus status;
 
+	public Appointment() {
+		super();
+	}
+
+	public Appointment(User customer, Barber barber, Date time, StylingService service, AppointmentStatus status) {
+		super();
+		this.customer = customer;
+		this.barber = barber;
+		this.time = time;
+		this.service = service;
+		this.status = status;
+	}
+
+	public Appointment(Long id, User customer, Barber barber, Date time, StylingService service,
+			AppointmentStatus status) {
+		super();
+		this.id = id;
+		this.customer = customer;
+		this.barber = barber;
+		this.time = time;
+		this.service = service;
+		this.status = status;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public User getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(User customer) {
+		this.customer = customer;
+	}
+
+	public Barber getBarber() {
+		return barber;
+	}
+
+	public void setBarber(Barber barber) {
+		this.barber = barber;
+	}
+
+	public Date getTime() {
+		return time;
+	}
+
+	public void setTime(Date time) {
+		this.time = time;
+	}
+
+	public StylingService getService() {
+		return service;
+	}
+
+	public void setService(StylingService service) {
+		this.service = service;
+	}
+
+	public AppointmentStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(AppointmentStatus status) {
+		this.status = status;
+	}
+
 	
 
 }

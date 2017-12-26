@@ -35,4 +35,47 @@ public class Artwork implements Serializable{
 	@Column(name="PATH")
 	private String picturePath;
 
+	public Artwork() {
+		super();
+	}
+
+	public Artwork(Barber barber, String picturePath) {
+		super();
+		this.barber = barber;
+		this.picturePath = picturePath;
+	}
+
+	public Artwork(Long id, Barber barber, String picturePath) {
+		super();
+		this.id = id;
+		this.barber = barber;
+		this.picturePath = picturePath;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Barber getBarber() {
+		return barber;
+	}
+
+	public void setBarber(Barber barber) {
+		this.barber = barber;
+	}
+
+	public String getPicturePath() {
+		return picturePath;
+	}
+
+	public void setPicturePath(String picturePath) {
+		this.picturePath = picturePath;
+	}
+	
+	
+
 }

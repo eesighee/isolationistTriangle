@@ -42,4 +42,87 @@ public class Shop implements Serializable{
 	
 	@Column(name="WEBSITE")
 	private String website;
+
+	public Shop() {
+		super();
+	}
+
+	public Shop(String name, double latitude, double longitude, double sales, String phone, String website) {
+		super();
+		this.name = name;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.sales = sales;
+		this.phone = phone;
+		this.website = website;
+	}
+
+	public Shop(Long id, String name, double latitude, double longitude, double sales, String phone, String website) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.sales = sales;
+		this.phone = phone;
+		this.website = website;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+
+	public double getSales() {
+		return sales;
+	}
+
+	public void setSales(double sales) {
+		this.sales = sales;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getWebsite() {
+		return website;
+	}
+
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+	
+	
 }

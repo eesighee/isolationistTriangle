@@ -41,4 +41,67 @@ public class StylingService implements Serializable {
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="SERVICE_TYPES_ID")
 	private ServiceType type;
+
+	public StylingService() {
+		super();
+	}
+
+	public StylingService(String description, double price, Barber barber, ServiceType type) {
+		super();
+		this.description = description;
+		this.price = price;
+		this.barber = barber;
+		this.type = type;
+	}
+
+	public StylingService(Long id, String description, double price, Barber barber, ServiceType type) {
+		super();
+		this.id = id;
+		this.description = description;
+		this.price = price;
+		this.barber = barber;
+		this.type = type;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public Barber getBarber() {
+		return barber;
+	}
+
+	public void setBarber(Barber barber) {
+		this.barber = barber;
+	}
+
+	public ServiceType getType() {
+		return type;
+	}
+
+	public void setType(ServiceType type) {
+		this.type = type;
+	}
+	
+	
 }

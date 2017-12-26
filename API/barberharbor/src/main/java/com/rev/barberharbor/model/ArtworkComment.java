@@ -35,4 +35,47 @@ public class ArtworkComment implements Serializable{
 	@Column(name="COMMENT")
 	private String comment;
 
+	public ArtworkComment() {
+		super();
+	}
+
+	public ArtworkComment(Artwork artwork, String comment) {
+		super();
+		this.artwork = artwork;
+		this.comment = comment;
+	}
+
+	public ArtworkComment(Long id, Artwork artwork, String comment) {
+		super();
+		this.id = id;
+		this.artwork = artwork;
+		this.comment = comment;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Artwork getArtwork() {
+		return artwork;
+	}
+
+	public void setArtwork(Artwork artwork) {
+		this.artwork = artwork;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
+	
+	
 }

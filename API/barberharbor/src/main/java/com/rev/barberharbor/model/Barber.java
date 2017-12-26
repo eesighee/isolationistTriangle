@@ -35,4 +35,47 @@ public class Barber extends User implements Serializable{
 	@Column(name="WEBSITE")
 	private String website;
 
+	public Barber() {
+		super();
+	}
+
+	public Barber(Shop shop, String website) {
+		super();
+		this.shop = shop;
+		this.website = website;
+	}
+
+	public Barber(Long id, Shop shop, String website) {
+		super();
+		this.id = id;
+		this.shop = shop;
+		this.website = website;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Shop getShop() {
+		return shop;
+	}
+
+	public void setShop(Shop shop) {
+		this.shop = shop;
+	}
+
+	public String getWebsite() {
+		return website;
+	}
+
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+	
+	
+
 }
