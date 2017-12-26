@@ -11,6 +11,10 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
+<<<<<<< HEAD
+  
+  constructor() { }
+=======
   username = "";
   email = "";
   fname = "";
@@ -18,6 +22,7 @@ export class RegisterComponent implements OnInit {
   password = "";
   confirmPassword = "";
 
+>>>>>>> 09b21f87a703209f5f65422a666baeaeca896144
   usernameMessage = "";
   passwordMessage = "";
   emailMessage = "";
