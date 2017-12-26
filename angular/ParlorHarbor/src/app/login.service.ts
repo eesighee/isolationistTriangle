@@ -6,7 +6,7 @@ import { User } from './types/user.type';
 @Injectable()
 export class LoginService {
 
-  loginSubject = new BehaviorSubject<User>(null);
+  public loginSubject = new BehaviorSubject<User>(null);
 
   constructor(private http: HttpClient) { }
 
