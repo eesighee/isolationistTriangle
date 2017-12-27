@@ -29,13 +29,13 @@ public class BarberReview implements Serializable {
 	private Long id;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="BARBER_ID")
+	@JoinColumn(name="BARBERS_ID")
 	private Barber barber;
 	
 	@Column(name="RATING")
 	private double rating;
 	
-	@Column(name="COMMENT")
+	@Column(name="BARBER_COMMENT")
 	private String comment;
 
 	public BarberReview() {

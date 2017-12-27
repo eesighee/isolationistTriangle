@@ -23,7 +23,7 @@ public class ArtworkComment implements Serializable{
 	private static final long serialVersionUID = 8221187156596917866L;
 	
 	@Id
-	@Column(name="ARTOWRK_COMMENTS_ID")
+	@Column(name="ARTWORK_COMMENTS_ID")
 	@SequenceGenerator(allocationSize = 1, initialValue = 1, name="A_C_SEQ", sequenceName="A_C_SEQ")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="A_C_SEQ")
 	private Long id;
@@ -32,7 +32,7 @@ public class ArtworkComment implements Serializable{
 	@JoinColumn(name="ARTWORK_ID")
 	private Artwork artwork;
 	
-	@Column(name="COMMENT")
+	@Column(name="ART_COMMENT")
 	private String comment;
 
 	public ArtworkComment() {
