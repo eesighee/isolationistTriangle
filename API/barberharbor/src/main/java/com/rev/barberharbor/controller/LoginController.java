@@ -45,8 +45,8 @@ public class LoginController {
 	/*
 	 * url: xxxx/login/register
 	 * method: POST
-	 * parameters: User		{email: string, fname: string, lname: string, password: string, username: string, uers_roles_id: number}
-	 * returns: User		{users_id: number, email: string, fname: string, lname: string, password: string, username: string, uers_roles_id: number}
+	 * parameters: User		{email: string, fname: string, lname: string, password: string, username: string, user_roles_id: number}
+	 * returns: User		{users_id: number, email: string, fname: string, lname: string, password: string, username: string, user_roles_id: number}
 	 */
 	@CrossOrigin
 	@RequestMapping(value="/register", method=RequestMethod.POST)
