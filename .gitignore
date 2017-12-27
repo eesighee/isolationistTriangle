@@ -1,11 +1,7 @@
 /.metadata/
 /.recommenders/
-*.properties
-*.MF
 RevProject2/.project
 RevProject2/.classpath
-*.MF
-*.properties
 RevProject2/.classpath
 RevProject2/.project
 RevProject2/target/classes/com/ex/beans/ServiceType.class
