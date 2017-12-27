@@ -1,5 +1,6 @@
 package com.rev.barberharbor.service;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,10 +21,11 @@ public class LoginService {
 	}
 	
 	public User login(String username, String password) {
-		return users.findByUsernameIgnoreCaseAndPassword(username, password);
+		return users.findByUsernameIgnoreCaseAndPassword(username, DigestUtils.sha256Hex(password));
 	}
 	
 	public User register(User u) {
+		u.setPassword(DigestUtils.sha256Hex(u.getPassword()));
 		return users.save(u);
 	}
 	
