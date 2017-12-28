@@ -1,8 +1,8 @@
 package com.rev.barberharbor.controller;
 
-import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -52,6 +52,12 @@ public class LoginController {
 	@RequestMapping(value="/register", method=RequestMethod.POST)
 	public User register(@RequestBody User u) {
 		return lserv.register(u);
+	}
+	
+	@CrossOrigin
+	@PostMapping(value="/email")
+	public boolean emailAvailable(@RequestBody String email) {
+		return lserv.emailAvailable(email);
 	}
 	
 	

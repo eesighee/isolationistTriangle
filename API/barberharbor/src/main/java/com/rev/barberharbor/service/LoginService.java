@@ -24,6 +24,11 @@ public class LoginService {
 		return users.findByUsernameIgnoreCaseAndPassword(username, DigestUtils.sha256Hex(password));
 	}
 	
+	public boolean emailAvailable(String email) {
+		if(users.findByEmail(email) == null) return true;
+		return false;
+	}
+	
 	public User register(User u) {
 		u.setPassword(DigestUtils.sha256Hex(u.getPassword()));
 		return users.save(u);
