@@ -12,13 +12,14 @@ export class LocationSearchComponent implements OnInit {
   shops: Array<Shop>;
   x: number;
   y: number;
-  
+  r: number = 25;
+
   constructor(private locService: SearchService) { }
 
   ngOnInit() {
     this.x = (Math.random() * 100);
     this.y = (Math.random() * 100);
-    this.locService.searchByLocation(this.x, this.y).subscribe(  shops => {
+    this.locService.searchByLocation(this.x, this.y, this.r).subscribe(  shops => {
           this.shops = shops;
         });
         // this.http.post<Shop[]>(environment.API_URL + "/locate", [x, y]).subscribe(

@@ -28,7 +28,7 @@ public class LocateController {
 	@CrossOrigin
 	@RequestMapping(method=RequestMethod.POST)
 	public List<Shop> locateShopsByLocation(@RequestBody double[] data) {
-		return locServ.getClosestShops(data[0], data[1]);
+		return locServ.getClosestShops(data[0], data[1], data[2]);
 	}	
 	
 	@CrossOrigin

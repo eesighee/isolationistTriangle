@@ -13,16 +13,9 @@ export class SearchService {
     /**
      * This sets shops to the all shops ordered by proximity of params 
      */
-   searchByLocation( x: number, y: number) {
-    console.log("searchByLocation called");  
-    return this.http.post<Shop[]>(environment.API_URL + "/locate", [x, y]);
-   
-    // this.http.post<Shop[]>(environment.API_URL + "/locate", [x, y]).subscribe(
-    //    shops => {
-    //     this.shopSubject = shops;
-    //   }
-    // );
-    // console.log(this.shopSubject.length);    
+   searchByLocation( x: number, y: number, r: number) {
+    return this.http.post<Shop[]>(environment.API_URL + "/locate", [x, y, r]);
+  
    }
 
   
