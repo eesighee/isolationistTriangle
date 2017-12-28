@@ -3,20 +3,21 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from './types/user.type';
 import { environment } from '../environments/environment';
+import { CanActivate } from '@angular/router/src/interfaces';
 
 @Injectable()
-export class LoginService {
+export class LoginService implements CanActivate{
 
   public loginSubject = new BehaviorSubject<User>(null);
 
   constructor(private http: HttpClient) { }
 
   usernameAvailable(username: string): Observable<boolean> {
-    return this.http.post<boolean>(environment.API_URL + "/username", username);
+    return this.http.post<boolean>(environment.API_URL + "/login/username", [username]);
   }
 
   emailAvailable(email: string): Observable<boolean> {
-    return this.http.post<boolean>(environment.API_URL + "/email", email);
+    return this.http.post<boolean>(environment.API_URL + "/login/email", [email]);
   }
 
   addUser(u: User) {
@@ -33,6 +34,10 @@ export class LoginService {
 
   logout() {
     this.loginSubject.next(null);
+  }
+
+  canActivate() {
+    return this.loginSubject.getValue() != null;
   }
 
 }

@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Routes } from '@angular/router'
 
-
 import { AppComponent } from './app.component';
 import { LoginService } from './login.service';
 import { HomeComponent } from './home/home.component';
@@ -14,7 +13,7 @@ import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "/login", pathMatch: "full"},
-  { path: "home", component: HomeComponent },
+  { path: "home", component: HomeComponent, canActivate: [LoginService]},
   { path: "register", component: RegisterComponent },
   { path: "login", component: LoginComponent }
 ]

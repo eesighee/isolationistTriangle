@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../login.service';
-import { $ } from 'protractor';
-import { User } from '../types/user.type';
+import { User, roles } from '../types/user.type';
 import { Router } from '@angular/router';
 
 @Component({
@@ -17,7 +16,7 @@ export class RegisterComponent implements OnInit {
   lname = "";
   password = "";
   confirmPassword = "";
-
+  userRole = "User";
 
   usernameMessage = "";
   passwordMessage = "";
@@ -34,19 +33,15 @@ export class RegisterComponent implements OnInit {
   }
 
   usernameBlur() {
-    if (!this.loginService.usernameAvailable(this.username)) {
-      this.usernameMessage = "That username is already taken";
-    } else {
-      this.usernameMessage = "";
-    }
+    this.loginService.usernameAvailable(this.username).subscribe(b => {
+      this.usernameMessage = b ? "" : "That username is already taken";
+    });
   }
 
   emailBlur() {
-    if (!this.loginService.emailAvailable(this.email)) {
-      this.emailMessage = "That email is already taken";
-    } else {
-      this.emailMessage = "";
-    }
+    this.loginService.emailAvailable(this.email).subscribe(b => {
+      this.emailMessage = b ? "" : "That email is already in use";
+    });
   }
 
   passwordBlur() {
@@ -70,8 +65,9 @@ export class RegisterComponent implements OnInit {
     u.username = this.username;
     u.email = this.email;
     u.password = this.password;
-    u.fname = this.fname;
+    u.fname = this.fname; 
     u.lname = this.lname;
+    u.role = this.userRole == "User" ? roles.user : roles.barber;
     if (!(this.passwordMessage || this.usernameMessage || this.emailMessage)) this.loginService.addUser(u);
   }
 
