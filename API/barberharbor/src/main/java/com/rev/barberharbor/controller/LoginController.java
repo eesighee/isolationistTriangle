@@ -38,8 +38,8 @@ public class LoginController {
 	 */
 	@CrossOrigin
 	@RequestMapping(value="/username", method=RequestMethod.POST)
-	public boolean usernameAvailable(@RequestBody String username) {
-		return lserv.usernameAvailable(username);
+	public boolean usernameAvailable(@RequestBody String[] username) {
+		return lserv.usernameAvailable(username[0]);
 	}
 	
 	/*
@@ -56,8 +56,8 @@ public class LoginController {
 	
 	@CrossOrigin
 	@PostMapping(value="/email")
-	public boolean emailAvailable(@RequestBody String email) {
-		return lserv.emailAvailable(email);
+	public boolean emailAvailable(@RequestBody String[] email) {
+		return lserv.emailAvailable(email[0]);
 	}
 	
 	

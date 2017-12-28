@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  API_URL: "http://localhost:8888"
+  API_URL: "http://localhost:8888",
+  MAPS_API_KEY: "AIzaSyCzAoVdtBHVV34WUxBzaNgW-rEECu_f_Yc"
 };
