@@ -123,6 +123,12 @@ public class Shop implements Serializable{
 	public void setWebsite(String website) {
 		this.website = website;
 	}
+
+	@Override
+	public String toString() {
+		return "Shop [id=" + id + ", name=" + name + ", latitude=" + latitude + ", longitude=" + longitude + ", sales="
+				+ sales + ", phone=" + phone + ", website=" + website + "]";
+	}
 	
 	
 }
