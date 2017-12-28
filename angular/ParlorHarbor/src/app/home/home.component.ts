@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../types/user.type';
 import { LoginService } from '../login.service';
-import * as $ from "jquery";
 
 @Component({
   selector: 'app-home',
