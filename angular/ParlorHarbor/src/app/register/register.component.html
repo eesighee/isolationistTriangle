@@ -27,6 +27,12 @@
     <input type="password" name="confirmPassword" [(ngModel)]="confirmPassword" (blur)="passwordBlur()" placeholder="Confirm Password">
   </div>
   <div>
+    <select [(ngModel)]="userRole" name="role">
+      <option value="User" selected>Customer</option>
+      <option value="Barber">Barber</option>
+    </select>
+  </div>
+  <div>
     <button (click)="register()">Register</button>
   </div>
 </div>

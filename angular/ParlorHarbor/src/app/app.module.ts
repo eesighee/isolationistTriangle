@@ -11,7 +11,10 @@ import { LoginService } from './login.service';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+<<<<<<< HEAD
 import { BarberComponent } from './barber/barber.component';
+=======
+>>>>>>> login3
 
 const routes: Routes = [
   { path: "", redirectTo: "/login", pathMatch: "full"},
@@ -26,7 +29,10 @@ const routes: Routes = [
     LoginComponent,
     RegisterComponent,
     HomeComponent,
+<<<<<<< HEAD
     BarberComponent
+=======
+>>>>>>> login3
   ],
   imports: [
     BrowserModule,

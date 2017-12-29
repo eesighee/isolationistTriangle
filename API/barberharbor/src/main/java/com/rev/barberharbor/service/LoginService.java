@@ -16,12 +16,15 @@ public class LoginService {
 	private UserRepo users;
 
 	public boolean usernameAvailable(String username) {
-		if(users.findByUsernameIgnoreCase(username) == null) return true;
-		return false;
+		return !users.existsByUsernameIgnoreCase(username);
 	}
 	
 	public User login(String username, String password) {
 		return users.findByUsernameIgnoreCaseAndPassword(username, DigestUtils.sha256Hex(password));
+	}
+	
+	public boolean emailAvailable(String email) {
+		return !users.existsByEmailIgnoreCase(email);
 	}
 	
 	public User register(User u) {
