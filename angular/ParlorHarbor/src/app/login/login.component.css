@@ -1,0 +1,19 @@
+#loginBody {
+    text-align: center;
+    margin: auto;
+    margin-top: 20vh;
+    width: 300px;
+    border: solid 1px;
+    padding: 10px;
+}
+
+input{
+    display: inline;
+    width: 200px;
+    float: right;
+    height:28px;
+}
+
+#loginMessage{
+    clear: both;
+}
