@@ -11,6 +11,7 @@ import { LoginService } from './login.service';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { BarberComponent } from './barber/barber.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "/login", pathMatch: "full"},
@@ -24,7 +25,8 @@ const routes: Routes = [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    BarberComponent
   ],
   imports: [
     BrowserModule,

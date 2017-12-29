@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -27,7 +28,7 @@ public class Barber extends User implements Serializable{
 	@SequenceGenerator(allocationSize = 1, initialValue = 1, name="BARBER_SEQ", sequenceName="BARBER_SEQ")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="BARBER_SEQ")
 	private Long id;
-	
+
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="SHOPS_ID")
 	private Shop shop;
@@ -38,11 +39,15 @@ public class Barber extends User implements Serializable{
 	public Barber() {
 		super();
 	}
-
-	public Barber(Shop shop, String website) {
+	
+	public Barber(String website) {
+		super();
+		this.website = website;
+	}
+	
+	public Barber(Shop shop) {
 		super();
 		this.shop = shop;
-		this.website = website;
 	}
 
 	public Barber(Long id, Shop shop, String website) {
@@ -74,6 +79,11 @@ public class Barber extends User implements Serializable{
 
 	public void setWebsite(String website) {
 		this.website = website;
+	}
+
+	@Override
+	public String toString() {
+		return "Barber [id=" + id + ", shop=" + shop + ", website=" + website + "]";
 	}
 	
 	

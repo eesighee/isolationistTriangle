@@ -7,5 +7,7 @@ import com.rev.barberharbor.model.Barber;
 
 @Repository
 public interface BarberRepo extends JpaRepository<Barber, Long>{
+	
+	
 
 }
