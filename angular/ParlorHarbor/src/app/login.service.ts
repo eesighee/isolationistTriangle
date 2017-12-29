@@ -23,10 +23,10 @@ export class LoginService implements CanActivate {
     return this.http.post<boolean>(environment.API_URL + "/login/email", [email]);
   }
 
-  addUser(u: User) {
-    this.http.post<User>(environment.API_URL + "/login/register", u)
-      .subscribe(us => {
-        this.loginSubject.next(us);
+  addUser(user: User) {
+    this.http.post<User>(environment.API_URL + "/login/register", user)
+      .subscribe(u => {
+        this.loginSubject.next(u);
         this.saveUser(u);
       }, err => {
         this.loginSubject.next(null);
