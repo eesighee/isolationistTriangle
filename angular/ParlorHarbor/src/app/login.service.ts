@@ -3,14 +3,17 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from './types/user.type';
 import { environment } from '../environments/environment';
-import { CanActivate } from '@angular/router/src/interfaces';
+import { Router, CanActivate } from '@angular/router';
 
 @Injectable()
-export class LoginService implements CanActivate{
+export class LoginService implements CanActivate {
 
   public loginSubject = new BehaviorSubject<User>(null);
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) {
+    var u = localStorage.getItem("user");
+    if (u) this.loginSubject.next(JSON.parse(u));
+  }
 
   usernameAvailable(username: string): Observable<boolean> {
     return this.http.post<boolean>(environment.API_URL + "/login/username", [username]);
@@ -21,23 +24,41 @@ export class LoginService implements CanActivate{
   }
 
   addUser(u: User) {
-    this.http.post<User>(environment.API_URL + "/login/register", u).subscribe(us => {
-      this.loginSubject.next(us);
-    });
+    this.http.post<User>(environment.API_URL + "/login/register", u)
+      .subscribe(us => {
+        this.loginSubject.next(us);
+        this.saveUser(u);
+      }, err => {
+        this.loginSubject.next(null);
+      });
   }
 
   login(username: string, password: string) {
-    this.http.post<User>(environment.API_URL + "/login", [username, password]).subscribe(u => {
-      if (u) this.loginSubject.next(u);
-    });
+    this.http.post<User>(environment.API_URL + "/login", [username, password])
+      .subscribe(u => {
+        console.log(u);
+        this.loginSubject.next(u);
+        this.saveUser(u);
+      }, err => {
+        this.loginSubject.next(null);
+      });
   }
 
   logout() {
     this.loginSubject.next(null);
+    localStorage.removeItem("user");
+    this.router.navigate(["login"]);
   }
 
   canActivate() {
-    return this.loginSubject.getValue() != null;
+    if (this.loginSubject.getValue() == null) {
+      this.router.navigate(["login"]);
+      return false;
+    } else return true;
+  }
+
+  saveUser(u: User) {
+    localStorage.setItem("user", JSON.stringify(u));
   }
 
 }

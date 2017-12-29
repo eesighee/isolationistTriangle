@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginService.loginSubject.subscribe(u => {
-      if (u == null) {
+      if (u == null && this.username && this.password) {
         this.loginmessage = "Login failed! Make sure information was entered correctly";
       } else {
         this.router.navigate(["home"]);

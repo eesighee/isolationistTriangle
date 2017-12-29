@@ -15,11 +15,12 @@ import { MapComponent } from './map/map.component';
 import { environment } from '../environments/environment';
 
 const routes: Routes = [
-  { path: "", redirectTo: "/login", pathMatch: "full" },
+  { path: "", redirectTo: "login", pathMatch: "full" },
   { path: "home", component: HomeComponent, canActivate: [LoginService] },
   { path: "register", component: RegisterComponent },
   { path: "login", component: LoginComponent },
-  { path: "map", component: MapComponent, canActivate: [LoginService] }
+  { path: "map", component: MapComponent, canActivate: [LoginService] },
+  { path: "**", redirectTo: "login" }
 ]
 
 @NgModule({
@@ -36,7 +37,7 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forRoot(routes),
     Ng2UIModule,
-    Ng2MapModule.forRoot({ apiUrl: 'https://maps.google.com/maps/api/js?key=' + environment.MAPS_API_KEY})
+    Ng2MapModule.forRoot({ apiUrl: 'https://maps.google.com/maps/api/js?key=' + environment.MAPS_API_KEY })
   ],
   providers: [
     LoginService

@@ -16,7 +16,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.login.loginSubject.getValue();
-    console.log(this.user);
+  }
+
+  logout() {
+    this.login.logout();
   }
 
 }
