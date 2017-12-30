@@ -38,9 +38,14 @@ export class BarberComponent implements OnInit {
         this.email = this.barber.email;
         this.website = this.barber.website;
         this.reviews = this.barberService.reviews;
+        console.log(this.barber);
         console.log(this.reviews);
         // this.shop = this.barber.shop;
       }
     });
+  }
+
+  addReview(){
+    this.barberService.addReview()
   }
 }

@@ -19,11 +19,14 @@ export class BarberService {
       this.http.get<Barber>(environment.API_URL + "/barber/" + id).subscribe(b => {
         if (b){
           this.http.get<barberReview[]>(environment.API_URL + "/barberreview/" + b.id).subscribe(r => {
-            console.log("arrow return" + r);
             this.reviews = r;
             this.barber.next(b);
           });
         }
       });
+  }
+
+  addReview(){
+    
   }
 }

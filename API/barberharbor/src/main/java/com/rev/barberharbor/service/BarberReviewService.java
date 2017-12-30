@@ -19,4 +19,8 @@ public class BarberReviewService {
 	public List<BarberReview> findAllByBarber_Id(long id) {
 		return brRepo.findAllByBarber_Id(id);
 	}
+
+//	public List<BarberReview> addBarberReview(BarberReview review) {
+//		return brRepo.save(review);
+//	}
 }

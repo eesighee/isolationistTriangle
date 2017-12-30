@@ -26,4 +26,11 @@ public class BarberReviewController {
 		return service.findAllByBarber_Id(id);
 	}
 	
+//	@CrossOrigin
+//	@RequestMapping(value = "/add", method = RequestMethod.POST)
+//	public List<BarberReview> addBarberReview(@RequestBody String[] data) {
+//		BarberReview review = new BarberReview(Long.parseLong(data[0]), Double.parseDouble(data[1]), data[2]);
+//		return service.addBarberReview(review);
+//	}
+	
 }
