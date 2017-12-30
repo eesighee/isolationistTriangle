@@ -34,22 +34,36 @@ public class ArtworkComment implements Serializable{
 	
 	@Column(name="ART_COMMENT")
 	private String comment;
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="USER_ID")
+	private User user;
 
 	public ArtworkComment() {
 		super();
 	}
 
-	public ArtworkComment(Artwork artwork, String comment) {
+	public ArtworkComment(Artwork artwork, String comment, User user) {
 		super();
 		this.artwork = artwork;
 		this.comment = comment;
+		this.user = user;
 	}
 
-	public ArtworkComment(Long id, Artwork artwork, String comment) {
+	public ArtworkComment(Long id, Artwork artwork, String comment, User user) {
 		super();
 		this.id = id;
 		this.artwork = artwork;
 		this.comment = comment;
+		this.user = user;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public Long getId() {

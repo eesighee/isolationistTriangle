@@ -22,12 +22,6 @@ public class Barber extends User implements Serializable{
 
 	private static final long serialVersionUID = 3561852746756800741L;
 	
-	@Id
-	@Column(name="BARBERS_ID")
-	@SequenceGenerator(allocationSize = 1, initialValue = 1, name="BARBER_SEQ", sequenceName="BARBER_SEQ")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="BARBER_SEQ")
-	private Long id;
-	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="SHOPS_ID")
 	private Shop shop;
@@ -47,17 +41,8 @@ public class Barber extends User implements Serializable{
 
 	public Barber(Long id, Shop shop, String website) {
 		super();
-		this.id = id;
 		this.shop = shop;
 		this.website = website;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public Shop getShop() {

@@ -13,13 +13,16 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { LocationSearchComponent } from './location-search/location-search.component';
 import { SearchService } from './search.service';
+import { ShopComponent } from './shop/shop.component';
+import { ShopService } from './shop.service';
 
 const routes: Routes = [
   { path: "", redirectTo: "/login", pathMatch: "full"},
   { path: "home", component: HomeComponent },
   { path: "register", component: RegisterComponent },
   { path: "login", component: LoginComponent },
-  { path: "search", component: LocationSearchComponent}
+  { path: "search", component: LocationSearchComponent}, 
+  { path: "shop", component: ShopComponent}
 ]
 
 @NgModule({
@@ -28,7 +31,8 @@ const routes: Routes = [
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    LocationSearchComponent
+    LocationSearchComponent,
+    ShopComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +41,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes)
   ],
   providers: [
-    LoginService, SearchService
+    LoginService, SearchService, ShopService
   ],
   bootstrap: [
     AppComponent

@@ -23,6 +23,11 @@ public class LocationService {
 		return Math.hypot(x - shop.getLatitude(), y - shop.getLongitude()); 
 	}
 	
+//	public List<Shop> findClosestShops(double x, double y, double r) {
+//		List<Shop> shopList = shops.findByDistance(x, y, r);
+//		shopList.sort(new SortByDistance(x, y));
+//		return shopList;
+//	}
 	/*
 	 * returns the closest shops. Ordered by the closest shop.Shop at index 0 is the closest shop to user.
 	 */
@@ -30,7 +35,7 @@ public class LocationService {
 		List<Shop> shopList = new ArrayList<Shop>();
 		
 		for(Shop s: shops.findAll()) {
-			if (getDistance(x, y, s) < 25) {
+			if (getDistance(x, y, s) < r) {
 				shopList.add(s);
 			}
 		}

@@ -1,0 +1,16 @@
+<input type="number" [(ngModel)] ="shopId" name="shopId" placeholder="Shop's Id">
+<!-- <button (click)="loadShop()">Load Shop</button> -->
+<h2>{{ shop.name }}</h2>
+<h3>{{shop.description}}</h3>
+<h4>Address: {{shop.address}}   Rating: {{shop.rating}}   Hours of Operation{{ shop.hoursOfOp }}  Phone {{shop.phone}}
+</h4>
+<div *ngFor="let e of employees">
+  <h3>{{e.name}}</h3>
+  <h4>Rating: {{e.rating}}
+  </h4>
+  <div *ngFor="let s of e.services">
+    {{s.name}}
+  </div>
+      
+</div>
+
