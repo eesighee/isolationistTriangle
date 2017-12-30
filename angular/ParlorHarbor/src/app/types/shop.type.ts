@@ -2,9 +2,9 @@ export class Shop{
 
     id: number;
     name: string;
-    latitude: double;
-    longitude: double;
-    sales: double;
+    latitude: number;
+    longitude: number;
+    sales: number;
     phone: string;
     website: string;
 

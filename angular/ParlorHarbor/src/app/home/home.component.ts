@@ -7,10 +7,10 @@ import { LoginService } from '../login.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-  
+
 export class HomeComponent implements OnInit {
 
-  private user;
+  private user: User;
 
   constructor(private login: LoginService) { }
 

@@ -6,7 +6,7 @@ import { LoginService } from '../login.service';
 
 import { User, Barber } from '../types/user.type';
 import { BarberService } from '../barber.service';
-import { Store } from '../types/store.type';
+import { Shop } from '../types/shop.type';
 import { barberReview } from '../types/barberReview.type';
 
 @Component({

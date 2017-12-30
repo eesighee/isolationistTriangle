@@ -1,4 +1,4 @@
-import { Store } from "./store.type";
+import { Shop } from "./shop.type";
 
 export class User{
     

@@ -42,14 +42,13 @@ export class LoginService implements CanActivate {
         this.loginSubject.next(null);
       });
   }
+  
 
   logout() {
     this.loginSubject.next(null);
     localStorage.removeItem("user");
     this.router.navigate(["login"]);
   }
-
-  return this.http.get<User[]>("dkjsab").filter(u => u.username == username & u.password == pasword);
 
   canActivate() {
     if (this.loginSubject.getValue() == null) {
