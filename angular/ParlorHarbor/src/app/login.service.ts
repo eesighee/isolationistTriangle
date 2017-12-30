@@ -27,7 +27,7 @@ export class LoginService implements CanActivate {
     this.http.post<User>(environment.API_URL + "/login/register", user)
       .subscribe(u => {
         this.loginSubject.next(u);
-        this.saveUser(u);
+        localStorage.setItem("user", JSON.stringify(u));
       }, err => {
         this.loginSubject.next(null);
       });
@@ -36,9 +36,8 @@ export class LoginService implements CanActivate {
   login(username: string, password: string) {
     this.http.post<User>(environment.API_URL + "/login", [username, password])
       .subscribe(u => {
-        console.log(u);
         this.loginSubject.next(u);
-        this.saveUser(u);
+        localStorage.setItem("user", JSON.stringify(u));
       }, err => {
         this.loginSubject.next(null);
       });
@@ -50,15 +49,13 @@ export class LoginService implements CanActivate {
     this.router.navigate(["login"]);
   }
 
+  return this.http.get<User[]>("dkjsab").filter(u => u.username == username & u.password == pasword);
+
   canActivate() {
     if (this.loginSubject.getValue() == null) {
       this.router.navigate(["login"]);
       return false;
     } else return true;
-  }
-
-  saveUser(u: User) {
-    localStorage.setItem("user", JSON.stringify(u));
   }
 
 }

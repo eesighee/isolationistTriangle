@@ -13,6 +13,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { MapComponent } from './map/map.component';
 import { environment } from '../environments/environment';
+import { MakeAppointmentComponent } from './make-appointment/make-appointment.component';
+import { AppointmentService } from './appointment.service';
 
 const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
@@ -29,7 +31,8 @@ const routes: Routes = [
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    MapComponent
+    MapComponent,
+    MakeAppointmentComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,8 @@ const routes: Routes = [
     Ng2MapModule.forRoot({ apiUrl: 'https://maps.google.com/maps/api/js?key=' + environment.MAPS_API_KEY })
   ],
   providers: [
-    LoginService
+    LoginService,
+    AppointmentService
   ],
   bootstrap: [
     AppComponent

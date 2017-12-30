@@ -17,7 +17,7 @@ export class User{
 
 export class Barber extends User{
     website: string;
-    store: Store;
+    shop: Shop;
 
     constructor(values = {}) {
         super(values);
