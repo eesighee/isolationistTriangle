@@ -1,5 +1,7 @@
 package com.rev.barberharbor.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +21,19 @@ public class BarberController {
 	
 	@CrossOrigin
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
-	public Barber getById(@PathVariable int id) {
+	public Barber getById(@PathVariable long id) {
 		return service.getById(id);
+	}
+
+	@CrossOrigin
+	@RequestMapping(method = RequestMethod.GET)
+	public List<Barber> findAllBarbers() {
+		return service.findAllBarbers();
+	}
+	
+	@CrossOrigin
+	@RequestMapping(value = "/shop/{id}", method = RequestMethod.GET, produces = "application/json")
+	public List<Barber> findAllByShop_Id(@PathVariable long id) {
+		return service.findAllByShop_Id(id);
 	}
 }

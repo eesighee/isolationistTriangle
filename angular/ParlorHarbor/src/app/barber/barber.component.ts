@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { LoginService } from '../login.service';
 
-import { User } from '../types/user.type';
-import { Barber } from '../types/barber.type';
+import { User, Barber } from '../types/user.type';
 import { BarberService } from '../barber.service';
+import { Store } from '../types/store.type';
+import { barberReview } from '../types/barberReview.type';
 
 @Component({
   selector: 'app-barber',
@@ -16,18 +18,29 @@ export class BarberComponent implements OnInit {
 
   private user: User;
   private barber: Barber;
+  firstname: string = "";
+  lastname: string = "";
+  email: string = "";
+  website: string = "";
+  reviews: barberReview[];
+  // shop: Store = null;
 
-  constructor(private loginService: LoginService, private barberService: BarberService, private router: Router) { }
+  constructor(private loginService: LoginService, private barberService: BarberService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.user = this.loginService.loginSubject.getValue();
-    this.getBarber();
+    this.barberService.getBarber(+this.route.snapshot.paramMap.get('id'));
+    this.barberService.barber.subscribe(b => { 
+      this.barber = b; 
+      if (b != null) {
+        this.firstname = this.barber.fname;
+        this.lastname = this.barber.lname;
+        this.email = this.barber.email;
+        this.website = this.barber.website;
+        this.reviews = this.barberService.reviews;
+        console.log(this.reviews);
+        // this.shop = this.barber.shop;
+      }
+    });
   }
-
-  getBarber(){
-    this.barberService.getBarber(id)
-    .subscribe(barber => this.barber = barber);
-  }
-
-
 }
