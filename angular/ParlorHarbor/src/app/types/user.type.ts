@@ -20,7 +20,7 @@ export class Barber extends User{
     shop: Shop;
 
     constructor(values = {}) {
-        super(values);
+        super();
         Object.assign(this, values);
     }
 }

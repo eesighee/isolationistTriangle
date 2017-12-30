@@ -42,9 +42,6 @@ public class Shop implements Serializable{
 	@Column(name="LONGITUDE")
 	private double longitude;
 	
-	@Column(name="SALES")
-	private double sales;
-	
 	@Column(name="PHONE")
 	private String phone;
 	
@@ -55,23 +52,21 @@ public class Shop implements Serializable{
 		super();
 	}
 
-	public Shop(String name, double latitude, double longitude, double sales, String phone, String website) {
+	public Shop(String name, double latitude, double longitude, String phone, String website) {
 		super();
 		this.name = name;
 		this.latitude = latitude;
 		this.longitude = longitude;
-		this.sales = sales;
 		this.phone = phone;
 		this.website = website;
 	}
 
-	public Shop(Long id, String name, double latitude, double longitude, double sales, String phone, String website) {
+	public Shop(Long id, String name, double latitude, double longitude, String phone, String website) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.latitude = latitude;
 		this.longitude = longitude;
-		this.sales = sales;
 		this.phone = phone;
 		this.website = website;
 	}
@@ -106,14 +101,6 @@ public class Shop implements Serializable{
 
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
-	}
-
-	public double getSales() {
-		return sales;
-	}
-
-	public void setSales(double sales) {
-		this.sales = sales;
 	}
 
 	public String getPhone() {

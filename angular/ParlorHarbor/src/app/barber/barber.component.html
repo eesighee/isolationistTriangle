@@ -1,0 +1,16 @@
+<div class="container">
+  <h1>{{this.firstname + " " + this.lastname}}</h1>
+  <h4>{{this.website}}</h4>
+  <table id="reviews">
+      <thead>
+          <th>Rating</th>
+          <th>Comment</th>
+      </thead>
+      <tbody>
+          <tr *ngFor="let barberReview of reviews">
+              <td>{{barberReview.rating}}</td>
+              <td>{{barberReview.comment}}</td>
+          </tr>
+      </tbody>
+  </table>
+</div>

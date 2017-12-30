@@ -11,10 +11,15 @@ import { LoginService } from './login.service';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { BarberComponent } from './barber/barber.component';
 import { MapComponent } from './map/map.component';
 import { environment } from '../environments/environment';
+<<<<<<< HEAD
 import { MakeAppointmentComponent } from './make-appointment/make-appointment.component';
 import { AppointmentService } from './appointment.service';
+=======
+import { BarberService } from './barber.service';
+>>>>>>> barberProfile
 
 const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
@@ -22,6 +27,7 @@ const routes: Routes = [
   { path: "register", component: RegisterComponent },
   { path: "login", component: LoginComponent },
   { path: "map", component: MapComponent, canActivate: [LoginService] },
+  { path: "barber/:id", component: BarberComponent },
   { path: "**", redirectTo: "login" }
 ]
 
@@ -31,8 +37,13 @@ const routes: Routes = [
     LoginComponent,
     RegisterComponent,
     HomeComponent,
+<<<<<<< HEAD
     MapComponent,
     MakeAppointmentComponent
+=======
+    BarberComponent,
+    MapComponent
+>>>>>>> barberProfile
   ],
   imports: [
     BrowserModule,
@@ -43,8 +54,12 @@ const routes: Routes = [
     Ng2MapModule.forRoot({ apiUrl: 'https://maps.google.com/maps/api/js?key=' + environment.MAPS_API_KEY })
   ],
   providers: [
+<<<<<<< HEAD
     LoginService,
     AppointmentService
+=======
+    LoginService, BarberService
+>>>>>>> barberProfile
   ],
   bootstrap: [
     AppComponent
