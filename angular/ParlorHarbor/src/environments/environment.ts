@@ -5,10 +5,6 @@
 
 export const environment = {
   production: false,
-<<<<<<< HEAD
   API_URL: "http://localhost:8888",
   MAPS_API_KEY: "AIzaSyCzAoVdtBHVV34WUxBzaNgW-rEECu_f_Yc"
-=======
-  API_URL: "http://localhost:8888"  
->>>>>>> shopComponent
 };
