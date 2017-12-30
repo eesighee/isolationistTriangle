@@ -1,0 +1,10 @@
+insert into SHOPS (SHOPS_ID, LATITUDE, LONGITUDE, NAME) 
+  VALUES (1, 13, 25, 'High Street Cut'); 
+insert into SHOPS (SHOPS_ID, LATITUDE, LONGITUDE, NAME) 
+  VALUES (2, 49, 64, 'Luckys Barbers'); 
+insert into SHOPS (SHOPS_ID, LATITUDE, LONGITUDE, NAME) 
+  VALUES (3, 20, 20, 'Gameclips');
+
+update SHOPS set SALES = 0;
+  
+Commit;

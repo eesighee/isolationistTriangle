@@ -1,0 +1,59 @@
+
+insert into user_roles (user_roles_id, role) values (1, 'User');
+insert into user_roles (user_roles_id, role) values (2, 'Barber');
+insert into user_roles (user_roles_id, role) values (3, 'Admin');
+
+insert into appointment_status (status_id, status) values (1, 'Pending');
+insert into appointment_status (status_id, status) values (2, 'Completed');
+insert into appointment_status (status_id, status) values (3, 'Cancelled');
+
+insert into service_types (service_types_id, type) values (1, 'Haircut');
+insert into service_types (service_types_id, type) values (2, 'Shave');
+insert into service_types (service_types_id, type) values (3, 'Shampoo');
+insert into service_types (service_types_id, type) values (4, 'Fade');
+insert into service_types (service_types_id, type) values (5, 'Edgeups');
+insert into service_types (service_types_id, type) values (6, 'Beard Trim');
+insert into service_types (service_types_id, type) values (7, 'Waxing');
+insert into service_types (service_types_id, type) values (8, 'Other');
+
+insert into SHOPS (SHOPS_ID, LATITUDE, LONGITUDE, NAME) VALUES (1, 13, 25, 'High Street Cut'); 
+insert into SHOPS (SHOPS_ID, LATITUDE, LONGITUDE, NAME) VALUES (2, 49, 64, 'Luckys Barbers'); 
+insert into SHOPS (SHOPS_ID, LATITUDE, LONGITUDE, NAME) VALUES (3, 20, 20, 'Gameclips');
+insert into SHOPS (SHOPS_ID, LATITUDE, LONGITUDE, NAME) VALUES (4, 24, 72, 'Memorable Fade');  
+insert into SHOPS (SHOPS_ID, LATITUDE, LONGITUDE, NAME) VALUES (5, 71, 73, 'Prime Cuts');  
+insert into SHOPS (SHOPS_ID, LATITUDE, LONGITUDE, NAME) VALUES (6, 79, 19, 'Brians');
+insert into SHOPS (SHOPS_ID, LATITUDE, LONGITUDE, NAME) VALUES (7, 50, 19, 'Northside Hank');
+
+
+insert into USERS (USERS_ID, EMAIL, FNAME, LNAME, PASSWORD, USERNAME, USER_ROLES_ID) values (2, 'luci@barbr.com', 'Morgan', 'Star', 'lived', 'luci', 2);
+insert into USERS (USERS_ID, EMAIL, FNAME, LNAME, PASSWORD, USERNAME, USER_ROLES_ID) values (3, 'cljf@barbr.com', 'Clint', 'Jefferson', 'test', 'cjef', 2);
+insert into USERS (USERS_ID, EMAIL, FNAME, LNAME, PASSWORD, USERNAME, USER_ROLES_ID) values (4, 'jfcl@barbr.com', 'Jeff', 'Clinton', 'test', 'jclin', 2);
+insert into USERS (USERS_ID, EMAIL, FNAME, LNAME, PASSWORD, USERNAME, USER_ROLES_ID) values (5, 'cor@barbr.com', 'Clyde', 'Orange', 'test', 'cor', 2);
+insert into USERS (USERS_ID, EMAIL, FNAME, LNAME, PASSWORD, USERNAME, USER_ROLES_ID) values (6, 'mcro@barbr.com', 'Molly', 'Cross', 'test', 'mcro', 2);
+insert into USERS (USERS_ID, EMAIL, FNAME, LNAME, PASSWORD, USERNAME, USER_ROLES_ID) values (7, 'swel@barbr.com', 'Shawndra', 'Welps', 'test', 'swel', 2);
+insert into USERS (USERS_ID, EMAIL, FNAME, LNAME, PASSWORD, USERNAME, USER_ROLES_ID) values (8, 'ndgr@barbr.com', 'Nina', 'DeGrecco', 'test', 'ndgr', 2);
+insert into USERS (USERS_ID, EMAIL, FNAME, LNAME, PASSWORD, USERNAME, USER_ROLES_ID) values (9, 'mwes@barbr.com', 'Melanie', 'West', 'test', 'mwes', 2);
+insert into USERS (USERS_ID, EMAIL, FNAME, LNAME, PASSWORD, USERNAME, USER_ROLES_ID) values (10, 'tgon@barbr.com', 'Theresa', 'Gonzalez', 'test', 'tgon', 2);
+insert into USERS (USERS_ID, EMAIL, FNAME, LNAME, PASSWORD, USERNAME, USER_ROLES_ID) values (11, 'peast@barbr.com', 'Paul', 'East', 'test', 'peast', 2);
+insert into USERS (USERS_ID, EMAIL, FNAME, LNAME, PASSWORD, USERNAME, USER_ROLES_ID) values (12, 'mbun@barbr.com', 'Mark', 'Bunch', 'test', 'mbun', 2);
+insert into USERS (USERS_ID, EMAIL, FNAME, LNAME, PASSWORD, USERNAME, USER_ROLES_ID) values (13, 'afrei@barbr.com', 'Alfonze', 'Frei', 'test', 'afrei', 2);
+insert into USERS (USERS_ID, EMAIL, FNAME, LNAME, PASSWORD, USERNAME, USER_ROLES_ID) values (14, 'rpark@barbr.com', 'Robert', 'Park', 'test', 'rpark', 2);
+insert into USERS (USERS_ID, EMAIL, FNAME, LNAME, PASSWORD, USERNAME, USER_ROLES_ID) values (15, 'tlee@barbr.com', 'Timothy', 'Lee', 'test', 'tlee', 2);
+
+insert into BARBERS (USERS_ID, SHOPS_ID) values (2, 1);
+insert into BARBERS (USERS_ID, SHOPS_ID) values (3, 1);
+insert into BARBERS (USERS_ID, SHOPS_ID) values (4, 1);
+insert into BARBERS (USERS_ID, SHOPS_ID) values (5, 2);
+insert into BARBERS (USERS_ID, SHOPS_ID) values (6, 2);
+insert into BARBERS (USERS_ID, SHOPS_ID) values (7, 2);
+insert into BARBERS (USERS_ID, SHOPS_ID) values (8, 3);
+insert into BARBERS (USERS_ID, SHOPS_ID) values (9, 3);
+insert into BARBERS (USERS_ID, SHOPS_ID) values (10, 4);
+insert into BARBERS (USERS_ID, SHOPS_ID) values (11, 4);
+insert into BARBERS (USERS_ID, SHOPS_ID) values (12, 5);
+insert into BARBERS (USERS_ID, SHOPS_ID) values (13, 5);
+insert into BARBERS (USERS_ID, SHOPS_ID) values (14, 6);
+insert into BARBERS (USERS_ID, SHOPS_ID) values (15, 6);
+
+
+commit;

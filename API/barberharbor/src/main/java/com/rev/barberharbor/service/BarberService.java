@@ -7,11 +7,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.rev.barberharbor.model.Barber;
+<<<<<<< HEAD
+=======
+import com.rev.barberharbor.model.Shop;
+>>>>>>> shopComponent
 import com.rev.barberharbor.repository.BarberRepo;
 
 @Service
 @Transactional
 public class BarberService {
+<<<<<<< HEAD
 
 	@Autowired
 	private BarberRepo barberRepo;
@@ -27,4 +32,14 @@ public class BarberService {
 	public List<Barber> findAllByShop_Id(long id) {
 		return barberRepo.findAllByShop_Id(id);
 	}
+=======
+	
+	@Autowired
+	private BarberRepo barberDao;
+	
+	public List<Barber> getAllBarbers(){
+		return barberDao.findAll();
+	}
+
+>>>>>>> shopComponent
 }

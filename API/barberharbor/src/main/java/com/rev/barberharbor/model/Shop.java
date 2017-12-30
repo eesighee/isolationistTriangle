@@ -119,5 +119,4 @@ public class Shop implements Serializable{
 		this.website = website;
 	}
 	
-	
 }

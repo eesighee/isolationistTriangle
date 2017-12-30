@@ -12,7 +12,12 @@ import com.rev.barberharbor.model.Shop;
 @Repository
 public interface ShopRepository extends JpaRepository<Shop, Long>{
 	
+<<<<<<< HEAD
 	@Query("select * from shops s where SQRT(POW(s.lat - :userlat, 2) + POW(s.long - :userlng, 2)) < :maxdistance")
 	public List<Shop> findByDistance(@Param("userlat") double userLatitidu, @Param("userlng") double userLongitude, @Param("maxdistance") double maxDistance);
+=======
+//	@Query("select * from shops s where SQRT(POW(s.lat - :userlat, 2) + POW(s.long - :userlng, 2)) < :maxdistance")
+//    public List<Shop> findByDistance(@Param("userlat") double userLatitidu, @Param("userlng") double userLongitude, @Param("maxdistance") double maxDistance);
+>>>>>>> shopComponent
 
 }
