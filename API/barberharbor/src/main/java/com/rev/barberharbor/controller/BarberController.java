@@ -28,7 +28,7 @@ public class BarberController {
 	@CrossOrigin
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Barber> findAllBarbers() {
-		return service.findAllBarbers();
+		return service.getAllBarbers();
 	}
 	
 	@CrossOrigin

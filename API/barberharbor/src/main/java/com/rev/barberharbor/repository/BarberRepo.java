@@ -10,17 +10,9 @@ import com.rev.barberharbor.model.Shop;
 
 @Repository
 public interface BarberRepo extends JpaRepository<Barber, Long>{
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-	
+
 	public List<Barber> findAllByShop_Id(long id);
-=======
-	
 	public List<Barber> findBarbersByShop(Shop shop);
 	public List<Barber> findBarbersByShop_Id(Long id);
 
->>>>>>> shopComponent
-
->>>>>>> barberProfile
 }

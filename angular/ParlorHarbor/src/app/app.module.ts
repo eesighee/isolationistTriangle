@@ -19,13 +19,15 @@ import { LocationSearchComponent } from './location-search/location-search.compo
 import { SearchService } from './search.service';
 import { ShopComponent } from './shop/shop.component';
 import { ShopService } from './shop.service';
+import { BarberComponent } from './barber/barber.component';
+import { BarberService } from './barber.service';
 
 const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
   { path: "home", component: HomeComponent, canActivate: [LoginService] },
   { path: "register", component: RegisterComponent },
   { path: "login", component: LoginComponent },
-
+  { path: "barber/:id", component: BarberComponent },
   { path: "map", component: MapComponent, canActivate: [LoginService] },
   { path: "**", redirectTo: "login" },
 
@@ -39,9 +41,8 @@ const routes: Routes = [
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-
+    BarberComponent,
     MapComponent,
-
     LocationSearchComponent,
     ShopComponent
   ],
@@ -54,7 +55,7 @@ const routes: Routes = [
     Ng2MapModule.forRoot({ apiUrl: 'https://maps.google.com/maps/api/js?key=' + environment.MAPS_API_KEY })
   ],
   providers: [
-    LoginService, SearchService, ShopService
+    LoginService, SearchService, ShopService, BarberService
   ],
   bootstrap: [
     AppComponent

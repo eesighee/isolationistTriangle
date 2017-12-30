@@ -17,11 +17,7 @@ import org.springframework.stereotype.Component;
 public class Barber extends User implements Serializable{
 
 	private static final long serialVersionUID = 3561852746756800741L;
-<<<<<<< HEAD
-
-=======
 	
->>>>>>> shopComponent
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="SHOPS_ID")
 	private Shop shop;
@@ -52,7 +48,6 @@ public class Barber extends User implements Serializable{
 		this.website = website;
 	}
 
-<<<<<<< HEAD
 	public Barber(Shop shop, String website, String profilePicture) {
 		super();
 		this.shop = shop;
@@ -60,8 +55,6 @@ public class Barber extends User implements Serializable{
 		this.profilePicture = profilePicture;
 	}
 
-=======
->>>>>>> shopComponent
 	public Shop getShop() {
 		return shop;
 	}
