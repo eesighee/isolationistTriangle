@@ -2,7 +2,9 @@ package com.rev.barberharbor.model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -40,9 +44,11 @@ public class Appointment implements Serializable {
 	@Column(name = "TIME")
 	private Date time;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="SERVICES_ID")
-	private StylingService service;
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name="APPOINTMENTS_SERVICES", 
+		joinColumns= @JoinColumn(name="APPOINTMENTS_ID", referencedColumnName="APPOINTMENTS_ID"), 
+		inverseJoinColumns=@JoinColumn(name="SERVICES_ID", referencedColumnName="STYLING_SERVICES_ID"))
+	private Set<StylingService> services;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="STATUS_ID")
@@ -52,23 +58,21 @@ public class Appointment implements Serializable {
 		super();
 	}
 
-	public Appointment(User customer, Barber barber, Date time, StylingService service, AppointmentStatus status) {
+	public Appointment(User customer, Barber barber, Date time, AppointmentStatus status) {
 		super();
 		this.customer = customer;
 		this.barber = barber;
 		this.time = time;
-		this.service = service;
 		this.status = status;
 	}
 
-	public Appointment(Long id, User customer, Barber barber, Date time, StylingService service,
+	public Appointment(Long id, User customer, Barber barber, Date time,
 			AppointmentStatus status) {
 		super();
 		this.id = id;
 		this.customer = customer;
 		this.barber = barber;
 		this.time = time;
-		this.service = service;
 		this.status = status;
 	}
 
@@ -104,12 +108,12 @@ public class Appointment implements Serializable {
 		this.time = time;
 	}
 
-	public StylingService getService() {
-		return service;
+	public Set<StylingService> getServices() {
+		return services;
 	}
 
-	public void setService(StylingService service) {
-		this.service = service;
+	public void setServices(Set<StylingService> services) {
+		this.services = services;
 	}
 
 	public AppointmentStatus getStatus() {

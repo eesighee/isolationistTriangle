@@ -1,46 +1,61 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from './types/user.type';
+import { environment } from '../environments/environment';
+import { Router, CanActivate } from '@angular/router';
 
 @Injectable()
-export class LoginService {
+export class LoginService implements CanActivate {
 
   public loginSubject = new BehaviorSubject<User>(null);
 
-  constructor(private http: HttpClient) { }
-
-  //testing dataset
-  users = [
-    { username: "bob", email: "bob@gmail.com", password: "123" },
-    { username: "alice", email: "alice@gmail.com", password: "456" },
-    { username: "charlie", email: "charlie@gmail.com", password: "789" },
-    { username: "diane", email: "diane@gmail.com", password: "abc" },
-    { username: "elvis", email: "elvis@gmail.com", password: "ABC" },
-  ];
-
-
-  //All of these implementations are for testing until the backend is up
-  usernameAvailable(username: string): boolean {
-    return !this.users.some(u => u.username == username)
+  constructor(private http: HttpClient, private router: Router) {
+    var u = localStorage.getItem("user");
+    if (u) this.loginSubject.next(JSON.parse(u));
   }
 
-  addUser(u: User) {
-    this.users.push({ username: u.username, email: u.email, password: u.password });
-    this.login(u.username, u.password);
+  usernameAvailable(username: string): Observable<boolean> {
+    return this.http.post<boolean>(environment.API_URL + "/login/username", [username]);
   }
 
-  emailAvailable(email: string): boolean{
-    return !this.users.some(u => u.email == email)
+  emailAvailable(email: string): Observable<boolean> {
+    return this.http.post<boolean>(environment.API_URL + "/login/email", [email]);
+  }
+
+  addUser(user: User) {
+    this.http.post<User>(environment.API_URL + "/login/register", user)
+      .subscribe(u => {
+        this.loginSubject.next(u);
+        localStorage.setItem("user", JSON.stringify(u));
+      }, err => {
+        this.loginSubject.next(null);
+      });
   }
 
   login(username: string, password: string) {
-    var user = this.users.filter(u => u.username == username && u.password == password);
-    if (user) this.loginSubject.next(new User(user));
+    this.http.post<User>(environment.API_URL + "/login", [username, password])
+      .subscribe(u => {
+        this.loginSubject.next(u);
+        localStorage.setItem("user", JSON.stringify(u));
+      }, err => {
+        this.loginSubject.next(null);
+      });
   }
 
   logout() {
     this.loginSubject.next(null);
+    localStorage.removeItem("user");
+    this.router.navigate(["login"]);
+  }
+
+  return this.http.get<User[]>("dkjsab").filter(u => u.username == username & u.password == pasword);
+
+  canActivate() {
+    if (this.loginSubject.getValue() == null) {
+      this.router.navigate(["login"]);
+      return false;
+    } else return true;
   }
 
 }

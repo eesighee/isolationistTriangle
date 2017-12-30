@@ -8,8 +8,10 @@ import com.rev.barberharbor.model.User;
 @Repository
 public interface UserRepo extends JpaRepository<User, Long>{
 	
-	public User findByUsernameIgnoreCase(String username);
+	public boolean existsByUsernameIgnoreCase(String username);
 	
 	public User findByUsernameIgnoreCaseAndPassword(String username, String password);
+	
+	public boolean existsByEmailIgnoreCase(String email);
 
 }
