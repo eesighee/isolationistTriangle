@@ -1,20 +1,37 @@
 <div class="container">
-  <h1>{{this.firstname + " " + this.lastname}}</h1>
-  <h4>{{this.website}}</h4>
-  <table id="reviews">
-      <thead>
-          <th>Rating</th>
-          <th>Comment</th>
-      </thead>
-      <tbody>
-          <tr *ngFor="let barberReview of reviews">
-              <td>{{barberReview.rating}}</td>
-              <td>{{barberReview.comment}}</td>
-          </tr>
-      </tbody>
-  </table>
-  <input id="rating" class="form-control" type="number" min="0" max="100" [(ngModel)] ="rating" name="rating">
-  <textarea id="comment" cols="60" placeholder="Add a comment" [(ngModel)] ="comment" name="comment"></textarea>
-  <br>
-  <button id="addButton" class="btn btn-primary" (click)="addReview()">Add Review</button>
+    <h1>{{this.firstname + " " + this.lastname}}</h1>
+    <h4>{{this.website}}</h4>
+    <table id="reviews">
+        <thead>
+            <th>Rating</th>
+            <th>Comment</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let barberReview of reviews">
+                <td>
+                    <sui-rating class="star" id="rating" [ngModel]="barberReview.rating" [maximum]="5"></sui-rating>
+                </td>
+                <td style="width: 180px; display: block; text-align:left;">{{barberReview.comment}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div id="addR">
+        <div id="ratingDiv">
+            <h5 class="ui top attached header">Rating</h5>
+            <div id="ratingBox" class="ui attached segment">
+                <sui-rating class="star" id="rRating" [(ngModel)]="rating" [maximum]="5"></sui-rating>
+            </div>
+        </div>
+        <div id="commentDiv">
+            <h5 class="ui top attached header">Comment</h5>
+            <div id="commentBox" class="ui attached segment">
+                <textarea id="comment" cols="40" placeholder="Add a comment..." [(ngModel)]="comment" name="comment"></textarea>
+            </div>
+        </div>
+        <!-- <input id="rating" class="form-control" type="number" min="0" max="100" [(ngModel)]="rating" name="rating"> -->
+        <button id="addButton" class="btn btn-primary" (click)="addReview()">Add Review</button>
+    </div>
+    <i class="fa fa-user">
+    </i>
+    <fa name="cog" animation="spin"></fa>
 </div>

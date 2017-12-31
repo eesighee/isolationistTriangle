@@ -8,11 +8,40 @@ h1{
 #reviews{
     margin: auto;
 }
-#rating{
-    width: 80px;
+th, td{
+    margin: 0;
+    padding: 6px;
+    border: solid 1px;
+}
+.reviewsRatings{
+    width: 30px;
+}
+#addR{
     margin: auto;
+    margin-top: 10px;
+    width:424px;
+}
+#ratingDiv{
+    width: 120px;
+    float:left;
+}
+#rRating{
+    padding-top: 18px;
+}
+#ratingBox{
+    height: 78px;
+}
+#commentDiv{
+    width: 300px;
+    float: left;
 }
 #comment{
     overflow: hidden;
     height:50px;
+}
+#commentBox{
+    height: 78px;
+}
+#addButton{
+    margin-top: 10px;
 }

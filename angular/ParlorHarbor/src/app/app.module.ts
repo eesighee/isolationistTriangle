@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Routes } from '@angular/router';
 import { Ng2UIModule, Ng2MapModule } from 'ng2-ui';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { SuiModule } from 'ng2-semantic-ui';
 
 import { AppComponent } from './app.component';
 import { LoginService } from './login.service';
@@ -30,8 +32,8 @@ const routes: Routes = [
   { path: "barber/:id", component: BarberComponent },
   { path: "map", component: MapComponent, canActivate: [LoginService] },
   // { path: "**", redirectTo: "login" },
-  { path: "search", component: LocationSearchComponent}, 
-  { path: "shop", component: ShopComponent}
+  { path: "search", component: LocationSearchComponent },
+  { path: "shop", component: ShopComponent }
 ]
 
 @NgModule({
@@ -51,7 +53,9 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forRoot(routes),
     Ng2UIModule,
-    Ng2MapModule.forRoot({ apiUrl: 'https://maps.google.com/maps/api/js?key=' + environment.MAPS_API_KEY })
+    Ng2MapModule.forRoot({ apiUrl: 'https://maps.google.com/maps/api/js?key=' + environment.MAPS_API_KEY }),
+    AngularFontAwesomeModule,
+    SuiModule
   ],
   providers: [
     LoginService, SearchService, ShopService, BarberService
