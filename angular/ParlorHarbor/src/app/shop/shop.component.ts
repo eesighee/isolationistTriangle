@@ -3,6 +3,7 @@ import { Shop } from '../types/shop.type';
 import { StylingService } from '../types/Styling-Service.type';
 import { User, Barber } from '../types/user.type';
 import { ShopService } from '../shop.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-shop',
@@ -11,8 +12,8 @@ import { ShopService } from '../shop.service';
 })
 export class ShopComponent implements OnInit {
 
-  shop: Shop = this.shopService.shop;
-  employees: Array<Barber> = this.shopService.employees;  
+  private shop: Shop;
+  private employees: Array<Barber>;  
   
   description: string;
   address: string;
@@ -21,20 +22,23 @@ export class ShopComponent implements OnInit {
   hoursOfOp: String;
   stylingServices: Set<StylingService>;
 
-  shopId: number;
-  
-  constructor(private shopService: ShopService) { }
+  constructor(private shopService: ShopService, private router: Router, private route: ActivatedRoute) { }
   
   ngOnInit() {
-    this.shopId = this.shopId;
-    this.employees = this.employees;
-  }
-  
-  loadShop() {
-    this.shopService.getEmployeesByShopId(this.shopId).subscribe( emps => {
-      this.employees = emps;
-      this.shop = this.employees[0].shop;      
+    this.shopService.getShopById(+this.route.snapshot.paramMap.get('id'));
+    this.shopService.shop.subscribe( s => {
+      this.shop = s;
+      if (s != null){
+        this.shopService.getEmployeesByShopId(s.id);
+        this.shopService.employees.subscribe( e => {
+          this.employees = e;
+        });
+      }
     });
+  }
+
+  loadBarber(id: number){
+    this.router.navigate(["barber/" + id]);
   }
 
 }
