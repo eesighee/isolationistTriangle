@@ -42,7 +42,7 @@ public class Appointment implements Serializable {
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="SERVICES_ID")
-	private StylingService service;
+	private StylingService stylingService;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="STATUS_ID")
@@ -52,23 +52,23 @@ public class Appointment implements Serializable {
 		super();
 	}
 
-	public Appointment(User customer, Barber barber, Date time, StylingService service, AppointmentStatus status) {
+	public Appointment(User customer, Barber barber, Date time, StylingService stylingService, AppointmentStatus status) {
 		super();
 		this.customer = customer;
 		this.barber = barber;
 		this.time = time;
-		this.service = service;
+		this.stylingService = stylingService;
 		this.status = status;
 	}
 
-	public Appointment(Long id, User customer, Barber barber, Date time, StylingService service,
+	public Appointment(Long id, User customer, Barber barber, Date time, StylingService stylingService,
 			AppointmentStatus status) {
 		super();
 		this.id = id;
 		this.customer = customer;
 		this.barber = barber;
 		this.time = time;
-		this.service = service;
+		this.stylingService = stylingService;
 		this.status = status;
 	}
 
@@ -104,12 +104,12 @@ public class Appointment implements Serializable {
 		this.time = time;
 	}
 
-	public StylingService getService() {
-		return service;
+	public StylingService getStylingService() {
+		return stylingService;
 	}
 
-	public void setService(StylingService service) {
-		this.service = service;
+	public void setStylingService(StylingService stylingService) {
+		this.stylingService = stylingService;
 	}
 
 	public AppointmentStatus getStatus() {

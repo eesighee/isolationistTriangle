@@ -21,19 +21,25 @@ import { ShopComponent } from './shop/shop.component';
 import { ShopService } from './shop.service';
 import { BarberComponent } from './barber/barber.component';
 import { BarberService } from './barber.service';
+<<<<<<< HEAD
 import { UserComponent } from './user/user.component';
+=======
+import { UserScheduleComponent } from './user-schedule/user-schedule.component';
+>>>>>>> shopComponent3
 
 const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
-  { path: "home", component: HomeComponent, canActivate: [LoginService] },
+  // { path: "home", component: HomeComponent, canActivate: [LoginService] },
+  { path: "home", component: HomeComponent },
   { path: "register", component: RegisterComponent },
   { path: "login", component: LoginComponent },
   { path: "barber/:id", component: BarberComponent },
-  { path: "map", component: MapComponent, canActivate: [LoginService] },
-  { path: "**", redirectTo: "login" },
+  //{ path: "map", component: MapComponent, canActivate: [LoginService] },
+  { path: "map", component: MapComponent },
+  //{ path: "**", redirectTo: "login" },
 
   { path: "search", component: LocationSearchComponent}, 
-  { path: "shop", component: ShopComponent}
+  { path: "shop/:id", component: ShopComponent}
 ]
 
 @NgModule({
@@ -46,7 +52,11 @@ const routes: Routes = [
     MapComponent,
     LocationSearchComponent,
     ShopComponent,
+<<<<<<< HEAD
     UserComponent
+=======
+    UserScheduleComponent
+>>>>>>> shopComponent3
   ],
   imports: [
     BrowserModule,

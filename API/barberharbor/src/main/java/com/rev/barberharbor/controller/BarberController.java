@@ -1,6 +1,8 @@
 package com.rev.barberharbor.controller;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -9,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.rev.barberharbor.model.Appointment;
 import com.rev.barberharbor.model.Barber;
+import com.rev.barberharbor.service.AppointmentService;
 import com.rev.barberharbor.service.BarberService;
 
 @RestController
@@ -18,6 +22,9 @@ public class BarberController {
 
 	@Autowired
 	private BarberService service;
+	
+	@Autowired
+	private AppointmentService appointmentService;
 	
 	@CrossOrigin
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
@@ -36,4 +43,11 @@ public class BarberController {
 	public List<Barber> findAllByShop_Id(@PathVariable long id) {
 		return service.findAllByShop_Id(id);
 	}
+
+	@CrossOrigin
+	@RequestMapping(value= "/{id}/appntmnts", method= RequestMethod.GET)
+	public List<Appointment> findAppointsByBarberId(@PathVariable long id){
+		return appointmentService.findAllByBarber_Id(id);
+	}
+	
 }
