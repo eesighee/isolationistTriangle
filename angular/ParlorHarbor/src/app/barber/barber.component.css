@@ -8,3 +8,11 @@ h1{
 #reviews{
     margin: auto;
 }
+#rating{
+    width: 80px;
+    margin: auto;
+}
+#comment{
+    overflow: hidden;
+    height:50px;
+}

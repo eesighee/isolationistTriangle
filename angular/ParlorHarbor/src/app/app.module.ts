@@ -29,8 +29,7 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "barber/:id", component: BarberComponent },
   { path: "map", component: MapComponent, canActivate: [LoginService] },
-  { path: "**", redirectTo: "login" },
-
+  // { path: "**", redirectTo: "login" },
   { path: "search", component: LocationSearchComponent}, 
   { path: "shop", component: ShopComponent}
 ]

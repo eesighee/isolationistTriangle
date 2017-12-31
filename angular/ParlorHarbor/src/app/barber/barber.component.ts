@@ -22,8 +22,13 @@ export class BarberComponent implements OnInit {
   lastname: string = "";
   email: string = "";
   website: string = "";
-  reviews: barberReview[];
   // shop: Store = null;
+  
+  reviews: barberReview[];
+
+  // new review data
+  rating: number;
+  comment: string = "";
 
   constructor(private loginService: LoginService, private barberService: BarberService, private router: Router, private route: ActivatedRoute) { }
 
@@ -46,6 +51,9 @@ export class BarberComponent implements OnInit {
   }
 
   addReview(){
-    this.barberService.addReview()
+    console.log(this.barber.id, this.rating, this.comment);
+    this.barberService.addReview(this.barber.id, this.rating, this.comment);
+    this.rating = 0;
+    this.comment = "";
   }
 }

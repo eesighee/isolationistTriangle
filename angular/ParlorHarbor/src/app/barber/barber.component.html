@@ -13,4 +13,8 @@
           </tr>
       </tbody>
   </table>
+  <input id="rating" class="form-control" type="number" min="0" max="100" [(ngModel)] ="rating" name="rating">
+  <textarea id="comment" cols="60" placeholder="Add a comment" [(ngModel)] ="comment" name="comment"></textarea>
+  <br>
+  <button id="addButton" class="btn btn-primary" (click)="addReview()">Add Review</button>
 </div>

@@ -21,7 +21,7 @@ public class BarberController {
 	
 	@CrossOrigin
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
-	public Barber getById(@PathVariable long id) {
+	public Barber getById(@PathVariable Long id) {
 		return service.getById(id);
 	}
 
@@ -33,7 +33,7 @@ public class BarberController {
 	
 	@CrossOrigin
 	@RequestMapping(value = "/shop/{id}", method = RequestMethod.GET, produces = "application/json")
-	public List<Barber> findAllByShop_Id(@PathVariable long id) {
+	public List<Barber> findAllByShop_Id(@PathVariable Long id) {
 		return service.findAllByShop_Id(id);
 	}
 }

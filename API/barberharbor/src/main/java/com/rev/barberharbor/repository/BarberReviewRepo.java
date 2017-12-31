@@ -10,6 +10,6 @@ import com.rev.barberharbor.model.BarberReview;
 @Repository
 public interface BarberReviewRepo extends JpaRepository<BarberReview, Long>{
 
-	List<BarberReview> findAllByBarber_Id(long id);
+	List<BarberReview> findAllByBarber_Id(Long id);
 	
 }

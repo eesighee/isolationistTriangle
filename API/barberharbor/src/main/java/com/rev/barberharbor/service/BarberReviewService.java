@@ -16,11 +16,13 @@ public class BarberReviewService {
 	@Autowired
 	private BarberReviewRepo brRepo;
 	
-	public List<BarberReview> findAllByBarber_Id(long id) {
+	public List<BarberReview> findAllByBarber_Id(Long id) {
 		return brRepo.findAllByBarber_Id(id);
 	}
 
-//	public List<BarberReview> addBarberReview(BarberReview review) {
-//		return brRepo.save(review);
-//	}
+	public BarberReview addBarberReview(BarberReview review) {
+		brRepo.save(review);
+		return review;
+	}
+
 }

@@ -16,7 +16,7 @@ public class BarberService {
 	@Autowired
 	private BarberRepo barberRepo;
 	
-	public Barber getById(long id) {
+	public Barber getById(Long id) {
 		return barberRepo.getOne(id);
 	}
 	
@@ -24,7 +24,7 @@ public class BarberService {
 		return barberRepo.findAll();
 	}
 	
-	public List<Barber> findAllByShop_Id(long id) {
+	public List<Barber> findAllByShop_Id(Long id) {
 		return barberRepo.findAllByShop_Id(id);
 	}
 

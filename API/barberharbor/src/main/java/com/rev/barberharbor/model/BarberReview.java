@@ -33,7 +33,7 @@ public class BarberReview implements Serializable {
 	private Barber barber;
 	
 	@Column(name="RATING")
-	private double rating;
+	private Double rating;
 	
 	@Column(name="BARBER_COMMENT")
 	private String comment;
@@ -42,14 +42,14 @@ public class BarberReview implements Serializable {
 		super();
 	}
 
-	public BarberReview(Barber barber, double rating, String comment) {
+	public BarberReview(Barber barber, Double rating, String comment) {
 		super();
 		this.barber = barber;
 		this.rating = rating;
 		this.comment = comment;
 	}
 
-	public BarberReview(Long id, Barber barber, double rating, String comment) {
+	public BarberReview(Long id, Barber barber, Double rating, String comment) {
 		super();
 		this.id = id;
 		this.barber = barber;
@@ -73,11 +73,11 @@ public class BarberReview implements Serializable {
 		this.barber = barber;
 	}
 
-	public double getRating() {
+	public Double getRating() {
 		return rating;
 	}
 
-	public void setRating(double rating) {
+	public void setRating(Double rating) {
 		this.rating = rating;
 	}
 
