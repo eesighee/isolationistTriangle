@@ -21,6 +21,7 @@ import { ShopComponent } from './shop/shop.component';
 import { ShopService } from './shop.service';
 import { BarberComponent } from './barber/barber.component';
 import { BarberService } from './barber.service';
+import { UserScheduleComponent } from './user-schedule/user-schedule.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
@@ -46,7 +47,8 @@ const routes: Routes = [
     BarberComponent,
     MapComponent,
     LocationSearchComponent,
-    ShopComponent
+    ShopComponent,
+    UserScheduleComponent
   ],
   imports: [
     BrowserModule,
