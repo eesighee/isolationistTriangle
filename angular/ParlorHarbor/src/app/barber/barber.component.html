@@ -1,36 +1,53 @@
 <div class="container">
     <h1>{{this.firstname + " " + this.lastname}}</h1>
     <h4>{{this.website}}</h4>
-    <table id="reviews">
+    <table id="reviewsTable" class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="5">
         <thead>
-            <th>Rating</th>
-            <th>Comment</th>
+            <tr>
+                <th style="width: 30%">
+                    <mfDefaultSorter by="rating">Rating</mfDefaultSorter>
+                </th>
+                <th style="width: 70%">
+                    <mfDefaultSorter by="comment">Comment</mfDefaultSorter>
+                </th>
+            </tr>
         </thead>
-        <tbody>
+        <tbody id="reviewsBody">
             <tr *ngFor="let barberReview of reviews">
                 <td>
-                    <sui-rating class="star" id="rating" [ngModel]="barberReview.rating" [maximum]="5"></sui-rating>
+                    <sui-rating class="star" id="rating1" [ngModel]="barberReview.rating" [maximum]="5"></sui-rating>
                 </td>
-                <td style="width: 180px; display: block; text-align:left;">{{barberReview.comment}}</td>
+                <td style="text-align:left;">{{barberReview.comment}}</td>
             </tr>
         </tbody>
     </table>
-    <div id="addR">
-        <div id="ratingDiv">
-            <h5 class="ui top attached header">Rating</h5>
-            <div id="ratingBox" class="ui attached segment">
-                <sui-rating class="star" id="rRating" [(ngModel)]="rating" [maximum]="5"></sui-rating>
+
+    <button class="ui primary button" (click)="open()">Add New Review</button>
+    <ng-template let-context let-modal="modal" #modalTemplate>
+        <div class="header">Add New Review For {{this.firstname}} {{this.lastname}}</div>
+        <div class="content">
+            <div id="addR">
+                <div id="ratingDiv">
+                    <h5 class="ui top attached header">Rating</h5>
+                    <div id="ratingBox" class="ui attached segment">
+                        <sui-rating class="star" id="rRating" [(ngModel)]="rating" [maximum]="5"></sui-rating>
+                    </div>
+                </div>
+                <div id="commentDiv">
+                    <h5 class="ui top attached header">Comment</h5>
+                    <div id="commentBox" class="ui attached segment">
+                        <textarea id="comment" cols="40" placeholder="Add a comment..." [(ngModel)]="comment" name="comment"></textarea>
+                    </div>
+                </div>
+                <!-- <input id="rating" class="form-control" type="number" min="0" max="100" [(ngModel)]="rating" name="rating"> -->
+                <!-- <button id="addButton" class="btn btn-primary" (click)="addReview()">Add Review</button> -->
             </div>
         </div>
-        <div id="commentDiv">
-            <h5 class="ui top attached header">Comment</h5>
-            <div id="commentBox" class="ui attached segment">
-                <textarea id="comment" cols="40" placeholder="Add a comment..." [(ngModel)]="comment" name="comment"></textarea>
-            </div>
+        <div class="actions">
+            <button class="ui red button" (click)="modal.deny('denied')">Cancel</button>
+            <button class="ui green button" (click)="modal.approve('approved')" autofocus>Add</button>
         </div>
-        <!-- <input id="rating" class="form-control" type="number" min="0" max="100" [(ngModel)]="rating" name="rating"> -->
-        <button id="addButton" class="btn btn-primary" (click)="addReview()">Add Review</button>
-    </div>
+    </ng-template>
     <i class="fa fa-user">
     </i>
     <fa name="cog" animation="spin"></fa>

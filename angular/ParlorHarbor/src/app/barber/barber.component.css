@@ -5,8 +5,9 @@
 h1{
     margin-top: 5vh;
 }
-#reviews{
+#reviewsTable{
     margin: auto;
+    width: 300px;
 }
 th, td{
     margin: 0;
