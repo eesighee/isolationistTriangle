@@ -17,6 +17,9 @@ th, td{
 .reviewsRatings{
     width: 30px;
 }
+.content{
+    height: 170px;
+}
 #addR{
     margin: auto;
     margin-top: 10px;
@@ -44,5 +47,9 @@ th, td{
     height: 78px;
 }
 #addButton{
+    margin-top: 10px;
+}
+#actions{
+    clear: both;
     margin-top: 10px;
 }

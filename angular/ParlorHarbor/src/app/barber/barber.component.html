@@ -1,14 +1,14 @@
 <div class="container">
     <h1>{{this.firstname + " " + this.lastname}}</h1>
     <h4>{{this.website}}</h4>
-    <table id="reviewsTable" class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="5">
+    <table id="reviewsTable" class="table table-striped">
         <thead>
             <tr>
                 <th style="width: 30%">
-                    <mfDefaultSorter by="rating">Rating</mfDefaultSorter>
+                    Rating
                 </th>
                 <th style="width: 70%">
-                    <mfDefaultSorter by="comment">Comment</mfDefaultSorter>
+                    Comment
                 </th>
             </tr>
         </thead>
@@ -43,7 +43,7 @@
                 <!-- <button id="addButton" class="btn btn-primary" (click)="addReview()">Add Review</button> -->
             </div>
         </div>
-        <div class="actions">
+        <div id="actions" class="actions">
             <button class="ui red button" (click)="modal.deny('denied')">Cancel</button>
             <button class="ui green button" (click)="modal.approve('approved')" autofocus>Add</button>
         </div>
