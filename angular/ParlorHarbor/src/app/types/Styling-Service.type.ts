@@ -1,3 +1,18 @@
+import { Barber } from "./user.type";
+
 export class StylingService{
-    name: String;
+    id: number;
+    description: string;
+    price: number; 
+    barber: Barber;
+    type: StylingServiceType;    
+}
+
+export class StylingServiceType{
+    id: number;
+    type: string;
+
+    constructor(values = {}) {
+        Object.assign(this, values);
+    }
 }

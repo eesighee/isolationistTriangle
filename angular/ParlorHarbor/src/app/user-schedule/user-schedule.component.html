@@ -1,0 +1,7 @@
+<div *ngIf = "appointments">
+  <h1>Shedule of {{barber.fname}} {{barber.lname}}</h1>
+  <div *ngFor="let a of appointments">
+      Client: {{ a.customer.fname }} {{ a.customer.lname }}
+      Service: {{ a.stylingService.type.type }}
+  </div>    
+</div>

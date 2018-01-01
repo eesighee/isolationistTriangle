@@ -35,6 +35,10 @@ public class ShopService {
 		return barberDao.findBarbersByShop(shop);
 	}
 
+	public Shop getById(long id) {
+		return shops.findOne(id);
+	}
+
 //	public Barber findBarberByUserId(long parseLong) {
 //		return barberDao.findByUserId(parseLong);
 //	}
