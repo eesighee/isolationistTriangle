@@ -34,12 +34,6 @@ const routes: Routes = [
   { path: "register", component: RegisterComponent },
   { path: "login", component: LoginComponent },
   { path: "barber/:id", component: BarberComponent },
-<<<<<<< HEAD
-  { path: "map", component: MapComponent, canActivate: [LoginService] },
-  // { path: "**", redirectTo: "login" },
-  { path: "search", component: LocationSearchComponent },
-  { path: "shop", component: ShopComponent }
-=======
   //{ path: "map", component: MapComponent, canActivate: [LoginService] },
   { path: "map", component: MapComponent },
   //{ path: "**", redirectTo: "login" },
@@ -47,7 +41,6 @@ const routes: Routes = [
   { path: "search", component: LocationSearchComponent}, 
   { path: "shop/:id", component: ShopComponent},
   { path: "barber/:id/appointments", component: UserScheduleComponent}
->>>>>>> development
 ]
 
 @NgModule({
