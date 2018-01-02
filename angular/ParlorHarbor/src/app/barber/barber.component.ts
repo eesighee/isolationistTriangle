@@ -9,6 +9,8 @@ import { User, Barber } from '../types/user.type';
 import { BarberService } from '../barber.service';
 import { Shop } from '../types/shop.type';
 import { barberReview } from '../types/barberReview.type';
+import { StylingService } from '../types/Styling-Service.type';
+import { Appointment } from '../types/appoinment.type';
 
 export interface IContext {
   data: string;
@@ -29,13 +31,24 @@ export class BarberComponent implements OnInit {
   lastname: string = "";
   email: string = "";
   website: string = "";
-  // shop: Store = null;
+  shop: Shop;
+  shopname: string = "";
 
+  services: StylingService[];
+  appointments: Appointment[];
   reviews: barberReview[];
 
   // new review data
-  rating: number;
+  rating: number = 0;
   comment: string = "";
+
+  //new service
+  description: string = "";
+  price: number = 0;
+  serviceType: number = 1;
+
+  isLogged: boolean = false;
+  
 
   constructor(private loginService: LoginService, private barberService: BarberService, private router: Router, private route: ActivatedRoute, public modalService: SuiModalService) { }
 
@@ -49,10 +62,20 @@ export class BarberComponent implements OnInit {
         this.lastname = this.barber.lname;
         this.email = this.barber.email;
         this.website = this.barber.website;
+        this.shop = this.barber.shop;
+        this.shopname = this.barber.shop.name;
         this.reviews = this.barberService.reviews;
+        this.services = this.barberService.services;
+        this.appointments = this.barberService.appointments;
+        if(this.user.id == this.barber.id){
+          this.isLogged = true;
+        }
+        else {
+          this.isLogged = false;
+        }
         console.log(this.barber);
         console.log(this.reviews);
-        // this.shop = this.barber.shop;
+        console.log(this.services);
       }
     });
   }
@@ -62,6 +85,14 @@ export class BarberComponent implements OnInit {
     this.barberService.addReview(this.barber.id, this.rating, this.comment);
     this.rating = 0;
     this.comment = "";
+  }
+
+  addService() {
+    console.log(this.barber.id, this.description, this.price, this.serviceType);
+    this.barberService.addService(this.barber.id, this.description, this.price, this.serviceType);
+    this.description = "";
+    this.price = 0;
+    this.serviceType = 1;
   }
 
   public open(dynamicContent: string = "") {

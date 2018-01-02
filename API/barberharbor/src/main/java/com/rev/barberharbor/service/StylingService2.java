@@ -19,5 +19,10 @@ public class StylingService2 {
 	public List<StylingService> findStylingServicesByBarber_id(long id) {
 		return dao.findAllByBarber_id(id);
 	}
+
+	public StylingService addBarberService(StylingService service) {
+		dao.save(service);
+		return service;
+	}
 	
 }
