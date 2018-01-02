@@ -35,39 +35,39 @@
                         </tbody>
                     </table>
                     <div *ngIf="isLogged">
-                        Show me if logged as the barber
+
+                        <div id="addS">
+                            <div id="descriptionDiv">
+                                <h5 class="ui top attached header">Description</h5>
+                                <div id="descriptionBox" class="ui attached segment">
+                                    <textarea id="description" cols="40" placeholder="Add description of service..." [(ngModel)]="description" name="description"></textarea>
+                                </div>
+                            </div>
+                            <div id="priceDiv">
+                                <h5 class="ui top attached header">Price</h5>
+                                <div id="priceBox" class="ui attached segment">
+                                    $
+                                    <input id="priceInput" class="form-control" type="number" [(ngModel)]="price" name="price" step="1.00" placeholder="0.00">
+                                </div>
+                            </div>
+                            <div id="typeDiv">
+                                <h5 class="ui top attached header">Type</h5>
+                                <div id="typeBox" class="ui attached segment">
+                                    <select id="type" [(ngModel)]="serviceType">
+                                        <option value="1">Haircut</option>
+                                        <option value="2">Shave</option>
+                                        <option value="3">Shampoo</option>
+                                        <option value="4">Fade</option>
+                                        <option value="5">Edgeups</option>
+                                        <option value="6">Beard Trim</option>
+                                        <option value="7">Waxing</option>
+                                        <option value="8">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <button id="newServiceButton" class="ui primary button" (click)="addService()">Add New Service</button>
                     </div>
-                    <div id="addS">
-                        <div id="descriptionDiv">
-                            <h5 class="ui top attached header">Description</h5>
-                            <div id="descriptionBox" class="ui attached segment">
-                                <textarea id="description" cols="40" placeholder="Add description of service..." [(ngModel)]="description" name="description"></textarea>
-                            </div>
-                        </div>
-                        <div id="priceDiv">
-                            <h5 class="ui top attached header">Price</h5>
-                            <div id="priceBox" class="ui attached segment">
-                                $
-                                <input id="priceInput" class="form-control" type="number" [(ngModel)]="price" name="price" step="1.00" placeholder="0.00">
-                            </div>
-                        </div>
-                        <div id="typeDiv">
-                            <h5 class="ui top attached header">Type</h5>
-                            <div id="typeBox" class="ui attached segment">
-                                <select id="type" [(ngModel)]="serviceType">
-                                    <option value="1">Haircut</option>
-                                    <option value="2">Shave</option>
-                                    <option value="3">Shampoo</option>
-                                    <option value="4">Fade</option>
-                                    <option value="5">Edgeups</option>
-                                    <option value="6">Beard Trim</option>
-                                    <option value="7">Waxing</option>
-                                    <option value="8">Other</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <button id="newServiceButton" class="ui primary button" (click)="addService()">Add New Service</button>
                 </div>
             </div>
         </div>
@@ -135,8 +135,8 @@
         </div>
     </ng-template>
 
-
+<!-- 
     <i class="fa fa-user">
     </i>
-    <fa name="cog" animation="spin"></fa>
+    <fa name="cog" animation="spin"></fa> -->
 </div>

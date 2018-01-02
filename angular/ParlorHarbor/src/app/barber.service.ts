@@ -64,6 +64,10 @@ export class BarberService {
     });
   }
 
+  addAppointment(date: Date, barberId: number, userId: number, serviceId: number){
+
+  }
+
   populateTimeArray(checkDate: Date){
     var hour = 0; console.log(checkDate);
     for(let i = 0; i < 48; i++){

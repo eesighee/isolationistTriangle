@@ -47,6 +47,8 @@ export class BarberComponent implements OnInit {
   price: number = 0;
   serviceType: number = 1;
 
+
+
   isLogged: boolean = false;
   
 
@@ -67,6 +69,7 @@ export class BarberComponent implements OnInit {
         this.reviews = this.barberService.reviews;
         this.services = this.barberService.services;
         this.appointments = this.barberService.appointments;
+        // this.availableTimeslots = this.barberService.availableTimeslots;
         if(this.user.id == this.barber.id){
           this.isLogged = true;
         }
@@ -79,6 +82,11 @@ export class BarberComponent implements OnInit {
       }
     });
   }
+
+  // addAppointment(){
+  //   this.barberService.addAppointment(this.date, this.barber.id, this.user.id, this.service.id);
+
+  // }
 
   addReview() {
     console.log(this.barber.id, this.rating, this.comment);
