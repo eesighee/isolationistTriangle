@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.rev.barberharbor.model.Barber;
 import com.rev.barberharbor.model.Shop;
+import com.rev.barberharbor.model.User;
 import com.rev.barberharbor.service.BarberService;
 import com.rev.barberharbor.service.ShopService;
 
@@ -55,9 +56,27 @@ public class ShopController {
 	}
 	
 	@CrossOrigin
+	@RequestMapping(value = "/validphone/{phone}", method=RequestMethod.GET)
+	public boolean validatePhone(@PathVariable String phone) {
+		return shopServ.validateShopByPhone(phone);
+	}
+	
+	@CrossOrigin
+	@RequestMapping(value = "/validaddress/{address}", method=RequestMethod.GET)
+	public boolean validateAddresss(@PathVariable String address) {
+		return shopServ.validateShopByAddress(address);
+	}
+	
+	@CrossOrigin
 	@RequestMapping(method=RequestMethod.GET)
 	public List<Barber> getBarbers() {
 		return barbServ.getAllBarbers();
+	}
+	
+	@CrossOrigin
+	@RequestMapping(value="/register", method=RequestMethod.POST)
+	public void register(@RequestBody Shop shop) {
+		shopServ.register(shop);
 	}
 
 }

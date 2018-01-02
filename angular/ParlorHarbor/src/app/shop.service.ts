@@ -29,6 +29,20 @@ export class ShopService {
       }
     });
   }
+
+  phoneAvailable(phone: string): Observable<boolean>{
+    return this.http.get<boolean>(environment.API_URL + "/shop/validphone/" + phone);
+  }
+  
+  addressAvailable(address: string): Observable<boolean>{
+    var result = this.http.get<boolean>(environment.API_URL + "/shop/validaddress/" + address);
+    console.log(result);
+    return result;
+  }
+
+  addShop(shop: Shop) {
+    this.http.post<Shop>(environment.API_URL + "/shop/register", shop).subscribe();
+  }
     
 
 }

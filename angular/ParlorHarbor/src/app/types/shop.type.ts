@@ -4,9 +4,11 @@ export class Shop{
     name: string;
     latitude: number;
     longitude: number;
-    sales: number;
     phone: string;
     website: string;
+    address: string;    
+    description: string;
+    hoursOfOperation: string;
 
     constructor(values = {}) {
         Object.assign(this, values);
