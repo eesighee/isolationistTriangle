@@ -24,6 +24,7 @@ import { BarberService } from './barber.service';
 import { UserScheduleComponent } from './user-schedule/user-schedule.component';
 import { UserComponent } from './user/user.component';
 import { ScheduleService } from './schedule.service';
+import { ShopRegisterComponent } from './shop-register/shop-register.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
@@ -38,7 +39,8 @@ const routes: Routes = [
 
   { path: "search", component: LocationSearchComponent}, 
   { path: "shop/:id", component: ShopComponent},
-  { path: "barber/:id/appointments", component: UserScheduleComponent}
+  { path: "barber/:id/appointments", component: UserScheduleComponent},
+  { path: "shopregister", component: ShopRegisterComponent}
 ]
 
 @NgModule({
@@ -52,7 +54,8 @@ const routes: Routes = [
     LocationSearchComponent,
     ShopComponent,
     UserComponent,
-    UserScheduleComponent
+    UserScheduleComponent,
+    ShopRegisterComponent
   ],
   imports: [
     BrowserModule,

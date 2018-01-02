@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.rev.barberharbor.model.Barber;
 import com.rev.barberharbor.model.Shop;
+import com.rev.barberharbor.model.User;
 import com.rev.barberharbor.repository.BarberRepo;
 import com.rev.barberharbor.repository.ShopRepository;
 import com.rev.barberharbor.repository.UserRepo;
@@ -37,6 +38,19 @@ public class ShopService {
 
 	public Shop getById(long id) {
 		return shops.findOne(id);
+	}
+
+	public boolean validateShopByPhone(String phone) {
+		return (shops.findShopByPhone(phone) == null);
+	}
+
+	public boolean validateShopByAddress(String address) {
+		return (shops.findShopByAddress(address) == null);
+
+	}
+
+	public void register(Shop shop) {
+		shops.save(shop);
 	}
 
 //	public Barber findBarberByUserId(long parseLong) {
