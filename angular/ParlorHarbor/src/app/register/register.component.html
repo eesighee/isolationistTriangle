@@ -32,6 +32,14 @@
       <option value="Barber">Barber</option>
     </select>
   </div>
+  <div *ngIf="userRole == 'Barber'">
+    <label for="website">Website</label>
+    <input type="text" name="website" [(ngModel)]="website" placeholder="Website">
+    <label for="shops">Shop</label>
+    <select name="shops" [(ngModel)]="selectedShop">
+      <option *ngFor="let shop of shops" [value]="shop.id">{{shop.name}}</option>
+    </select>
+  </div>
   <div>
     <button (click)="register()">Register</button>
   </div>

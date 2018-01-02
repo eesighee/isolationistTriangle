@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { User } from './types/user.type';
+import { User, Barber } from './types/user.type';
 import { environment } from '../environments/environment';
 import { Router, CanActivate } from '@angular/router';
 
@@ -24,13 +24,23 @@ export class LoginService implements CanActivate {
   }
 
   addUser(user: User) {
-    this.http.post<User>(environment.API_URL + "/login/register", user)
-      .subscribe(u => {
-        this.loginSubject.next(u);
-        localStorage.setItem("user", JSON.stringify(u));
-      }, err => {
-        this.loginSubject.next(null);
-      });
+    if (user.role.id == 1) {
+      this.http.post<User>(environment.API_URL + "/login/register", user)
+        .subscribe(u => {
+          this.loginSubject.next(u);
+          localStorage.setItem("user", JSON.stringify(u));
+        }, err => {
+          this.loginSubject.next(null);
+        });
+    } else if (user.role.id == 2) {
+      this.http.post<Barber>(environment.API_URL + "/login/register/barber", user)
+        .subscribe(u => {
+          this.loginSubject.next(u);
+          localStorage.setItem("user", JSON.stringify(u));
+        }, err => {
+          this.loginSubject.next(null);
+        });
+    }
   }
 
   login(username: string, password: string) {

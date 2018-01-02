@@ -12,4 +12,8 @@ export class ShopService {
     return this.http.post<Shop[]>(environment.API_URL + "/shop", [id]);
   }
 
+  getAllShops() {
+    return this.http.get<Shop[]>(environment.API_URL + "/shop/all")
+  }
+
 }

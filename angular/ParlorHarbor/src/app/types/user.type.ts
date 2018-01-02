@@ -11,6 +11,7 @@ export class User{
     role: Role;
 
     constructor(values = {}) {
+        
         Object.assign(this, values);
     }
 }
@@ -20,7 +21,7 @@ export class Barber extends User{
     shop: Shop;
 
     constructor(values = {}) {
-        super();
+        super(values);
         Object.assign(this, values);
     }
 }

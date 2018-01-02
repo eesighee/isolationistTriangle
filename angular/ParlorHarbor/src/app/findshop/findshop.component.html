@@ -1,0 +1,8 @@
+<input [(ngModel)]="address" type="text">
+<button (click)="search()">Search</button>
+
+<ng2-map id="map" center="Tampa, FL" (mapReady$)="onMapReady($event)">
+  <marker *ngFor="let shop of shops" [position]="{lat: shop.latitude, lng: shop.longitude}" (click)="selectShop(shop)"></marker>
+</ng2-map>
+
+

@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Routes } from '@angular/router';
 import { Ng2UIModule, Ng2MapModule } from 'ng2-ui';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { LoginService } from './login.service';
@@ -21,18 +22,20 @@ import { ShopComponent } from './shop/shop.component';
 import { ShopService } from './shop.service';
 import { BarberComponent } from './barber/barber.component';
 import { BarberService } from './barber.service';
+import { FileuploadComponent } from './fileupload/fileupload.component';
+import { LandingComponent } from './landing/landing.component';
+import { FindshopComponent } from './findshop/findshop.component';
 
 const routes: Routes = [
-  { path: "", redirectTo: "login", pathMatch: "full" },
+  { path: "", redirectTo: "landing", pathMatch: "full" },
   { path: "home", component: HomeComponent, canActivate: [LoginService] },
-  { path: "register", component: RegisterComponent },
-  { path: "login", component: LoginComponent },
+  { path: "landing", component: LandingComponent },
   { path: "barber/:id", component: BarberComponent },
   { path: "map", component: MapComponent, canActivate: [LoginService] },
-  { path: "**", redirectTo: "login" },
-
-  { path: "search", component: LocationSearchComponent}, 
-  { path: "shop", component: ShopComponent}
+  { path: "search", component: LocationSearchComponent },
+  { path: "shop", component: ShopComponent },
+  { path: "findshop", component: FindshopComponent },
+  { path: "**", redirectTo: "landing" }
 ]
 
 @NgModule({
@@ -44,7 +47,10 @@ const routes: Routes = [
     BarberComponent,
     MapComponent,
     LocationSearchComponent,
-    ShopComponent
+    ShopComponent,
+    FileuploadComponent,
+    LandingComponent,
+    FindshopComponent
   ],
   imports: [
     BrowserModule,
@@ -52,13 +58,19 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forRoot(routes),
     Ng2UIModule,
-    Ng2MapModule.forRoot({ apiUrl: 'https://maps.google.com/maps/api/js?key=' + environment.MAPS_API_KEY })
+    Ng2MapModule.forRoot({ apiUrl: 'https://maps.google.com/maps/api/js?key=' + environment.MAPS_API_KEY }),
+    NgbModule.forRoot()
+
   ],
   providers: [
     LoginService, SearchService, ShopService, BarberService
   ],
   bootstrap: [
     AppComponent
+  ],
+  entryComponents: [
+    LoginComponent,
+    RegisterComponent
   ]
 })
 export class AppModule { }

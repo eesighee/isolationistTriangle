@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../login.service';
-import { User, Role } from '../types/user.type';
+import { User, Role, Barber } from '../types/user.type';
 import { Router } from '@angular/router';
+import { Shop } from '../types/shop.type';
+import { ShopService } from '../shop.service';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap/modal/modal-ref';
 
 @Component({
   selector: 'app-register',
@@ -21,8 +24,12 @@ export class RegisterComponent implements OnInit {
   usernameMessage = "";
   passwordMessage = "";
   emailMessage = "";
+  website = "";
 
-  constructor(private loginService: LoginService, private router: Router) { }
+  shops: Shop[] = [];
+  selectedShop;
+
+  constructor(private amodal: NgbActiveModal, private loginService: LoginService, private shopService: ShopService, private router: Router) { }
 
   ngOnInit() {
     this.loginService.loginSubject.subscribe(u => {
@@ -30,6 +37,7 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(["home"]);
       }
     });
+    this.shopService.getAllShops().subscribe(s => this.shops = s);
   }
 
   usernameBlur() {
@@ -63,11 +71,22 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    var u = new User({
-      username: this.username, email: this.email,
-      password: this.password, fname: this.fname, lname: this.lname,
-      role: this.userRole == "User" ? Role.user() : Role.barber()
-    });
+    var u;
+    if (this.userRole == "User") {
+      u = new User({
+        username: this.username, email: this.email,
+        password: this.password, fname: this.fname, lname: this.lname,
+        role: Role.user()
+      });
+    }  
+    if (this.userRole == "Barber") {
+      u = new Barber({
+        username: this.username, email: this.email,
+        password: this.password, fname: this.fname, lname: this.lname,
+        role: Role.barber(), website: this.website,
+        shop: this.shops.filter(s => s.id == this.selectedShop)[0]
+      });
+    }
     if (!(this.passwordMessage || this.usernameMessage || this.emailMessage)) this.loginService.addUser(u);
   }
 

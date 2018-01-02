@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../types/user.type';
 import { LoginService } from '../login.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap/modal/modal';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,7 @@ export class HomeComponent implements OnInit {
 
   private user: User;
 
-  constructor(private login: LoginService) { }
+  constructor(private login: LoginService, private modal: NgbModal) { }
 
   ngOnInit() {
     this.user = this.login.loginSubject.getValue();
@@ -21,5 +22,7 @@ export class HomeComponent implements OnInit {
   logout() {
     this.login.logout();
   }
+
+
 
 }
