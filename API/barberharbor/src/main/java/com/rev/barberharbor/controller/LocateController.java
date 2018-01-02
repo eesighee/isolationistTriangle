@@ -4,7 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,10 +27,10 @@ public class LocateController {
 	 *  returns:  List of Shops ordered by how close the shop is to user
 	 */
 	@CrossOrigin
-	@RequestMapping(method=RequestMethod.POST)
-	public List<Shop> locateShopsByLocation(@RequestBody double[] data) {
+	@GetMapping(value="/search/{lat}/{lng}/{max}")
+	public List<Shop> locateShopsByLocation(@PathVariable double lat, @PathVariable double lng, @PathVariable double max) {
 		//return locServ.findClosestShops(data[0], data[1], data[2]);
-		return locServ.getClosestShops(data[0], data[1], data[2]);
+		return locServ.getClosestShops(lat, lng, max);
 	}	
 	
 	@CrossOrigin

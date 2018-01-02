@@ -28,6 +28,7 @@
     "google-maps-ng2": "^1.0.10",
     "ng-bootstrap": "^1.6.3",
     "ng2-map": "^0.16.5",
+    "ng2-semantic-ui": "^0.9.6",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19"
   },

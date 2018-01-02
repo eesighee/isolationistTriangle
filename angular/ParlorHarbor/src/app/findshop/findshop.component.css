@@ -1,0 +1,40 @@
+.map{
+    width: 800px;
+    height: 600px;
+}
+.input {
+  display: inline-block;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  padding: 10px 20px;
+  margin: auto;
+  border: 1px solid #b7b7b7;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  font: normal 16px/normal "Times New Roman", Times, serif;
+  color: rgba(0,142,198,1);
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  background: rgba(252,252,252,1);
+  -webkit-box-shadow: 2px 4px 6px 0 rgba(140,140,140,1) ;
+  box-shadow: 2px 4px 6px 0 rgba(140,140,140,1) ;
+  text-shadow: 1px 1px 0 rgba(255,255,255,0.66) ;
+}
+
+.input:hover {
+  -webkit-box-shadow: 0 0 6px 2px rgba(11,68,226,0.5) , 2px 4px 6px 0 rgba(140,140,140,1) ;
+  box-shadow: 0 0 6px 2px rgba(11,68,226,0.5) , 2px 4px 6px 0 rgba(140,140,140,1) ;
+}
+
+.input:focus {
+  font: normal 16px/normal Arial, Helvetica, sans-serif;
+  -webkit-box-shadow: 0 0 9px 4px rgba(0,67,252,0.5) inset, 2px 4px 6px 0 rgba(140,140,140,1) ;
+  box-shadow: 0 0 9px 4px rgba(0,67,252,0.5) inset, 2px 4px 6px 0 rgba(140,140,140,1) ;
+}
+
+.center{
+    margin: auto;
+    padding: 10px;
+    width: 50%;
+}

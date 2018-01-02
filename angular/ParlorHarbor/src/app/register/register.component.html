@@ -1,46 +1,49 @@
-<div>
-  <div>
-    <label for="username">Username</label>
-    <input type="text" name="username" [(ngModel)]="username" (blur)="usernameBlur()" placeholder="Username">
-    <div>{{usernameMessage}}</div>
+<div id="loginBody">
+  <h2>Register</h2>
+  <div class="row">
+    <label class="col" for="username">Username</label>
+    <input class="col" type="text" name="username" [(ngModel)]="username" (blur)="usernameBlur()" placeholder="Username">
+    <div class="loginMessage">{{usernameMessage}}</div>
   </div>
-  <div>
-    <label for="email">Email</label>
-    <input type="email" name="email" [(ngModel)]="email" (blur)="emailBlur()" placeholder="Email">
-    <div>{{emailMessage}}</div>
+  <div class="row">
+    <label class="col" for="email">Email</label>
+    <input class="col" type="email" name="email" [(ngModel)]="email" (blur)="emailBlur()" placeholder="Email">
+    <div class="loginMessage">{{emailMessage}}</div>
   </div>
-  <div>
-    <label for="fname">First Name</label>
-    <input type="text" name="fname" [(ngModel)]="fname" placeholder="First Name">
+  <div class="row">
+    <label class="col" for="fname">First Name</label>
+    <input class="col" type="text" name="fname" [(ngModel)]="fname" placeholder="First Name">
   </div>
-  <div>
-    <label for="lname">Last Name</label>
-    <input type="text" name="lname" [(ngModel)]="lname" placeholder="Last Name">
+  <div class="row">
+    <label class="col" for="lname">Last Name</label>
+    <input class="col" type="text" name="lname" [(ngModel)]="lname" placeholder="Last Name">
   </div>
-  <div>
-    <label for="password">Password</label>
-    <input type="password" name="password" [(ngModel)]="password" (blur)="passwordBlur()" placeholder="Password">
-    <div>{{passwordMessage}}</div>
+  <div class="row">
+    <label class="col" for="password">Password</label>
+    <input class="col" type="password" name="password" [(ngModel)]="password" (blur)="passwordBlur()" placeholder="Password">
+    <div class="loginMessage">{{passwordMessage}}</div>
   </div>
-  <div>
-    <label for="confirmPassword">Confirm Password</label>
-    <input type="password" name="confirmPassword" [(ngModel)]="confirmPassword" (blur)="passwordBlur()" placeholder="Confirm Password">
+  <div class="row">
+    <label class="col" for="confirmPassword">Confirm Password</label>
+    <input class="col" type="password" name="confirmPassword" [(ngModel)]="confirmPassword" (blur)="passwordBlur()" placeholder="Confirm Password">
   </div>
-  <div>
-    <select [(ngModel)]="userRole" name="role">
+  <div class="row">
+    <select class="col" [(ngModel)]="userRole" name="role">
       <option value="User" selected>Customer</option>
       <option value="Barber">Barber</option>
     </select>
   </div>
-  <div *ngIf="userRole == 'Barber'">
-    <label for="website">Website</label>
-    <input type="text" name="website" [(ngModel)]="website" placeholder="Website">
-    <label for="shops">Shop</label>
-    <select name="shops" [(ngModel)]="selectedShop">
+  <div class="row" *ngIf="userRole == 'Barber'">
+    <label class="col" for="website">Website</label>
+    <input class="col" type="text" name="website" [(ngModel)]="website" placeholder="Website">
+  </div>
+  <div class="row" *ngIf="userRole == 'Barber'">
+    <label class="col" for="shops">Shop</label>
+    <select class="col" name="shops" [(ngModel)]="selectedShop">
       <option *ngFor="let shop of shops" [value]="shop.id">{{shop.name}}</option>
     </select>
   </div>
   <div>
-    <button (click)="register()">Register</button>
+    <button class="btn btn-primary" (click)="register()">Register</button>
   </div>
 </div>

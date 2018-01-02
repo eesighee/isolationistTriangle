@@ -1,10 +1,8 @@
 #loginBody {
     text-align: center;
-    margin: auto;
-    margin-top: 20vh;
-    width: 300px;
+    margin: 30px;
     border: solid 1px;
-    padding: 10px;
+    padding: 30px;
 }
 
 input{

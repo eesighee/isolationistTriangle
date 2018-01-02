@@ -35,8 +35,28 @@ public class ShopService {
 		return barberDao.findBarbersByShop(shop);
 	}
 
+	public Shop getById(long id) {
+		return shops.findOne(id);
+	}
+
+	public boolean validateShopByPhone(String phone) {
+		return (shops.findShopByPhone(phone) == null);
+	}
+
+	public boolean validateShopByAddress(String address) {
+		return (shops.findShopByAddress(address) == null);
+	}
+
+	public void register(Shop shop) {
+		shops.save(shop);
+	}
+
 //	public Barber findBarberByUserId(long parseLong) {
 //		return barberDao.findByUserId(parseLong);
+//	}
+	
+//	public List<Shop> findClosestShops(double lat, double lng){
+//		return shops.findByIdIn(shops.findByDistance(lat, lng).limit(20));
 //	}
 
 }

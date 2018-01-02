@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Shop } from '../types/shop.type';
-import { Barber } from '../types/barber.type';
-import { StylingService } from '../types/Styling-Service.type';
-import { User } from '../types/user.type';
-import { ShopService } from '../shop.service';
+import { Barber } from '../types/user.type';
+import { Router } from '@angular/router';
+import { SearchService } from '../search.service';
 
 @Component({
   selector: 'app-shop',
@@ -12,27 +11,17 @@ import { ShopService } from '../shop.service';
 })
 export class ShopComponent implements OnInit {
 
-  shop: Shop;
-  description: string;
-  address: string;
-  phone: string;
-  employees: Array<Barber>;
-  rating: number;
-  hoursOfOp: String;
-  stylingServices: Set<StylingService>;
+  @Input() shop = null;
+  employees = [];
 
-  shopId: number;
-  
-  constructor(private shopService: ShopService) { }
-  
+  constructor(private router: Router, private searchService: SearchService) { }
+
   ngOnInit() {
-    for (let e of this.employees) {
-      this.rating += e.rating;
-      for (let s of e.services){
-        this.stylingServices.add(s);
-      }
-    }
-    //this.rating /= this.employees.length;
+    this.searchService.getBarbersByShop(this.shop).subscribe(barbs => this.employees = barbs);
+  }
+
+  loadBarber(id: number) {
+    this.router.navigate(["barber", id]);
   }
 
 }

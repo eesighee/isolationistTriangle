@@ -33,7 +33,8 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.loginService.loginSubject.subscribe(u => {
-      if (u != null) {
+      if (u) {
+        this.amodal.dismiss();
         this.router.navigate(["home"]);
       }
     });

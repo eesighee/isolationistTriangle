@@ -1,10 +1,11 @@
 export class Shop{
 
     id: number;
+    address;
+    hoursOfOperation;
     name: string;
     latitude: number;
     longitude: number;
-    sales: number;
     phone: string;
     website: string;
 

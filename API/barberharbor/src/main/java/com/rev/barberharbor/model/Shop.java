@@ -28,11 +28,7 @@ public class Shop implements Serializable{
 	@SequenceGenerator(allocationSize = 1, initialValue = 1, name="SHOP_SEQ", sequenceName="SHOP_SEQ")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SHOP_SEQ")
 	private Long id;
-	
-	@OneToMany(fetch=FetchType.EAGER)
-	@JoinColumn(name="BARBER_ID")
-	private Set<Barber> barbers;
-	
+
 	@Column(name="NAME")
 	private String name;
 	
@@ -47,21 +43,35 @@ public class Shop implements Serializable{
 	
 	@Column(name="WEBSITE")
 	private String website;
+	
+	@Column(name="ADDRESS")
+	private String address;
+		
+	@Column(name="DESCRIPTION")
+	private String description;	
+	
+	@Column(name="HOURS_OF_OPERATION")
+	private String hoursOfOperation;
 
 	public Shop() {
 		super();
 	}
 
-	public Shop(String name, double latitude, double longitude, String phone, String website) {
+	public Shop(String name, double latitude, double longitude, String phone, String website, String address,
+			String description, String hoursOfOperation) {
 		super();
 		this.name = name;
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.phone = phone;
 		this.website = website;
+		this.address = address;
+		this.description = description;
+		this.hoursOfOperation = hoursOfOperation;
 	}
 
-	public Shop(Long id, String name, double latitude, double longitude, String phone, String website) {
+	public Shop(Long id, String name, double latitude, double longitude, String phone, String website, String address,
+			String description, String hoursOfOperation) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -69,10 +79,21 @@ public class Shop implements Serializable{
 		this.longitude = longitude;
 		this.phone = phone;
 		this.website = website;
+		this.address = address;
+		this.description = description;
+		this.hoursOfOperation = hoursOfOperation;
 	}
 
 	public Long getId() {
 		return id;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public void setId(Long id) {
@@ -117,6 +138,22 @@ public class Shop implements Serializable{
 
 	public void setWebsite(String website) {
 		this.website = website;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getHoursOfOperation() {
+		return hoursOfOperation;
+	}
+
+	public void setHoursOfOperation(String hoursOfOperation) {
+		this.hoursOfOperation = hoursOfOperation;
 	}
 	
 }

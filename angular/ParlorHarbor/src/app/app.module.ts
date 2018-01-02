@@ -25,10 +25,13 @@ import { BarberService } from './barber.service';
 import { FileuploadComponent } from './fileupload/fileupload.component';
 import { LandingComponent } from './landing/landing.component';
 import { FindshopComponent } from './findshop/findshop.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { SuiModule } from 'ng2-semantic-ui/dist';
+import { BarberartworkComponent } from './barberartwork/barberartwork.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "landing", pathMatch: "full" },
-  { path: "home", component: HomeComponent, canActivate: [LoginService] },
+  { path: "home", component: FindshopComponent, canActivate: [LoginService] },
   { path: "landing", component: LandingComponent },
   { path: "barber/:id", component: BarberComponent },
   { path: "map", component: MapComponent, canActivate: [LoginService] },
@@ -50,7 +53,9 @@ const routes: Routes = [
     ShopComponent,
     FileuploadComponent,
     LandingComponent,
-    FindshopComponent
+    FindshopComponent,
+    NavbarComponent,
+    BarberartworkComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +64,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     Ng2UIModule,
     Ng2MapModule.forRoot({ apiUrl: 'https://maps.google.com/maps/api/js?key=' + environment.MAPS_API_KEY }),
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    SuiModule
 
   ],
   providers: [
@@ -70,7 +76,8 @@ const routes: Routes = [
   ],
   entryComponents: [
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ShopComponent
   ]
 })
 export class AppModule { }

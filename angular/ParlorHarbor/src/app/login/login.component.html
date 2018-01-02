@@ -1,4 +1,5 @@
 <div id="loginBody">
+  <h2>Login</h2>
   <div id="usernameInput" class="inputField">
     <label for="username">Username: </label>
     <input class="form-control" type="text" [(ngModel)] ="username" name="username" placeholder="Username">
@@ -9,6 +10,5 @@
     </div>
   <div>{{loginmessage}}</div>
   <button id="loginButton" class="btn btn-primary" (click)="login()">Login</button>
-  <button id="registerButton" class="btn btn-primary" (click)="register()">Create Account</button>
 </div>
 

@@ -1,6 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-declare var require: any;
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Barber } from '../types/user.type';
+import { Artwork } from '../types/atrwork.type';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
+declare var require: any;
 require('aws-sdk/dist/aws-sdk');
 
 @Component({
@@ -10,11 +15,18 @@ require('aws-sdk/dist/aws-sdk');
 })
 export class FileuploadComponent implements OnInit {
 
+  @Input()
+  barber: Barber;
+
+  @Input()
+  folder: string = "artwork";
+
+  @Output()
+  onUpload: EventEmitter<Artwork> = new EventEmitter();
+
   pendingFile;
 
-  imagePath = "https://s3.amazonaws.com/barberharbor-artwork/cat5.jpg";
-
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
   }
@@ -23,24 +35,32 @@ export class FileuploadComponent implements OnInit {
     this.pendingFile = fileInput.target.files[0];
   }
 
-  //f takes (err, data) of aws response
-  upload(f: any) {
+  upload() {
 
     var AWSService = window.AWS;
 
-    //PUT ACCESS KEY STUFF HERE
+    AWSService.config.accessKeyId = 'AKIAJFMVANU6ZPJI3DLA';
+
+    AWSService.config.secretAccessKey = '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';
 
     var bucket = new AWSService.S3({ params: { Bucket: 'barberharbor-artwork' } });
 
-    var params = { Key: this.pendingFile.name, Body: this.pendingFile, ACL:"public-read" };
+    var params = {
+      Key: "/" + this.folder + "/" + this.barber.id + "/" + this.pendingFile.name,
+      Body: this.pendingFile, ACL: "public-read"
+    };
 
-    bucket.upload(params, function (err, data) {
-      console.log(err, data);
-      this.onSuccess(data.location);
+    bucket.upload(params, (err, data) => {
+      var artwork = new Artwork();
+      artwork.barber = this.barber;
+      artwork.picturePath = data["Location"];
+      console.log(this.barber);
+      console.log(data);
+      this.http.post<Artwork>(environment.API_URL + "/artwork", artwork).subscribe(art => {
+        console.log(art);
+        this.onUpload.emit(art)
+      })
     });
-  }
-
-  onSuccess(location: string) {
   }
 
 }

@@ -26,14 +26,11 @@ export class LoginComponent implements OnInit {
     this.loginService.loginSubject.subscribe(u => {
       if (u == null && this.username && this.password) {
         this.loginmessage = "Login failed! Make sure information was entered correctly";
-      } else {
+      } else if (u) {
+        this.amodal.dismiss();
         this.router.navigate(["home"]);
       }
     });
-  }
-
-  register() {
-    this.router.navigate(["register"]);
   }
 
 

@@ -1,3 +1,10 @@
+import { Barber } from "./user.type";
+import { ServiceType } from "./servicetype.type";
+
 export class StylingService{
-    name: String;
+    id: number;
+    price: number;
+    barber: Barber;
+    description: String;
+    type: ServiceType;
 }

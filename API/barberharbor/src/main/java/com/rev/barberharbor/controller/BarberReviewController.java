@@ -11,26 +11,38 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rev.barberharbor.model.BarberReview;
+import com.rev.barberharbor.model.Barber;
 import com.rev.barberharbor.service.BarberReviewService;
+import com.rev.barberharbor.service.BarberService;
 
 @RestController
 @RequestMapping(value="/barberreview")
 public class BarberReviewController {
 
 	@Autowired
-	private BarberReviewService service;
+	private BarberReviewService rService;
+	
+	@Autowired
+	private BarberService bService;
 	
 	@CrossOrigin
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public List<BarberReview> findAllByBarber_Id(@PathVariable long id) {
-		return service.findAllByBarber_Id(id);
+	public List<BarberReview> findAllByBarber_Id(@PathVariable Long id) {
+		return rService.findAllByBarber_Id(id);
 	}
 	
-//	@CrossOrigin
-//	@RequestMapping(value = "/add", method = RequestMethod.POST)
-//	public List<BarberReview> addBarberReview(@RequestBody String[] data) {
-//		BarberReview review = new BarberReview(Long.parseLong(data[0]), Double.parseDouble(data[1]), data[2]);
-//		return service.addBarberReview(review);
-//	}
+	@CrossOrigin
+	@RequestMapping(value = "/test/{id}", method = RequestMethod.GET)
+	public Barber getBarberByBarber_Id(@PathVariable Long id) {
+		return bService.getById(id);
+	}
+	
+	@CrossOrigin
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	public BarberReview addBarberReview(@RequestBody String[] data) {
+		Barber barber = bService.getById(Long.parseLong(data[0]));
+		BarberReview review = new BarberReview(barber, Double.parseDouble(data[1]), data[2]);
+		return rService.addBarberReview(review);
+	}
 	
 }

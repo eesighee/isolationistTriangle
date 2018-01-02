@@ -5,6 +5,109 @@
 h1{
     margin-top: 5vh;
 }
-#reviews{
+
+/* Table stuff */
+.tableTitle{
+    width:100%;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+#reviewsTable{
     margin: auto;
+    width: 400px;
+}
+th, td{
+    margin: 0;
+    padding: 6px;
+    border: solid 1px;
+}
+.reviewsRatings{
+    width: 30px;
+}
+.content{
+    height: 200px;
+}
+
+/* addReview */
+#newReviewButton{
+    margin-top: 10px;
+}
+#addR{
+    margin: auto;
+    margin-top: 10px;
+    width:424px;
+}
+#ratingDiv{
+    width: 120px;
+    float:left;
+}
+#rRating{
+    padding-top: 33px;
+}
+#ratingBox{
+    height: 108px;
+}
+#commentDiv{
+    width: 300px;
+    float: left;
+}
+#comment{
+    overflow: hidden;
+    height:80px;
+}
+#commentBox{
+    height: 108px;
+}
+#addButton{
+    margin-top: 10px;
+}
+.actions{
+    clear: both;
+    margin-top: 20px;
+}
+
+/* addService */
+#addS{
+    margin: auto;
+    margin-top: 10px;
+    width:544px;
+}
+#newServiceButton{
+    margin-top: 50px;
+}
+#descriptionDiv, #priceDiv, #typeDiv{
+    float: left;
+    
+    margin-bottom: 15px;
+}
+#descriptionBox{
+    height: 108px;
+}
+#descriptionDiv{
+    width: 300px;
+}
+#description{
+    overflow: hidden;
+    height:80px;
+}
+#priceBox{
+    height: 108px;
+}
+#priceDiv{
+    width: 120px;
+}
+#priceInput{
+    margin-top: 20px;
+    display: inline;
+    width: 80px;
+}
+#typeBox{
+    height: 108px;
+}
+#typeDiv{
+    width: 120px;
+}
+#type{
+    margin-top: 25px;
 }

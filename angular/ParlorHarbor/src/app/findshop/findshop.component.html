@@ -1,8 +1,19 @@
-<input [(ngModel)]="address" type="text">
-<button (click)="search()">Search</button>
+<div class="center">
+  <div class="row">
+    <input [(ngModel)]="address" type="text" placeholder="Address or Zip Code">
+    </div>
+    <div class="row">
+    <label>Radius</label>
+    <input type="number" [(ngModel)]="radius">miles
+  </div>
 
-<ng2-map id="map" center="Tampa, FL" (mapReady$)="onMapReady($event)">
-  <marker *ngFor="let shop of shops" [position]="{lat: shop.latitude, lng: shop.longitude}" (click)="selectShop(shop)"></marker>
+  <button class="btn btn-primary" (click)="search()">Search</button>
+</div>
+
+
+
+
+<ng2-map class="map" id="map" center="Tampa, FL" (mapReady$)="onMapReady($event)">
+  <marker *ngFor="let shop of shops" [position]="{lat: shop.latitude, lng: shop.longitude}" [label]="shop.name" (click)="selectShop(shop)"></marker>
 </ng2-map>
-
-
+<app-shop *ngFor="let shop of shops" id="{{shop.id}}" [shop]="shop"></app-shop>
