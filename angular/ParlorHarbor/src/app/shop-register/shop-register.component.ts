@@ -32,8 +32,8 @@ export class ShopRegisterComponent implements OnInit {
         if (p != null) {
           this.phoneMessage = "";
         }
-        else{
-          this.phoneMessage = "That phone number is invalid"; 
+        else {
+          this.phoneMessage = "That phone number is invalid";
         }
       });
     }
@@ -53,18 +53,26 @@ export class ShopRegisterComponent implements OnInit {
 
   }
 
-  register(){
+  register() {
+    this.addressBlur();
+    this.phoneBlur();
+
     var shop = new Shop({
       name: this.name,
       latitude: this.latitude,
       longitude: this.longitude,
       phone: this.phone,
       website: this.website,
-      address: this.address,    
+      address: this.address,
       description: this.description,
       hoursOfOperation: this.hoursOfOperation
     });
-    if (!(this.addressMessage || this.phoneMessage)) this.shopService.addShop(shop);
+    if ((this.address && this.latitude && this.longitude && this.name && this.phone && this.website)) {
+      if (!(this.addressMessage || this.phoneMessage)) {
+        this.shopService.addShop(shop);
+      }
+    }
+
   }
 
 }

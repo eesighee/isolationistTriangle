@@ -41,7 +41,7 @@ export class ShopService {
   }
 
   addShop(shop: Shop) {
-    this.http.post<Shop>(environment.API_URL + "/shop/register", shop);
+    this.http.post<Shop>(environment.API_URL + "/shop/register", shop).subscribe();
   }
     
 
