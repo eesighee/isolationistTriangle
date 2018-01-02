@@ -28,9 +28,7 @@ export class FileuploadComponent implements OnInit {
 
     var AWSService = window.AWS;
 
-    AWSService.config.accessKeyId = 'AKIAIWAKI4MH2JNTI3ZQ';
-
-    AWSService.config.secretAccessKey = '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';
+    //PUT ACCESS KEY STUFF HERE
 
     var bucket = new AWSService.S3({ params: { Bucket: 'barberharbor-artwork' } });
 
