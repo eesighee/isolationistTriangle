@@ -1,0 +1,37 @@
+<div *ngFor = "let appointment of appointments">
+  <div class="boxed">
+
+      <table class="table table-appointment-information">
+          <tbody>
+              <tr>
+                  <td>Date:</td>
+                  <td>{{appointment.service.time}}</td>
+                </tr>
+              <tr>
+                  <td>Artist Name:</td>
+                  <td>{{appointment.service.barber.fname}} {{appointment.service.barber.lname}}</td>
+                </tr>
+            <tr>
+              <td>Description:</td>
+              <td>{{appointment.service.description}}</td>
+            </tr>
+            <tr>
+              <td>Total:</td>
+              <td>{{appointment.service.price}}</td>
+            </tr>
+         
+               <tr>
+                   <tr>
+              <td>Status:</td>
+              <td>{{appointment.status.status}}</td>
+            </tr>
+                 
+          </tbody>
+        </table>
+
+
+  </div>
+</div>
+
+
+
