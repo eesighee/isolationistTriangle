@@ -46,7 +46,6 @@ public class ShopService {
 
 	public boolean validateShopByAddress(String address) {
 		return (shops.findShopByAddress(address) == null);
-
 	}
 
 	public void register(Shop shop) {
