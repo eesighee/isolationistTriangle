@@ -1,6 +1,7 @@
 package com.rev.barberharbor.model;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -52,6 +53,12 @@ public class Shop implements Serializable{
 	
 	@Column(name="HOURS_OF_OPERATION")
 	private String hoursOfOperation;
+	
+	@Column(name="OPENING_TIME")
+	private Date openingTime;
+
+	@Column(name="CLOSING_TIME")
+	private Date closingTime;
 
 	public Shop() {
 		super();
@@ -154,6 +161,22 @@ public class Shop implements Serializable{
 
 	public void setHoursOfOperation(String hoursOfOperation) {
 		this.hoursOfOperation = hoursOfOperation;
+	}
+
+	public Date getOpeningTime() {
+		return openingTime;
+	}
+
+	public void setOpeningTime(Date openingTime) {
+		this.openingTime = openingTime;
+	}
+
+	public Date getClosingTime() {
+		return closingTime;
+	}
+
+	public void setClosingTime(Date closingTime) {
+		this.closingTime = closingTime;
 	}
 	
 }

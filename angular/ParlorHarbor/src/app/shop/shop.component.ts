@@ -19,7 +19,7 @@ export class ShopComponent implements OnInit {
   address: string;
   phone: string;
   rating: number;
-  hoursOfOp: String;
+  hoursOfOp: String = "10:00 am to 7:30 pm";
   stylingServices: Set<StylingService>;
 
   constructor(private shopService: ShopService, private router: Router, private route: ActivatedRoute) { }

@@ -52,6 +52,10 @@ public class ShopService {
 		shops.save(shop);
 	}
 
+//	public boolean shopOffersService(int serviceId) {
+//		
+//	}
+
 //	public Barber findBarberByUserId(long parseLong) {
 //		return barberDao.findByUserId(parseLong);
 //	}

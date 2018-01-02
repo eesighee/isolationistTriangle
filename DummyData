@@ -24,6 +24,8 @@ insert into SHOPS (SHOPS_ID, LATITUDE, LONGITUDE, NAME, PHONE, ADDRESS) VALUES (
 insert into SHOPS (SHOPS_ID, LATITUDE, LONGITUDE, NAME, PHONE, ADDRESS) VALUES (106, 79, 19, 'Brians', '813-111-1116', '119 Brightside Way');
 insert into SHOPS (SHOPS_ID, LATITUDE, LONGITUDE, NAME, PHONE, ADDRESS) VALUES (107, 50, 95, 'Northside Hank', '813-111-1117', '5019 Wrinkle St');
 
+UPDATE Shops SET 
+
 --Barbers
 insert into USERS (USERS_ID, EMAIL, FNAME, PHONE, LNAME, PHONE, PASSWORD, USERNAME, PHONE, USER_ROLES_ID) values (2, 'luci@barbr.com', 'Morgan', 'Star', 'lived', 'luci', 2);
 insert into USERS (USERS_ID, EMAIL, FNAME, PHONE, LNAME, PHONE, PASSWORD, USERNAME, PHONE, USER_ROLES_ID) values (3, 'cljf@barbr.com', 'Clint', 'Jefferson', 'test', 'cjef', 2);

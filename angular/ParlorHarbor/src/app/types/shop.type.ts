@@ -9,6 +9,9 @@ export class Shop{
     address: string;    
     description: string;
     hoursOfOperation: string;
+    openingTime: Date;
+    closingTime: Date;
+
 
     constructor(values = {}) {
         Object.assign(this, values);
