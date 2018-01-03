@@ -7,6 +7,7 @@ import { barberReview } from './types/barberReview.type';
 import { StylingService } from './types/Styling-Service.type';
 import { Appointment } from './types/appoinment.type';
 import { DateComparer } from 'ng2-semantic-ui/dist';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-date-struct';
 
 @Injectable()
 export class BarberService {
@@ -14,91 +15,113 @@ export class BarberService {
   public barber = new BehaviorSubject<Barber>(null);
 
   barb: Barber;
-  public reviews: barberReview[];
-  public services: StylingService[];
-  public appointments: Appointment[];
-  public availableTimeslots: Date[] = [];
-
+  public reviews: barberReview[] = [];
+  public services: StylingService[] = [];
+  public appointments: Appointment[] = [];
 
 
   constructor(private http: HttpClient) { }
 
-  getBarber(id: number){
-      this.http.get<Barber>(environment.API_URL + "/barber/" + id).subscribe(b => {
-        if (b){
-          this.barb = b;
-          this.http.get<barberReview[]>(environment.API_URL + "/barberreview/" + b.id).subscribe(r => {
-            this.reviews = r;
-            this.http.get<StylingService[]>(environment.API_URL + "/barber/" + b.id + "/services").subscribe(s => {
-              this.services = s;
-              this.http.get<Appointment[]>(environment.API_URL + "/barber/" + b.id + "/appntmnts").subscribe(a => {
-                this.appointments = a;
-                this.barber.next(b);
-              });
+  getBarber(id: number) {
+    this.http.get<Barber>(environment.API_URL + "/barber/" + id).subscribe(b => {
+      if (b) {
+        this.barb = b;
+        this.http.get<barberReview[]>(environment.API_URL + "/barberreview/" + b.id).subscribe(r => {
+          this.reviews = r;
+          this.http.get<StylingService[]>(environment.API_URL + "/barber/" + b.id + "/services").subscribe(s => {
+            this.services = s;
+            this.http.get<Appointment[]>(environment.API_URL + "/barber/" + b.id + "/appntmnts").subscribe(a => {
+              this.appointments = a;
+              this.barber.next(b);
             });
           });
-        }
-      });
+        });
+      }
+    });
   }
 
-  addReview(barberId: number, rating: number, comment: string){
+  addReview(barberId: number, rating: number, comment: string) {
     this.http.post<barberReview>(environment.API_URL + "/barberreview/add", [barberId, rating, comment]).subscribe(rev => {
-      console.log("outside rev if" + rev);
-      if (rev){
-        console.log("in rev if)")
+      if (rev) {
         this.reviews.push(rev);
         this.barber.next(this.barb);
       }
     });
   }
 
-  addService(barberId: number, description: string, price: number, type: number){
-    console.log(barberId + " " + description +" " + price +" " + type)
+  addService(barberId: number, description: string, price: number, type: number) {
     this.http.post<StylingService>(environment.API_URL + "/service/add", [barberId, description, price, type]).subscribe(serv => {
-      console.log("outside serv if" + serv);
-      if (serv){
-        console.log("in serv if");
+      if (serv) {
         this.services.push(serv);
         this.barber.next(this.barb);
       }
     });
   }
 
-  addAppointment(date: Date, barberId: number, userId: number, serviceId: number){
+  addAppointment(date: Date, barber: Barber, user: User, service: StylingService) {
+    // for (let i = 0; i < this.services.length; i++) {
+    //   if (this.services[i].id = serviceId) {
+    //     var appService = this.services[i];
+    //   }
+    // }
+    
+    let appToAdd = new Appointment();
+    appToAdd.time = date.toISOString();
+    appToAdd.customer = user;
+    appToAdd.barber = barber;
+    appToAdd.stylingService = service;
 
+    // console.log(appToAdd.time.getFullYear());
+    // console.log(appToAdd.time.getMonth());
+    // console.log(appToAdd.time.getDate());
+    // console.log(appToAdd.time.getHours());
+    // console.log(appToAdd.time.getMinutes());
+    // console.log(appToAdd.time.getSeconds());
+    // console.log(appToAdd.time.getMilliseconds());
+    // console.log(typeof appToAdd.time);
+
+    this.http.post<Appointment>(environment.API_URL + "/appointment/add", appToAdd).subscribe(appoint => {
+      if (appoint){
+        this.appointments.push(appoint);
+        this.barber.next(this.barb);
+      }
+    });
   }
 
-  populateTimeArray(checkDate: Date){
-    var hour = 0; console.log(checkDate);
-    for(let i = 0; i < 48; i++){
-      if ( i % 2 == 0){
-        let addDate = new Date(checkDate.getFullYear(), checkDate.getMonth(), checkDate.getDate(), hour, 0, 0, 0);
-        console.log(addDate);
-        this.availableTimeslots.push(addDate);
+  populateTimeArray(checkDate: NgbDateStruct) {
+    let availableTimeslots: Date[] = [];
+    var hour = 0; 
+    // console.log(checkDate);
+    for (let i = 0; i < 48; i++) {
+      if (i % 2 == 0) {
+        let addDate = new Date(checkDate.year, checkDate.month - 1, checkDate.day, hour, 0, 0, 0);
+        availableTimeslots.push(addDate);
       }
       else {
-        let addDate = new Date(checkDate.getFullYear(), checkDate.getMonth(), checkDate.getDate(), hour, 30, 0, 0);
-        this.availableTimeslots.push(addDate);
+        let addDate = new Date(checkDate.year, checkDate.month - 1, checkDate.day, hour, 30, 0, 0);
+        availableTimeslots.push(addDate);
         hour++;
       }
     }
-    // this compares dates correctly for some reason console.log(d.getTime() == n.getTime());
-    
-    console.log(this.availableTimeslots);
-    
-    // Get this barbers' shop's opening/closing time to display 30 minute intervals in an array
-    // Compare the 30 minute intervals against the times in the appointments array
-    // Pass an array with the open time slots back to the component to display the open timeslots
+    return this.checkAvailableTimes(availableTimeslots);
   }
 
-  checkAvailableTimes(){
-    for(let i = 0; i < this.availableTimeslots.length; i++){
-      for(let j = 0; j < this.appointments.length; i++){
-        if(this.availableTimeslots[i].getTime() == this.appointments[j].time.getTime()){
-          this.availableTimeslots.splice(i);
+  checkAvailableTimes(availableTimeslots: Date[]) {
+    var length = availableTimeslots.length;
+
+    for(let i = 0; i < length; i++){
+      for(let j = 0; j < this.appointments.length; j++){
+        if(availableTimeslots[i].toISOString() == this.appointments[j].time){
+          availableTimeslots.splice(i, 1);
+          length--;
+          j = 0;
+          if(i >= length){
+            break;
+          }
         }
       }
     }
+    return availableTimeslots;
   }
 
 }

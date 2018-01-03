@@ -24,7 +24,9 @@ public class AppointmentService {
 	public List<Appointment> findAllByBarber_Id(long id) {
 		return dao.findByBarber_Id(id);
 	}
-	
-	
+
+	public Appointment addAppointment(Appointment app) {
+		return dao.save(app);
+	}
 	
 }

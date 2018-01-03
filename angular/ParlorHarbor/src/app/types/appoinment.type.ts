@@ -6,7 +6,7 @@ export class Appointment {
     id: number;
     customer: User; 
     barber: Barber; 
-    time: any;
+    time: string;
     stylingService: StylingService; 
     status: AppointmentStatus;
 

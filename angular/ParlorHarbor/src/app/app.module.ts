@@ -7,6 +7,8 @@ import { Routes } from '@angular/router';
 import { Ng2UIModule, Ng2MapModule } from 'ng2-ui';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { SuiModule } from 'ng2-semantic-ui';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 import { AppComponent } from './app.component';
 import { LoginService } from './login.service';
@@ -67,6 +69,7 @@ const routes: Routes = [
     Ng2UIModule,
     Ng2MapModule.forRoot({ apiUrl: 'https://maps.google.com/maps/api/js?key=' + environment.MAPS_API_KEY }),
     AngularFontAwesomeModule,
+    NgbModule.forRoot(),
     SuiModule
   ],
   providers: [
