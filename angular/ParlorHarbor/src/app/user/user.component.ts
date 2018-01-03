@@ -13,11 +13,11 @@ export interface IContext {
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.css']
 })
 
-export class HomeComponent implements OnInit {
+export class UserComponent implements OnInit {
 
   private user: User;
 
