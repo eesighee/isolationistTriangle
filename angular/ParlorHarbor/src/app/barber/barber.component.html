@@ -131,7 +131,7 @@
                         </div>
                         <select id="timeSelect" [(ngModel)]="scheduleDate">
                             <option *ngFor="let timeSlot of availableTimeslots; let i = index" [value]="i">
-                                {{timeSlot}}
+                                {{timeSlot | date: 'shortTime'}}
                             </option>
                         </select>
                         <select id="serviceSelect" [(ngModel)]="scheduleService">
