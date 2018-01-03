@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { SuiModalService, TemplateModalConfig, ModalTemplate } from 'ng2-semantic-ui';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 import { LoginService } from '../login.service';
 
@@ -11,7 +12,6 @@ import { Shop } from '../types/shop.type';
 import { barberReview } from '../types/barberReview.type';
 import { StylingService } from '../types/Styling-Service.type';
 import { Appointment } from '../types/appointment.type';
-import { ServiceType } from '../types/servicetype.type';
 
 export interface IContext {
   data: string;
@@ -35,9 +35,21 @@ export class BarberComponent implements OnInit {
   shop: Shop;
   shopname: string = "";
 
-  services: StylingService[];
-  appointments: Appointment[];
-  reviews: barberReview[];
+  services: StylingService[] = [];
+  appointments: Appointment[] = [];
+  reviews: barberReview[] = [];
+
+
+  availableTimeslots: Date[] = [];
+  scheduleDate: number = 0;
+  scheduleService: number = 0;
+
+  selectedIndex: number = 0;
+
+  myAppointmentDates: Date[] = [];
+
+  model: NgbDateStruct;
+  date: { year: number, month: number };
 
   // new review data
   rating: number = 0;
@@ -48,7 +60,10 @@ export class BarberComponent implements OnInit {
   price: number = 0;
   serviceType: number = 1;
 
+
+
   isLogged: boolean = false;
+  isBarber: boolean = false;
 
 
   constructor(private loginService: LoginService, private barberService: BarberService, private router: Router, private route: ActivatedRoute, public modalService: SuiModalService) { }
@@ -68,37 +83,41 @@ export class BarberComponent implements OnInit {
         this.reviews = this.barberService.reviews;
         this.services = this.barberService.services;
         this.appointments = this.barberService.appointments;
+        for (let i = 0; i < this.appointments.length; i++) {
+          this.myAppointmentDates[i] = new Date(this.appointments[i].time);
+        }
         if (this.user.id == this.barber.id) {
           this.isLogged = true;
         }
         else {
           this.isLogged = false;
         }
-        console.log(this.barber);
-        console.log(this.reviews);
-        console.log(this.services);
+        if (this.user.role.id == 2) {
+          this.isBarber = true;
+        }
+        else {
+          this.isBarber = false;
+        }
       }
     });
   }
 
+  getTimeslots() {
+    this.availableTimeslots = this.barberService.populateTimeArray(this.model);
+  }
+
+  addAppointment() {
+    this.barberService.addAppointment(this.availableTimeslots[this.scheduleDate], this.barber, this.user, this.services[this.scheduleService]);
+  }
+
   addReview() {
-    console.log(this.barber.id, this.rating, this.comment);
     this.barberService.addReview(this.barber.id, this.rating, this.comment);
     this.rating = 0;
     this.comment = "";
   }
 
   addService() {
-    console.log(this.barber);
-    var service = new StylingService();
-    service.barber = this.barber;
-    service.description = this.description;
-    service.price = this.price;
-    service.type = ServiceType.getType(this.serviceType);
-    console.log(service);
-    
-    console.log(this.barber.id, this.description, this.price, this.serviceType);
-    this.barberService.addService(service);
+    this.barberService.addService(this.barber.id, this.description, this.price, this.serviceType);
     this.description = "";
     this.price = 0;
     this.serviceType = 1;
@@ -114,6 +133,10 @@ export class BarberComponent implements OnInit {
       .open(config)
       .onApprove(result => { this.addReview(); })
       .onDeny(result => { /* closes the modal */ });
+  }
+
+  sendToShop() {
+    this.router.navigate(["shop/" + this.barber.shop.id]);
   }
 
 }

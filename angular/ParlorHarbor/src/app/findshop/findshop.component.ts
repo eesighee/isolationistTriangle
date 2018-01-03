@@ -19,7 +19,7 @@ export class FindshopComponent implements OnInit {
   address: string;
   shops: Shop[] = [];
   map;
-  radius: number = 50;
+  radius: number = 100;
 
   currentShop = null;
   employees = [];

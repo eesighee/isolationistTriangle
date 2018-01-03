@@ -1,5 +1,5 @@
 <nav style="box-shadow: 0px 5px 2px grey;" class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="#">BarberHarbor</a>
+  <a class="navbar-brand" routerLink="/home">BarberHarbor</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
     aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -7,7 +7,7 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a *ngIf="login.loginSubject.getValue()" class="nav-item nav-link" id="home" routerLink="/home">Home</a>
-            <a *ngIf="login.loginSubject.getValue()" class="nav-item nav-link" id="registershop" routerLink="/registershop">New Shop</a>
+      <a class="nav-item nav-link" id="registershop" routerLink="/registershop">New Shop</a>
 
       <a *ngIf="login.loginSubject.getValue()" class="nav-item nav-link" id="profile" routerLink="/profile">Profile</a>
       <a *ngIf="login.loginSubject.getValue()" class="nav-item nav-link" id="logout" (click)="logout()">Logout</a>

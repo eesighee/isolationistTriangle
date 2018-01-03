@@ -38,7 +38,7 @@ public class Appointment implements Serializable {
 	private Barber barber;
 	
 	@Column(name = "TIME")
-	private Date time;
+	private String time;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="SERVICES_ID")
@@ -52,7 +52,7 @@ public class Appointment implements Serializable {
 		super();
 	}
 
-	public Appointment(User customer, Barber barber, Date time, StylingService stylingService, AppointmentStatus status) {
+	public Appointment(User customer, Barber barber, String time, StylingService stylingService, AppointmentStatus status) {
 		super();
 		this.customer = customer;
 		this.barber = barber;
@@ -61,7 +61,7 @@ public class Appointment implements Serializable {
 		this.status = status;
 	}
 
-	public Appointment(Long id, User customer, Barber barber, Date time, StylingService stylingService,
+	public Appointment(Long id, User customer, Barber barber, String time, StylingService stylingService,
 			AppointmentStatus status) {
 		super();
 		this.id = id;
@@ -96,11 +96,11 @@ public class Appointment implements Serializable {
 		this.barber = barber;
 	}
 
-	public Date getTime() {
+	public String getTime() {
 		return time;
 	}
 
-	public void setTime(Date time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
 

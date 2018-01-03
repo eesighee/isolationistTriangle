@@ -49,16 +49,19 @@ public class Shop implements Serializable{
 		
 	@Column(name="DESCRIPTION")
 	private String description;	
-	
-	@Column(name="HOURS_OF_OPERATION")
-	private String hoursOfOperation;
 
+	@Column(name="HOURS_OF_OPERATION")
+	private String openingTime;
+	
+	@Column(name="CLOSING_TIME")
+	private String closingTime;
+	
 	public Shop() {
 		super();
 	}
 
 	public Shop(String name, double latitude, double longitude, String phone, String website, String address,
-			String description, String hoursOfOperation) {
+			String description, String openingTime, String closingTime) {
 		super();
 		this.name = name;
 		this.latitude = latitude;
@@ -67,11 +70,28 @@ public class Shop implements Serializable{
 		this.website = website;
 		this.address = address;
 		this.description = description;
-		this.hoursOfOperation = hoursOfOperation;
+		this.openingTime = openingTime;
+		this.closingTime = closingTime;
+	}
+	
+	public String getOpeningTime() {
+		return openingTime;
+	}
+
+	public void setOpeningTime(String openingTime) {
+		this.openingTime = openingTime;
+	}
+
+	public String getClosingTime() {
+		return closingTime;
+	}
+
+	public void setClosingTime(String closingTime) {
+		this.closingTime = closingTime;
 	}
 
 	public Shop(Long id, String name, double latitude, double longitude, String phone, String website, String address,
-			String description, String hoursOfOperation) {
+			String description, String openingTime, String closingTime) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -81,7 +101,8 @@ public class Shop implements Serializable{
 		this.website = website;
 		this.address = address;
 		this.description = description;
-		this.hoursOfOperation = hoursOfOperation;
+		this.openingTime = openingTime;
+		this.closingTime = closingTime;
 	}
 
 	public Long getId() {
@@ -148,12 +169,5 @@ public class Shop implements Serializable{
 		this.description = description;
 	}
 
-	public String getHoursOfOperation() {
-		return hoursOfOperation;
-	}
-
-	public void setHoursOfOperation(String hoursOfOperation) {
-		this.hoursOfOperation = hoursOfOperation;
-	}
 	
 }

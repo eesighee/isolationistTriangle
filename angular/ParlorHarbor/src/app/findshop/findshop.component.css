@@ -1,6 +1,7 @@
 .map{
-    width: 800px;
-    height: 600px;
+    width: 80%;
+    height: 500px;
+    margin: auto;
 }
 .input {
   display: inline-block;
@@ -8,7 +9,7 @@
   -moz-box-sizing: content-box;
   box-sizing: content-box;
   padding: 10px 20px;
-  margin: auto;
+  margin: 10px;
   border: 1px solid #b7b7b7;
   -webkit-border-radius: 8px;
   border-radius: 8px;
@@ -34,7 +35,6 @@
 }
 
 .center{
-    margin: auto;
-    padding: 10px;
-    width: 50%;
+  margin: 20px;
+  transform: translate(50%, 0);
 }
