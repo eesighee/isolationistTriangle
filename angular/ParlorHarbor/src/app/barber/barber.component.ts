@@ -86,7 +86,6 @@ export class BarberComponent implements OnInit {
         for(let i = 0; i < this.appointments.length; i++){
           this.myAppointmentDates[i] = new Date(this.appointments[i].time);
         }
-        console.log(this.myAppointmentDates[0]);
         if(this.user.id == this.barber.id){
           this.isLogged = true;
         }

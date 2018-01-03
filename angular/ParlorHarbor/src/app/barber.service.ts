@@ -90,16 +90,23 @@ export class BarberService {
 
   populateTimeArray(checkDate: NgbDateStruct) {
     let availableTimeslots: Date[] = [];
-    var hour = 0; 
+    var hour = 0;
+    // var opening = this.barb.shop.opening;
+    // var closing = this.barb.shop.closing;
+
     // console.log(checkDate);
     for (let i = 0; i < 48; i++) {
       if (i % 2 == 0) {
         let addDate = new Date(checkDate.year, checkDate.month - 1, checkDate.day, hour, 0, 0, 0);
-        availableTimeslots.push(addDate);
+        // if(new Date(opening) > addDate && new Date(closing) < addDate){
+          availableTimeslots.push(addDate);
+        // }
       }
       else {
         let addDate = new Date(checkDate.year, checkDate.month - 1, checkDate.day, hour, 30, 0, 0);
-        availableTimeslots.push(addDate);
+        // if(new Date(opening) > addDate && new Date(closing) < addDate){
+          availableTimeslots.push(addDate);
+        // }
         hour++;
       }
     }
