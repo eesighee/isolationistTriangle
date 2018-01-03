@@ -1,0 +1,39 @@
+<div>
+  <div>
+    <label for="shopName">Name of Shop</label>
+    <input type="text" name="shopName" [(ngModel)]="name" placeholder="name">
+  </div>
+  <div>
+    <label for="description">Description of Your Shop</label>
+    <input type="text" name="description" [(ngModel)]="description" placeholder="...">
+  </div>
+  <!-- <div>
+    <label for="lat">Latitude</label>
+    <input type="number" name="lat" [(ngModel)]="latitude" placeholder="x coordinate">
+  </div>
+  <div>
+    <label for="long">Longitude</label>
+    <input type="number" name="long" [(ngModel)]="longitude" placeholder="y coordinate">
+  </div> -->
+  <div>
+    <label for="phone">Phone Number</label>
+    <input type="text" name="phone" [(ngModel)]="phone" (blur)="phoneBlur()" placeholder="813-###-####">
+    <div>{{phoneMessage}}</div>
+  </div>
+  <div>
+    <label for="website">Website</label>
+    <input type="text" name="website" [(ngModel)]="website" placeholder="barbrshop.com">
+  </div>
+  <div>
+    <label for="address">Address</label>
+    <input type="text" name="address" [(ngModel)]="address" (blur)="addressBlur()" placeholder="#### street name">
+    <div>{{addressMessage}}</div>
+  </div>
+  <!-- <div>
+    <label for="hoursOfOperation">Hours of Operation</label>
+    <input type="text" name="hoursOfOperation" [(ngModel)]="hoursOfOperation" placeholder="hoursOfOperation">
+  </div> -->
+  <div>
+    <button (click)="register()">Register Shop</button>
+  </div>
+</div>

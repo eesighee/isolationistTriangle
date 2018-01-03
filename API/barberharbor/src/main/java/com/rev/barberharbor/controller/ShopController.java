@@ -63,8 +63,8 @@ public class ShopController {
 	
 	@CrossOrigin
 	@RequestMapping(value="/register", method=RequestMethod.POST)
-	public void register(@RequestBody Shop shop) {
-		shopServ.register(shop);
+	public Shop register(@RequestBody Shop shop) {
+		return shopServ.register(shop);
 	}
 	
 //	@CrossOrigin

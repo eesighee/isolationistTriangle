@@ -47,8 +47,8 @@ public class ShopService {
 		return (shops.findShopByAddress(address) == null);
 	}
 
-	public void register(Shop shop) {
-		shops.save(shop);
+	public Shop register(Shop shop) {
+		return shops.save(shop);
 	}
 
 //	public Barber findBarberByUserId(long parseLong) {

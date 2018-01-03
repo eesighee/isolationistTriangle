@@ -11,8 +11,8 @@ import com.rev.barberharbor.model.Appointment;
 public interface AppointmentRepo extends JpaRepository<Appointment, Long>{
 	
 	List<Appointment> findByCustomer_Id(Long id);
-	List<Appointment> findByBarber_Id(Long id);
 //	List<Appointment> findByServices_Barber_Id(Long id);	
 	List<Appointment> findAllByStylingService_Id(Long id);
+	
 
 }

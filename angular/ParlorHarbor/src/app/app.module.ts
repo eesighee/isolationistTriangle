@@ -28,15 +28,21 @@ import { FindshopComponent } from './findshop/findshop.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SuiModule } from 'ng2-semantic-ui/dist';
 import { BarberartworkComponent } from './barberartwork/barberartwork.component';
+import { UserComponent } from './user/user.component';
+import { UserService } from './user.service';
+import { ShowuserappointmentsComponent } from './showuserappointments/showuserappointments.component';
+import { ShopRegisterComponent } from './shop-register/shop-register.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "landing", pathMatch: "full" },
   { path: "home", component: FindshopComponent, canActivate: [LoginService] },
   { path: "landing", component: LandingComponent },
+  { path: "profile", component: UserComponent, canActivate: [LoginService] },
   { path: "barber/:id", component: BarberComponent },
   { path: "map", component: MapComponent, canActivate: [LoginService] },
   { path: "search", component: LocationSearchComponent },
   { path: "shop", component: ShopComponent },
+  { path: "registershop", component: ShopRegisterComponent },
   { path: "findshop", component: FindshopComponent },
   { path: "**", redirectTo: "landing" }
 ]
@@ -55,7 +61,10 @@ const routes: Routes = [
     LandingComponent,
     FindshopComponent,
     NavbarComponent,
-    BarberartworkComponent
+    BarberartworkComponent,
+    UserComponent,
+    ShowuserappointmentsComponent,
+    ShopRegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +78,7 @@ const routes: Routes = [
 
   ],
   providers: [
-    LoginService, SearchService, ShopService, BarberService
+    LoginService, SearchService, ShopService, BarberService, UserService
   ],
   bootstrap: [
     AppComponent
@@ -77,7 +86,8 @@ const routes: Routes = [
   entryComponents: [
     LoginComponent,
     RegisterComponent,
-    ShopComponent
+    ShopComponent,
+    ShowuserappointmentsComponent
   ]
 })
 export class AppModule { }

@@ -14,6 +14,8 @@ export class ShopComponent implements OnInit {
   @Input() shop = null;
   employees = [];
 
+  hoursOfOp = "10:00 am to 7:30 pm";
+
   constructor(private router: Router, private searchService: SearchService) { }
 
   ngOnInit() {

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap/modal/modal';
 import { LoginComponent } from '../login/login.component';
 import { RegisterComponent } from '../register/register.component';
+import { LoginService } from '../login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing',
@@ -10,9 +12,10 @@ import { RegisterComponent } from '../register/register.component';
 })
 export class LandingComponent implements OnInit {
 
-  constructor(private modal: NgbModal) { }
+  constructor(private modal: NgbModal, private loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
+    if (this.loginService.loginSubject.getValue()) this.router.navigate(["home"]);
   }
 
   login() {
