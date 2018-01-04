@@ -16,7 +16,7 @@ export class UserService {
   public appoint = new BehaviorSubject<Appointment[]>([]);
 
   getUser(id: number) {
-    this.http.get<User>(environment.API_URL + "/user/" + id).subscribe(u => {
+    this.http.get<User>(environment.API_URL + "/user/" + id  + "/appntmnts").subscribe(u => {
       if (u) {
         this.user.next(u);
       }
@@ -25,6 +25,10 @@ export class UserService {
 
   getAppointments(id: number) {
     return this.http.get<Appointment[]>(environment.API_URL + "/user/" + id);
+  }
+
+  getBarbAppointments(id: number) {
+    return this.http.get<Appointment[]>(environment.API_URL + "/barber/" + id + "/appntmnts");
   }
 
 }
