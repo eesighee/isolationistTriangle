@@ -1,7 +1,9 @@
 <div class="center">
-<img *ngFor="let art of artwork" src="{{art.picturePath}}">
-</div>
-<div class="row">
-  <app-fileupload class="center" [barber]="barber" (onUpload)="addArt($event)"></app-fileupload>
+  <div class="imgcard" *ngFor="let art of artwork">
+    <img src="{{art.picturePath}}">
+  </div>
 </div>
 
+<div class="centerInput">
+<app-fileupload [barber]="barber" (onUpload)="addArt($event)"></app-fileupload>
+</div>

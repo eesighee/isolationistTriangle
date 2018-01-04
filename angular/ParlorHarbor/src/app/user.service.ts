@@ -27,4 +27,8 @@ export class UserService {
     return this.http.get<Appointment[]>(environment.API_URL + "/user/" + id);
   }
 
+  getBarbAppointments(id: number) {
+    return this.http.get<Appointment[]>(environment.API_URL + "/barber/" + id + "/appntmnts");
+  }
+
 }

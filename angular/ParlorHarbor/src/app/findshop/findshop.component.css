@@ -1,5 +1,5 @@
 .map{
-    width: 80%;
+    width: 95%;
     height: 500px;
     margin: auto;
 }
@@ -34,7 +34,20 @@
   box-shadow: 0 0 9px 4px rgba(0,67,252,0.5) inset, 2px 4px 6px 0 rgba(140,140,140,1) ;
 }
 
-.center{
-  margin: 20px;
-  transform: translate(50%, 0);
+.card{
+  width: 80%;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.btn{
+  width: 200px;
+  margin: auto;
+}
+
+.row{
+  margin-bottom: 20px;
+  margin-top: 20px;
 }

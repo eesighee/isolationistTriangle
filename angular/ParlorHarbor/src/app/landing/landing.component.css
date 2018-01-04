@@ -1,0 +1,6 @@
+.card{
+    width: 80%;
+    margin: 50px, 50px;
+    transform: translate(10%, 15%);
+    padding: 30px;
+}
