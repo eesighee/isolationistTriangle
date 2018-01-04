@@ -30,6 +30,12 @@ public class AppointmentService {
 		return dao.findByBarber_Id(id);
 	}
 	
-	
+	public Appointment getAppointment(Long id) {
+		return dao.findOne(id);
+	}
+
+	public Appointment updateAppointment(Appointment app) {
+		return dao.save(app);
+	}
 	
 }

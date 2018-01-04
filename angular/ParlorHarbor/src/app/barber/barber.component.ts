@@ -145,10 +145,10 @@ export class BarberComponent implements OnInit {
   }
 
   completeAppointment(id: number){
-    this.barberService.completeAppointment(id);
+    this.barberService.completeAppointment(this.appointments[id].id);
   }
   cancelAppointment(id: number){
-    this.barberService.cancelAppointment(id);
+    this.barberService.cancelAppointment(this.appointments[id].id);
   }
 
   addReview() {

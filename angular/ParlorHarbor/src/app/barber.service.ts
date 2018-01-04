@@ -37,7 +37,6 @@ export class BarberService {
               this.appointments = a;
               this.http.get<ServiceType[]>(environment.API_URL + "/servicetype").subscribe(sts => {
                 this.serviceTypesArray = sts;
-                console.log(this.serviceTypesArray);
                 this.barber.next(b);
               });
             });
@@ -92,11 +91,25 @@ export class BarberService {
     return appToAdd;
   }
   completeAppointment(id: number){
-    // this.http.post<Appointment>(environment.API_URL + "/appointment", id).subscribe(b => {
-    //   if (b) {
+    console.log(id);
+    this.http.post<Appointment>(environment.API_URL + "/appointment/complete", id).subscribe(a => {
+      if (a) {
+        this.http.get<Appointment[]>(environment.API_URL + "/barber/" + this.barb.id + "/appntmnts").subscribe(a => {
+          this.appointments = a;
+          this.barber.next(this.barb);
+        });
+      }
+    });
   }
   cancelAppointment(id: number){
-    // this.barberService.cancelAppointment(id);
+    this.http.post<Appointment>(environment.API_URL + "/appointment/cancel", id).subscribe(a => {
+      if (a) {
+        this.http.get<Appointment[]>(environment.API_URL + "/barber/" + this.barb.id + "/appntmnts").subscribe(a => {
+          this.appointments = a;
+          this.barber.next(this.barb);
+        });
+      }
+    });
   }
 
   populateTimeArray(checkDate: NgbDateStruct) {
