@@ -34,7 +34,7 @@
     <label class="col" for="shopName">
       <b>Name of Shop:</b>
     </label>
-    <input class="col" type="text" name="shopName" [(ngModel)]="name" placeholder="name">
+    <input class="form-control" type="text" name="shopName" [(ngModel)]="name" placeholder="name">
     <div class="col"></div>
   </div>
 
@@ -42,7 +42,7 @@
     <label class="col" for="phone">
       <b>Phone Number:</b>
     </label>
-    <input class="col" type="text" name="phone" [(ngModel)]="phone" (blur)="phoneBlur()" placeholder="813-###-####">
+    <input class="form-control" type="text" name="phone" [(ngModel)]="phone" (blur)="phoneBlur()" placeholder="813-###-####">
     <div class="col"></div>
 
     <div>{{phoneMessage}}</div>
@@ -51,7 +51,7 @@
     <label class="col" for="website">
       <b>Website:</b>
     </label>
-    <input class="col" type="text" name="website" [(ngModel)]="website" placeholder="barbrshop.com">
+    <input class="form-control" type="text" name="website" [(ngModel)]="website" placeholder="barbrshop.com">
     <div class="col"></div>
 
   </div>
@@ -59,7 +59,7 @@
     <label class="col" for="address">
       <b>Address:</b>
     </label>
-    <input class="col" type="text" name="address" [(ngModel)]="address" (blur)="addressBlur()" placeholder="#### street name">
+    <input class="form-control" type="text" name="address" [(ngModel)]="address" (blur)="addressBlur()" placeholder="#### street name">
     <div class="col"></div>
     <div>{{addressMessage}}</div>
   </div>
@@ -67,11 +67,12 @@
     <label class="col" for="description">
       <b>Description of Your Shop:</b>
     </label>
-    <input class="col" type="text" name="description" [(ngModel)]="description" placeholder="...">
+    <input class="form-control" type="text" name="description" [(ngModel)]="description" placeholder="...">
     <div class="col"></div>
   </div>
   <div>
-    <button class="btn" (click)="register()">
+    <br>
+    <button class="btn btn-primary" (click)="register()">
       <b>Register Shop</b>
     </button>
   </div>

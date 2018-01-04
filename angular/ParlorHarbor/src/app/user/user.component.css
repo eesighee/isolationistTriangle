@@ -21,3 +21,14 @@
     background-color: rgb(59, 160, 190);
     color: white;
   }
+
+.container{
+  margin:auto;
+  max-width: 600px;
+  background-color: #eee;
+  margin-top: 30px;
+  border: solid 1px;
+}
+#inner{
+  padding: 20px;
+}

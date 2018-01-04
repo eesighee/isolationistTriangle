@@ -7,7 +7,7 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a *ngIf="login.loginSubject.getValue()" class="nav-item nav-link" id="home" routerLink="/home">Home</a>
-      <a *ngIf="login.loginSubject.getValue()" class="nav-item nav-link" id="registershop" routerLink="/registershop">New Shop</a>
+      <a class="nav-item nav-link" id="registershop" routerLink="/registershop">New Shop</a>
 
       <a *ngIf="login.loginSubject.getValue()" class="nav-item nav-link" id="profile" routerLink="/profile">Profile</a>
       <a *ngIf="login.loginSubject.getValue()" class="nav-item nav-link" id="logout" (click)="logout()">Logout</a>

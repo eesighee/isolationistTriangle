@@ -1,59 +1,31 @@
 <div class="container">
-  <div class="row">
-    <div class="col-sm-3">
-    </div>
+  <div id="inner">
+    <h2>User Profile</h2>
+    <table id="info" class="table table-user-information">
+      <tbody>
+        <tr>
+          <td>Name:</td>
+          <td>{{user.fname}} {{user.lname}}</td>
+        </tr>
+        <tr>
+          <td>Email:</td>
+          <td>{{user.email}}</td>
+        </tr>
+        <tr>
+          <td>Username:</td>
+          <td>{{user.username}}</td>
+        </tr>
+        <tr>
+          <td>Join date:</td>
+          <td>01/3/2018</td>
+        </tr>
+        <tr>
+          <td>Account Type:</td>
+          <td>{{user.role.role}}</td>
+        </tr>
 
-    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
-
-
-      <div class="panel panel-info">
-        <br>
-        <div class="panel-heading">
-          <h3 class="panel-title" align="center">User Profile Information</h3>
-        </div>
-        <br>
-          <div class="panel-body">
-            <div class="row">
-              <div class="col-md-3 col-lg-3 " align="center">
-
-            
-              <div class=" col-md-9 col-lg-9 " >
-                <table id="info" style="width:200%" align="center" class="table table-user-information">
-                  <tbody>
-                    <tr>
-                      <td>Name:</td>
-                      <td>{{user.fname}} {{user.lname}}</td>
-                    </tr>
-                    <tr>
-                      <td>Email:</td>
-                      <td>{{user.email}}</td>
-                    </tr>
-                    <tr>
-                        <td>Username:</td>
-                        <td>{{user.username}}</td>
-                      </tr>
-                    <tr>
-                      <td>Join date:</td>
-                      <td>01/3/2018</td>
-                    </tr>
-                    <tr>
-                      <td>Account Type:</td>
-                      <td>{{user.role.role}}</td>
-                    </tr>
-
-                  </tbody>
-                </table>
-
-            
-
-              <button class="btn btn-primary" (click)="appointments()">See Your Appointments</button>
-
-            </div>
-          </div>
-        </div>
-
-
-      </div>
-    </div>
+      </tbody>
+    </table>
+    <button class="btn btn-primary" (click)="appointments()">See Your Appointments</button>
   </div>
 </div>
