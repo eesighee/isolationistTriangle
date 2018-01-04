@@ -1,8 +1,16 @@
 #employee{
     background-color: #177fb7;
     color: white;
+    border: solid 2px, white;    
+    
 }
 
 jumbotron{
     color: #20a3ea;
+    border: solid 2px, #20a3ea;    
+    
 }  
+
+#shop{
+    border: solid 2px, white;    
+}

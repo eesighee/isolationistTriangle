@@ -57,30 +57,25 @@ export class ShopRegisterComponent implements OnInit {
     this.addressBlur();
     this.phoneBlur();
 
-    this.http.get("https://maps.googleapis.com/maps/api/geocode/json?address=" + this.address + "&key=" + environment.MAPS_API_KEY)
-      .subscribe(res => {
-        var latlng = res["results"][0]["geometry"]["location"];
-        console.log(latlng);
-        var shop = new Shop({
-          name: this.name,
-          latitude: latlng["lat"],
-          longitude: latlng["lng"],
-          phone: this.phone,
-          website: this.website,
-          address: this.address,
-          description: this.description,
-          hoursOfOperation: this.hoursOfOperation
-        });
-        if ((this.address && this.name && this.phone && this.website)) {
+    if ((this.address && this.name && this.phone && this.website)) {
+      this.http.get("https://maps.googleapis.com/maps/api/geocode/json?address=" + this.address + "&key=" + environment.MAPS_API_KEY)
+        .subscribe(res => {
+          var latlng = res["results"][0]["geometry"]["location"];
+          console.log(latlng);
+          var shop = new Shop({
+            name: this.name,
+            latitude: latlng["lat"],
+            longitude: latlng["lng"],
+            phone: this.phone,
+            website: this.website,
+            address: this.address,
+            description: this.description,
+            hoursOfOperation: this.hoursOfOperation
+          });
           if (!(this.addressMessage || this.phoneMessage)) {
             this.shopService.addShop(shop);
           }
-        }
-      });
-    
-
-    
-
+        });
+    }
   }
-
 }
