@@ -1,4 +1,4 @@
-<div>
+<!-- <div>
   <div>
     <label for="shopName">Name of Shop</label>
     <input type="text" name="shopName" [(ngModel)]="name" placeholder="name">
@@ -7,14 +7,6 @@
     <label for="description">Description of Your Shop</label>
     <input type="text" name="description" [(ngModel)]="description" placeholder="...">
   </div>
-  <!-- <div>
-    <label for="lat">Latitude</label>
-    <input type="number" name="lat" [(ngModel)]="latitude" placeholder="x coordinate">
-  </div>
-  <div>
-    <label for="long">Longitude</label>
-    <input type="number" name="long" [(ngModel)]="longitude" placeholder="y coordinate">
-  </div> -->
   <div>
     <label for="phone">Phone Number</label>
     <input type="text" name="phone" [(ngModel)]="phone" (blur)="phoneBlur()" placeholder="813-###-####">
@@ -29,11 +21,58 @@
     <input type="text" name="address" [(ngModel)]="address" (blur)="addressBlur()" placeholder="#### street name">
     <div>{{addressMessage}}</div>
   </div>
-  <!-- <div>
-    <label for="hoursOfOperation">Hours of Operation</label>
-    <input type="text" name="hoursOfOperation" [(ngModel)]="hoursOfOperation" placeholder="hoursOfOperation">
-  </div> -->
   <div>
     <button (click)="register()">Register Shop</button>
+  </div>
+</div> -->
+
+
+<!-- asdkj -->
+<div class="container" id="loginBody">
+  <h2>Register Your Shop</h2>
+  <div class="row">
+    <label class="col" for="shopName">
+      <b>Name of Shop:</b>
+    </label>
+    <input class="col" type="text" name="shopName" [(ngModel)]="name" placeholder="name">
+    <div class="col"></div>
+  </div>
+
+  <div class="row">
+    <label class="col" for="phone">
+      <b>Phone Number:</b>
+    </label>
+    <input class="col" type="text" name="phone" [(ngModel)]="phone" (blur)="phoneBlur()" placeholder="813-###-####">
+    <div class="col"></div>
+
+    <div>{{phoneMessage}}</div>
+  </div>
+  <div class="row">
+    <label class="col" for="website">
+      <b>Website:</b>
+    </label>
+    <input class="col" type="text" name="website" [(ngModel)]="website" placeholder="barbrshop.com">
+    <div class="col"></div>
+
+  </div>
+  <div class="row">
+    <label class="col" for="address">
+      <b>Address:</b>
+    </label>
+    <input class="col" type="text" name="address" [(ngModel)]="address" (blur)="addressBlur()" placeholder="#### street name">
+    <div class="col"></div>
+    <div>{{addressMessage}}</div>
+  </div>
+  <div class="row">
+    <label class="col" for="description">
+      <b>Description of Your Shop:</b>
+    </label>
+    <input class="col" type="text" name="description" [(ngModel)]="description" placeholder="...">
+    <div class="col"></div>
+  </div>
+  <div>
+    <button class="btn" (click)="register()">
+      <b>Register Shop</b>
+    </button>
   </div>
 </div>

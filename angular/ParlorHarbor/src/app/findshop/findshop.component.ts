@@ -19,7 +19,7 @@ export class FindshopComponent implements OnInit {
   address: string;
   shops: Shop[] = [];
   map;
-  radius: number = 100;
+  radius: number = 10;
 
   currentShop = null;
   employees = [];
@@ -35,7 +35,7 @@ export class FindshopComponent implements OnInit {
       .subscribe(res => {
         var location = res["results"][0]["geometry"]["location"];
         this.map.panTo(location);
-        this.searchService.searchByLocation(location["lat"], location["lng"], this.radius / 60)  
+        this.searchService.searchByLocation(location["lat"], location["lng"], this.radius)  
           .subscribe(shops => {
             if (shops.length == 0) alert("There are no shops that meet that criteria");
             this.shops = shops;

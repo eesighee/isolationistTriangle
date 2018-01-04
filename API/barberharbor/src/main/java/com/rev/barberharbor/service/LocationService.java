@@ -23,6 +23,19 @@ public class LocationService {
 		return Math.hypot(x - shop.getLatitude(), y - shop.getLongitude()); 
 	}
 	
+	//this gets the real distance in miles
+	private double getRealDistance(double x, double y, Shop shop) {
+		double metersPerMile = 1609.34;
+		double rEarth = 6371000.0;
+		double lat1 = Math.toRadians(x);
+		double lat2 = Math.toRadians(shop.getLatitude());
+		double dLat = Math.toRadians(shop.getLatitude() - x);
+		double dLon = Math.toRadians(shop.getLongitude() - y);
+		double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+		return rEarth * c / metersPerMile;
+	}
+	
 //	public List<Shop> findClosestShops(double x, double y, double r) {
 //		List<Shop> shopList = shops.findByDistance(x, y, r);
 //		shopList.sort(new SortByDistance(x, y));
@@ -35,7 +48,7 @@ public class LocationService {
 		List<Shop> shopList = new ArrayList<Shop>();
 		
 		for(Shop s: shops.findAll()) {
-			if (getDistance(x, y, s) < r) {
+			if (getRealDistance(x, y, s) < r) {
 				shopList.add(s);
 			}
 		}
