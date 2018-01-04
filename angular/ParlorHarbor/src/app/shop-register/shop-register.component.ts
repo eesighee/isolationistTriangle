@@ -59,24 +59,6 @@ export class ShopRegisterComponent implements OnInit {
     this.addressBlur();
     this.phoneBlur();
 
-<<<<<<< HEAD
-    this.http.get("https://maps.googleapis.com/maps/api/geocode/json?address=" + this.address + "&key=" + environment.MAPS_API_KEY)
-      .subscribe(res => {
-        var latlng = res["results"][0]["geometry"]["location"];
-        console.log(latlng);
-        var shop = new Shop({
-          name: this.name,
-          latitude: latlng["lat"],
-          longitude: latlng["lng"],
-          phone: this.phone,
-          website: this.website,
-          address: this.address,
-          description: this.description,
-          openingTime: this.openingTime,
-          closingTime: this.closingTime
-        });
-        if ((this.address && this.name && this.phone && this.website)) {
-=======
     if (this.name && this.address && this.description && this.phone) {
       this.http.get("https://maps.googleapis.com/maps/api/geocode/json?address=" + this.address + "&key=" + environment.MAPS_API_KEY)
         .subscribe(res => {
@@ -91,7 +73,6 @@ export class ShopRegisterComponent implements OnInit {
             description: this.description,
             hoursOfOperation: this.hoursOfOperation
           });
->>>>>>> Register
           if (!(this.addressMessage || this.phoneMessage)) {
             this.shopService.addShop(shop).subscribe(shop => {
               alert("Shop added sucessfully");
