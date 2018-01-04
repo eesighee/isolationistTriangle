@@ -8,6 +8,7 @@ import { environment } from '../../environments/environment';
 declare var require: any;
 require('aws-sdk/dist/aws-sdk');
 
+
 @Component({
   selector: 'app-fileupload',
   templateUrl: './fileupload.component.html',
@@ -24,7 +25,7 @@ export class FileuploadComponent implements OnInit {
   @Output()
   onUpload: EventEmitter<Artwork> = new EventEmitter();
 
-  pendingFile;
+  pendingFile: any;
 
   constructor(private http: HttpClient) { }
 
@@ -36,31 +37,30 @@ export class FileuploadComponent implements OnInit {
   }
 
   upload() {
+    if (this.pendingFile) {
+      var AWSService = window.AWS;
+      AWSService.config.accessKeyId = 'AKIAJFMVANU6ZPJI3DLA';
+      AWSService.config.secretAccessKey = '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';
+      var bucket = new AWSService.S3({ params: { Bucket: 'barberharbor-artwork' } });
+      var params = {
+        Key: "/" + this.folder + "/" + this.barber.id + "/" + this.pendingFile.name,
+        Body: this.pendingFile, ACL: "public-read"
+      };
 
-    var AWSService = window.AWS;
+      bucket.upload(params, (err, data) => {
+        if (err) alert("Failed to upload image");
+        else {
+          let artwork = new Artwork();
+          artwork.barber = this.barber;
+          artwork.picturePath = data["Location"];
+          this.http.post<Artwork>(environment.API_URL + "/artwork", artwork)
+            .subscribe(art => this.onUpload.emit(art));
+        }
+      });
+    } else {
+      alert("Please select an image to upload");
+    }
 
-    AWSService.config.accessKeyId = 'AKIAJFMVANU6ZPJI3DLA';
-
-    AWSService.config.secretAccessKey = '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';
-
-    var bucket = new AWSService.S3({ params: { Bucket: 'barberharbor-artwork' } });
-
-    var params = {
-      Key: "/" + this.folder + "/" + this.barber.id + "/" + this.pendingFile.name,
-      Body: this.pendingFile, ACL: "public-read"
-    };
-
-    bucket.upload(params, (err, data) => {
-      var artwork = new Artwork();
-      artwork.barber = this.barber;
-      artwork.picturePath = data["Location"];
-      console.log(this.barber);
-      console.log(data);
-      this.http.post<Artwork>(environment.API_URL + "/artwork", artwork).subscribe(art => {
-        console.log(art);
-        this.onUpload.emit(art)
-      })
-    });
   }
 
 }

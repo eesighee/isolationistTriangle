@@ -150,3 +150,25 @@
 2018-01-03 10:22:01,736 [Worker-56] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
 2018-01-03 10:22:01,743 [Worker-56] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2018-01-03 10:22:01,747 [Worker-56] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\tyler\OneDrive\Documents\GitHub\isolationistTriangle\API\barberharbor\src\test\resources
+2018-01-03 11:25:58,538 [Worker-91] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-01-03 11:25:58,539 [Worker-91] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2018-01-03 11:25:58,549 [Worker-91] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-01-03 11:25:58,557 [Worker-91] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-01-03 11:25:58,557 [Worker-91] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\tyler\OneDrive\Documents\GitHub\isolationistTriangle\API\barberharbor\src\test\resources
+2018-01-03 11:26:40,783 [Worker-62] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-01-03 11:26:40,784 [Worker-62] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2018-01-03 11:26:40,787 [Worker-62] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-01-03 11:26:40,790 [Worker-62] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-01-03 11:26:40,790 [Worker-62] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\tyler\OneDrive\Documents\GitHub\isolationistTriangle\API\barberharbor\src\test\resources
+2018-01-03 11:26:46,064 [Worker-91] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-01-03 11:26:46,064 [Worker-91] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2018-01-03 11:26:46,066 [Worker-91] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-01-03 11:26:46,074 [Worker-91] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-01-03 11:26:46,074 [Worker-91] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\tyler\OneDrive\Documents\GitHub\isolationistTriangle\API\barberharbor\src\test\resources
+2018-01-03 20:42:56,636 [Worker-2] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2018-01-03 20:43:24,636 [Worker-4] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.rev:barberharbor:0.0.1-SNAPSHOT @ C:\Users\tyler\OneDrive\Documents\GitHub\isolationistTriangle\API\barberharbor\pom.xml.
+2018-01-03 20:43:42,423 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-01-03 20:43:42,587 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2018-01-03 20:43:42,624 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-01-03 20:43:42,627 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-01-03 20:43:42,627 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\tyler\OneDrive\Documents\GitHub\isolationistTriangle\API\barberharbor\src\test\resources

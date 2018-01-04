@@ -1,5 +1,14 @@
 .center {
     margin: auto;
-    width: 50%;
     padding: 10px;
+}
+
+.imgcard{
+    display: inline-block;
+    margin: 20px;
+}
+
+.centerInput{
+    margin-top: 20px;
+    margin-left: 35%;
 }

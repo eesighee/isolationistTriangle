@@ -1,18 +1,29 @@
-<div class="center">
+<div class="card">
+  <h2 class="text-center">Find a Shop</h2>
   <div class="row">
-    <label>Address </label>
-    <input [(ngModel)]="address" type="text" placeholder="Address or Zip Code">
+    <div class="col-2"></div>
+    <div class="col-1 text-right">
+      <label>Address: </label>
     </div>
-    <div class="row">
-    <label>Radius </label>
-    <input type="number" [(ngModel)]="radius">miles
+    <div class="col-2">
+      <input [(ngModel)]="address" type="text" placeholder="Address or Zip Code">
+    </div>
+    <div class="col-1 text-right">
+      <label>Radius: </label>
+    </div>
+    <div class="col-2">
+      <input type="number" [(ngModel)]="radius">
+    </div>
+    <div class="col">
+      <button class="btn btn-primary" (click)="search()">Search</button>
+    </div>
+    <div class="col-3"></div>
   </div>
-
-  <button class="btn btn-primary" (click)="search()">Search</button>
+  <ng2-map class="map" id="map" center="Tampa, FL" (mapReady$)="onMapReady($event)">
+    <marker *ngFor="let shop of shops" [position]="{lat: shop.latitude, lng: shop.longitude}" [label]="shop.name" (click)="selectShop(shop)"></marker>
+  </ng2-map>
 </div>
 
-<ng2-map class="map" id="map" center="Tampa, FL" (mapReady$)="onMapReady($event)">
-  <marker *ngFor="let shop of shops" [position]="{lat: shop.latitude, lng: shop.longitude}" [label]="shop.name" (click)="selectShop(shop)"></marker>
-</ng2-map>
+
 
 <app-shop *ngFor="let shop of shops" id="{{shop.id}}" [shop]="shop"></app-shop>
