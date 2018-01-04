@@ -2,7 +2,8 @@ export class Shop{
 
     id: number;
     address;
-    hoursOfOperation;
+    openingTime: string;
+    closingTime: string;
     name: string;
     latitude: number;
     longitude: number;

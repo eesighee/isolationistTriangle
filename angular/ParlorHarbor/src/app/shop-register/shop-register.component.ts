@@ -16,6 +16,8 @@ export class ShopRegisterComponent implements OnInit {
   website = "";
   address = "";
   description = "";
+  openingTime = "";
+  closingTime = "";
   hoursOfOperation = "";
 
   phoneMessage = "";
@@ -69,7 +71,8 @@ export class ShopRegisterComponent implements OnInit {
           website: this.website,
           address: this.address,
           description: this.description,
-          hoursOfOperation: this.hoursOfOperation
+          openingTime: this.openingTime,
+          closingTime: this.closingTime
         });
         if ((this.address && this.name && this.phone && this.website)) {
           if (!(this.addressMessage || this.phoneMessage)) {

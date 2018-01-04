@@ -68,7 +68,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button id="newServiceButton" class="ui primary button" (click)="addService()">Add New Service</button>
+                        <button id="newServiceButton" class="btn btn-primary" (click)="addService()">Add New Service</button>
                     </div>
                 </div>
             </div>
@@ -108,7 +108,7 @@
                         </tbody>
                     </table>
                     <div *ngIf="!isBarber">
-                        <button id="newReviewButton" class="ui primary button" (click)="open()">Add New Review</button>
+                        <button id="newReviewButton" class="btn btn-primary" (click)="open()">Add New Review</button>
                     </div>
                 </div>
             </div>
@@ -133,7 +133,7 @@
                         </div>
                         <select id="timeSelect" [(ngModel)]="scheduleDate">
                             <option *ngFor="let timeSlot of availableTimeslots; let i = index" [value]="i">
-                                {{timeSlot}}
+                                {{timeSlot | date: 'shortTime'}}
                             </option>
                         </select>
                         <select id="serviceSelect" [(ngModel)]="scheduleService">
@@ -141,7 +141,7 @@
                                 {{se.id}}
                             </option>
                         </select>
-                        <button id="newAppButton" class="ui primary button" (click)="addAppointment()">Add New Appointment</button>
+                        <button id="newAppButton" class="btn btn-primary" (click)="addAppointment()">Add New Appointment</button>
 
                     </div>
                 </div>

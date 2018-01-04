@@ -59,11 +59,6 @@ export class BarberService {
   }
 
   addAppointment(date: Date, barber: Barber, user: User, service: StylingService) {
-    // for (let i = 0; i < this.services.length; i++) {
-    //   if (this.services[i].id = serviceId) {
-    //     var appService = this.services[i];
-    //   }
-    // }
 
     let appToAdd = new Appointment();
     appToAdd.time = date.toISOString();
@@ -71,14 +66,6 @@ export class BarberService {
     appToAdd.barber = barber;
     appToAdd.stylingService = service;
 
-    // console.log(appToAdd.time.getFullYear());
-    // console.log(appToAdd.time.getMonth());
-    // console.log(appToAdd.time.getDate());
-    // console.log(appToAdd.time.getHours());
-    // console.log(appToAdd.time.getMinutes());
-    // console.log(appToAdd.time.getSeconds());
-    // console.log(appToAdd.time.getMilliseconds());
-    // console.log(typeof appToAdd.time);
     this.http.post<Appointment>(environment.API_URL + "/appointment/add", appToAdd).subscribe(appoint => {
       if (appoint) {
         this.appointments.push(appoint);
@@ -89,21 +76,22 @@ export class BarberService {
 
   populateTimeArray(checkDate: NgbDateStruct) {
     let availableTimeslots: Date[] = [];
-    var hour = 0;
-    // var opening = this.barb.shop.opening;
-    // var closing = this.barb.shop.closing;
-    // console.log(checkDate);
-    for (let i = 0; i < 48; i++) {
+    var hour = 8;
+    // var opening = this.barb.shop.openingTime;
+    // var oDate = new Date(opening);
+    // var closing = this.barb.shop.closingTime;
+    // console.log(opening + "  " + closing);
+    for (let i = 0; i < 24; i++) {
       if (i % 2 == 0) {
         let addDate = new Date(checkDate.year, checkDate.month - 1, checkDate.day, hour, 0, 0, 0);
-        // if(new Date(opening) > addDate && new Date(closing) < addDate){
-        availableTimeslots.push(addDate);
+        // if (oDate.getHours > addDate && new Date(closing) < addDate) {
+          availableTimeslots.push(addDate);
         // }
       }
       else {
         let addDate = new Date(checkDate.year, checkDate.month - 1, checkDate.day, hour, 30, 0, 0);
-        // if(new Date(opening) > addDate && new Date(closing) < addDate){
-        availableTimeslots.push(addDate);
+        // if (oDate.getHours > addDate && new Date(closing) < addDate) {
+          availableTimeslots.push(addDate);
         // }
         hour++;
       }
