@@ -34,10 +34,6 @@ import { ShowuserappointmentsComponent } from './showuserappointments/showuserap
 import { ShopRegisterComponent } from './shop-register/shop-register.component';
 import { ShowbarberappointmentsComponent } from './showbarberappointments/showbarberappointments.component';
 import { ConfirmAppointmentComponent } from './confirm-appointment/confirm-appointment.component';
-<<<<<<< HEAD
-=======
-import { ConfirmAppointmentComponent } from './confirm-appointment/confirm-appointment.component';
->>>>>>> origin/register
 
 const routes: Routes = [
   { path: "", redirectTo: "landing", pathMatch: "full" },
