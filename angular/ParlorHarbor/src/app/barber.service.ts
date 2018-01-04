@@ -18,6 +18,7 @@ export class BarberService {
   public reviews: barberReview[] = [];
   public services: StylingService[] = [];
   public appointments: Appointment[] = [];
+  public subAppoint = new BehaviorSubject<Appointment>(null);
 
 
   constructor(private http: HttpClient) { }
@@ -58,7 +59,7 @@ export class BarberService {
     });
   }
 
-  addAppointment(date: Date, barber: Barber, user: User, service: StylingService) {
+  addAppointment(date: Date, barber: Barber, user: User, service: StylingService) :Appointment  {
     // for (let i = 0; i < this.services.length; i++) {
     //   if (this.services[i].id = serviceId) {
     //     var appService = this.services[i];
@@ -70,6 +71,7 @@ export class BarberService {
     appToAdd.customer = user;
     appToAdd.barber = barber;
     appToAdd.stylingService = service;
+    
 
     // console.log(appToAdd.time.getFullYear());
     // console.log(appToAdd.time.getMonth());
@@ -81,10 +83,13 @@ export class BarberService {
     // console.log(typeof appToAdd.time);
     this.http.post<Appointment>(environment.API_URL + "/appointment/add", appToAdd).subscribe(appoint => {
       if (appoint) {
+        this.subAppoint.next(appoint);
         this.appointments.push(appoint);
         this.barber.next(this.barb);
       }
     });
+
+    return appToAdd;
   }
 
   populateTimeArray(checkDate: NgbDateStruct) {

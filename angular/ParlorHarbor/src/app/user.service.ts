@@ -13,7 +13,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   public user = new BehaviorSubject<User>(null);
-  public appoint = new BehaviorSubject<Appointment[]>([]);
+  
 
   getUser(id: number) {
     this.http.get<User>(environment.API_URL + "/user/" + id  + "/appntmnts").subscribe(u => {

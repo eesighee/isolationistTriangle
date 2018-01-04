@@ -33,6 +33,7 @@ import { UserService } from './user.service';
 import { ShowuserappointmentsComponent } from './showuserappointments/showuserappointments.component';
 import { ShopRegisterComponent } from './shop-register/shop-register.component';
 import { ShowbarberappointmentsComponent } from './showbarberappointments/showbarberappointments.component';
+import { ConfirmAppointmentComponent } from './confirm-appointment/confirm-appointment.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "landing", pathMatch: "full" },
@@ -66,7 +67,8 @@ const routes: Routes = [
     UserComponent,
     ShowuserappointmentsComponent,
     ShopRegisterComponent,
-    ShowbarberappointmentsComponent
+    ShowbarberappointmentsComponent,
+    ConfirmAppointmentComponent
   ],
   imports: [
     BrowserModule,
@@ -90,7 +92,8 @@ const routes: Routes = [
     RegisterComponent,
     ShopComponent,
     ShowuserappointmentsComponent,
-    ShowbarberappointmentsComponent
+    ShowbarberappointmentsComponent,
+    ConfirmAppointmentComponent
   ]
 })
 export class AppModule { }
