@@ -5,10 +5,10 @@
     <input class="form-control" type="text" [(ngModel)] ="username" name="username" placeholder="Username">
   </div>
     <div id="passwordInput" class="inputField">
-      <label for="password">Password: </label>
+      <label id="passlabel" for="password">Password: </label>
       <input class="form-control" type="password" [(ngModel)]= "password" name="password" placeholder="Password">
     </div>
-  <div>{{loginmessage}}</div>
   <button id="loginButton" class="btn btn-primary" (click)="login()">Login</button>
+  <ngb-alert *ngIf="loginmessage" (click)="closeMessage()" type="danger">{{loginmessage}}</ngb-alert>
 </div>
 

@@ -15,10 +15,18 @@ select{
     display: inline;
     width: 200px;
     float: right;
-    height:28px;
-    margin: 5px;
+    padding: 0px;
+    padding-left:6px;
 }
 
 .loginMessage{
     clear: both;
+}
+
+.row{
+    margin-top: 4px;
+}
+
+#registerButton{
+    margin-top: 10px;
 }

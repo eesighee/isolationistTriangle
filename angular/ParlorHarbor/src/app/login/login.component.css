@@ -4,14 +4,21 @@
     border: solid 1px;
     padding: 30px;
 }
-
+h2{
+    margin-bottom: 15px;
+}
+#passwordInput{
+    padding-left: 4px;
+}
 input{
     display: inline;
     width: 200px;
-    float: right;
     height:28px;
 }
-
-#loginMessage{
-    clear: both;
+#loginButton{
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+#passlabel{
+    margin-top:10px;
 }

@@ -11,7 +11,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap/modal/modal-ref';
   
 export class LoginComponent implements OnInit {
 
-  loginmessage = "";
+  loginmessage = null;
   username = "";
   password = "";
 
@@ -20,6 +20,10 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.loginService.login(this.username, this.password);
+  }
+
+  closeMessage(){
+    this.loginmessage = null;
   }
 
   ngOnInit() {
