@@ -24,6 +24,8 @@ export class FindshopComponent implements OnInit {
   currentShop = null;
   employees = [];
 
+  pos;
+
 
   constructor(private http: HttpClient, private searchService: SearchService, private modal: NgbModal) { }
 
@@ -31,16 +33,22 @@ export class FindshopComponent implements OnInit {
   }
 
   search() {
-    this.http.get("https://maps.googleapis.com/maps/api/geocode/json?address=" + this.address + "&key=" + environment.MAPS_API_KEY)
-      .subscribe(res => {
-        var location = res["results"][0]["geometry"]["location"];
-        this.map.panTo(location);
-        this.searchService.searchByLocation(location["lat"], location["lng"], this.radius)  
-          .subscribe(shops => {
-            if (shops.length == 0) alert("There are no shops that meet that criteria");
-            this.shops = shops;
-            console.log(this.shops);
-          })
+    if (!this.address) this.byLocation();
+    else {
+      this.http.get("https://maps.googleapis.com/maps/api/geocode/json?address=" + this.address + "&key=" + environment.MAPS_API_KEY)
+        .subscribe(res => {
+          var location = res["results"][0]["geometry"]["location"];
+          this.callService(location);
+        });
+    }
+  }
+
+  callService(location) {
+    this.map.panTo(location);
+    this.searchService.searchByLocation(location["lat"], location["lng"], this.radius)
+      .subscribe(shops => {
+        if (shops.length == 0) alert("There are no shops that meet that criteria");
+        this.shops = shops;
       });
   }
 
@@ -50,8 +58,15 @@ export class FindshopComponent implements OnInit {
 
   onMapReady(map) {
     this.map = map;
+    this.byLocation();
   }
 
+  byLocation() {
+    navigator.geolocation.getCurrentPosition(pos => {
+      var location = { "lat": pos.coords.latitude, "lng": pos.coords.longitude };
+      this.callService(location);
+    });
+  }
 
 
 }

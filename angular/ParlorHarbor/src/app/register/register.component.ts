@@ -88,7 +88,12 @@ export class RegisterComponent implements OnInit {
         shop: this.shops.filter(s => s.id == this.selectedShop)[0]
       });
     }
-    if (!(this.passwordMessage || this.usernameMessage || this.emailMessage)) this.loginService.addUser(u);
+    if (!(this.passwordMessage || this.usernameMessage || this.emailMessage)
+      && this.fname && this.lname && this.password && this.username && this.email && (this.selectedShop || this.userRole == "User" )) {
+      this.loginService.addUser(u);
+    } else {
+      alert("Please enter all information before submitting");
+    }
   }
 
 }

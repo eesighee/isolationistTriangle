@@ -19,7 +19,7 @@
     </div>
     <div class="col-3"></div>
   </div>
-  <ng2-map class="map" id="map" center="Tampa, FL" (mapReady$)="onMapReady($event)">
+  <ng2-map zoom="12" class="map" id="map" center="Tampa, FL" (mapReady$)="onMapReady($event)">
     <marker *ngFor="let shop of shops" [position]="{lat: shop.latitude, lng: shop.longitude}" [label]="shop.name" (click)="selectShop(shop)"></marker>
   </ng2-map>
 </div>
