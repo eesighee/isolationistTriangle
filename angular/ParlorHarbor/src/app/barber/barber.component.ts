@@ -12,6 +12,8 @@ import { Shop } from '../types/shop.type';
 import { barberReview } from '../types/barberReview.type';
 import { StylingService } from '../types/Styling-Service.type';
 import { Appointment } from '../types/appointment.type';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap/modal/modal';
+import { ConfirmAppointmentComponent } from '../confirm-appointment/confirm-appointment.component';
 
 export interface IContext {
   data: string;
@@ -66,7 +68,8 @@ export class BarberComponent implements OnInit {
   isBarber: boolean = false;
 
 
-  constructor(private loginService: LoginService, private barberService: BarberService, private router: Router, private route: ActivatedRoute, public modalService: SuiModalService) { }
+  constructor(private loginService: LoginService, private barberService: BarberService, 
+    private aModal: NgbModal, private router: Router, private route: ActivatedRoute, public modalService: SuiModalService) { }
 
   ngOnInit() {
     this.user = this.loginService.loginSubject.getValue();
@@ -107,7 +110,11 @@ export class BarberComponent implements OnInit {
   }
 
   addAppointment() {
-    this.barberService.addAppointment(this.availableTimeslots[this.scheduleDate], this.barber, this.user, this.services[this.scheduleService]);
+    let apt = this.barberService.addAppointment(this.availableTimeslots[this.scheduleDate], this.barber, this.user, this.services[this.scheduleService]);
+      var modal = this.aModal.open(ConfirmAppointmentComponent);
+      modal.componentInstance.appointment = apt;
+      //modal.componentInstance.appointment = this.barberService.subAppoint;
+
   }
 
   addReview() {
