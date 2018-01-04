@@ -74,6 +74,11 @@ export class ShopRegisterComponent implements OnInit {
           if (!(this.addressMessage || this.phoneMessage)) {
             this.shopService.addShop(shop).subscribe(shop => {
               alert("Shop added sucessfully");
+              this.address = "";
+              this.description = "";
+              this.name = "";
+              this.phone = "";
+              this.website = "";
             });
           }
         });
