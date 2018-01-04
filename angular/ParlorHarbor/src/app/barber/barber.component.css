@@ -28,6 +28,25 @@ th, td{
 .content{
     height: 200px;
 }
+#appointmentsBody td{
+    padding-top: 15px;
+}
+#appointmentsBody .appTableButtons{
+    padding: 2px;
+}
+/* add apppointment */
+#timeSelect{
+    width: 82px;
+}
+#appointmentTimeSelectDiv{
+    margin-top: 12px;
+}
+#appointmentServiceSelectDiv{
+    margin-top: 10px;
+}
+#newAppButton{
+    margin-top: 10px;
+}
 
 /* addReview */
 #newReviewButton{

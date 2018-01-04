@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { SuiModalService, TemplateModalConfig, ModalTemplate } from 'ng2-semantic-ui';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import {Subject} from 'rxjs/Subject';
+import {debounceTime} from 'rxjs/operator/debounceTime';
 
 import { LoginService } from '../login.service';
 
@@ -14,6 +16,7 @@ import { StylingService } from '../types/Styling-Service.type';
 import { Appointment } from '../types/appointment.type';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap/modal/modal';
 import { ConfirmAppointmentComponent } from '../confirm-appointment/confirm-appointment.component';
+import { ServiceType } from '../types/servicetype.type';
 
 export interface IContext {
   data: string;
@@ -61,12 +64,18 @@ export class BarberComponent implements OnInit {
   description: string = "";
   price: number = 0;
   serviceType: number = 1;
-
-
+  serviceTypesArray: ServiceType[] = [];
 
   isLogged: boolean = false;
   isBarber: boolean = false;
 
+  ratingWarningCheck: boolean = false;
+
+
+  private _error = new Subject<string>();
+  
+    staticAlertClosed = false;
+    errorMessage: string;
 
   constructor(private loginService: LoginService, private barberService: BarberService, 
     private aModal: NgbModal, private router: Router, private route: ActivatedRoute, public modalService: SuiModalService) { }
@@ -74,6 +83,13 @@ export class BarberComponent implements OnInit {
   ngOnInit() {
     this.user = this.loginService.loginSubject.getValue();
     this.barberService.getBarber(+this.route.snapshot.paramMap.get('id'));
+
+    setTimeout(() => this.staticAlertClosed = true, 20000);
+    
+        this._error.subscribe((message) => this.errorMessage = message);
+        debounceTime.call(this._error, 5000).subscribe(() => this.errorMessage = null);
+
+
     this.barberService.barber.subscribe(b => {
       this.barber = b;
       if (b != null) {
@@ -86,6 +102,7 @@ export class BarberComponent implements OnInit {
         this.reviews = this.barberService.reviews;
         this.services = this.barberService.services;
         this.appointments = this.barberService.appointments;
+        this.serviceTypesArray = this.barberService.serviceTypesArray;
         for (let i = 0; i < this.appointments.length; i++) {
           this.myAppointmentDates[i] = new Date(this.appointments[i].time);
         }
@@ -104,27 +121,49 @@ export class BarberComponent implements OnInit {
       }
     });
   }
+  public showEMessage() {
+    this._error.next(`Please select an available appointment time for your selected date`);
+  }
+
 
   getTimeslots() {
     this.availableTimeslots = this.barberService.populateTimeArray(this.model);
   }
 
   addAppointment() {
+    if(this.model == null || this.availableTimeslots.length == 0){
+      this.showEMessage();
+    }
+    else{
     let apt = this.barberService.addAppointment(this.availableTimeslots[this.scheduleDate], this.barber, this.user, this.services[this.scheduleService]);
       var modal = this.aModal.open(ConfirmAppointmentComponent);
       modal.componentInstance.appointment = apt;
       //modal.componentInstance.appointment = this.barberService.subAppoint;
+      this.model = null;
+      this.availableTimeslots = [];
+    }
+  }
 
+  completeAppointment(id: number){
+    this.barberService.completeAppointment(id);
+  }
+  cancelAppointment(id: number){
+    this.barberService.cancelAppointment(id);
   }
 
   addReview() {
     this.barberService.addReview(this.barber.id, this.rating, this.comment);
     this.rating = 0;
     this.comment = "";
+    this.ratingWarningCheck = false;
+  }
+
+  ratingCheck(){
+    this.ratingWarningCheck = true;
   }
 
   addService() {
-    this.barberService.addService(this.barber.id, this.description, this.price, this.serviceType);
+    this.barberService.addService(this.barber, this.description, this.price, this.serviceType);
     this.description = "";
     this.price = 0;
     this.serviceType = 1;
@@ -139,7 +178,7 @@ export class BarberComponent implements OnInit {
     this.modalService
       .open(config)
       .onApprove(result => { this.addReview(); })
-      .onDeny(result => { /* closes the modal */ });
+      .onDeny(result => { this.ratingWarningCheck = false; this.rating = 0; /* closes the modal */ });
   }
 
   sendToShop() {

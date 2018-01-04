@@ -1,3 +1,6 @@
-<h3>Appoinment Confirmation</h3>
-<p>Congratulations, your appointment has been successfully scheduled for {{appointment.time}}</p>
-<p>With {{appointment.barber.fname}} {{appointment.barber.lname}}</p>
+<div class="container">
+    <h3>Appoinment Confirmation</h3>
+    <hr>
+    <p>Congratulations, your appointment has been successfully scheduled for {{appointment.time | date: 'medium'}}</p>
+    <p>With {{appointment.barber.fname}} {{appointment.barber.lname}} at {{appointment.barber.shop.name}}</p>
+</div>

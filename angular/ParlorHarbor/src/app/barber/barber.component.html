@@ -56,19 +56,97 @@
                                 <h5 class="ui top attached header">Type</h5>
                                 <div id="typeBox" class="ui attached segment">
                                     <select id="type" [(ngModel)]="serviceType">
-                                        <option value="1">Haircut</option>
-                                        <option value="2">Shave</option>
-                                        <option value="3">Shampoo</option>
-                                        <option value="4">Fade</option>
-                                        <option value="5">Edgeups</option>
-                                        <option value="6">Beard Trim</option>
-                                        <option value="7">Waxing</option>
-                                        <option value="8">Other</option>
+                                        <option *ngFor="let t of serviceTypesArray; let k = index" [value]="k"> {{t.type}}</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
                         <button id="newServiceButton" class="btn btn-primary" (click)="addService()">Add New Service</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="!isLogged">
+        <div id="accordion3" role="tablist">
+            <div class="card">
+                <div class="card-header" role="tab" id="headingThree">
+                    <h5 class="mb-0">
+                        <a data-toggle="collapse" href="#collapseThree" role="button" aria-expanded="false" aria-controls="collapsethree">
+                            Schedule Appointment
+                        </a>
+                    </h5>
+                </div>
+
+                <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion3">
+                    <div class="card-body">
+                        <h4>Select A Date to See Available Times</h4>
+                        <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next" (click)="getTimeslots()"></ngb-datepicker>
+                        <div *ngIf="model!=null" id="appointmentTimeSelectDiv">
+                            <label for="timeSelect">Available Times: </label>
+                            <select id="timeSelect" [(ngModel)]="scheduleDate">
+                                <option *ngFor="let timeSlot of availableTimeslots; let i = index" [value]="i">
+                                    {{timeSlot | date: 'shortTime'}}
+                                </option>
+                            </select>
+                        </div>
+                        <div id="appointmentServiceSelectDiv">
+                            <label for="serviceSelect">Select a service: </label>
+                            <select id="serviceSelect" [(ngModel)]="scheduleService">
+                                <option *ngFor="let se of services; let j = index" [value]="j">
+                                    {{se.id}}
+                                </option>
+                            </select>
+                        </div>
+                        
+                        <ngb-alert *ngIf="errorMessage" type="danger" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>
+                        <button *ngIf="model!=null" id="newAppButton" class="btn btn-primary" (click)="addAppointment()">Add New Appointment</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="isLogged">
+        <div id="accordion4" role="tablist">
+            <div class="card">
+                <div class="card-header" role="tab" id="headingFour">
+                    <h5 class="mb-0">
+                        <a data-toggle="collapse" href="#collapseFour" role="button" aria-expanded="false" aria-controls="collapsefour">
+                            My Appointments
+                        </a>
+                    </h5>
+                </div>
+
+                <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour" data-parent="#accordion4">
+                    <div class="card-body">
+                        <h2 class="tableTitle">Appointments</h2>
+                        <table id="barberAppointmentsTable" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Date/Time</th>
+                                    <th>Customer</th>
+                                    <th>Service</th>
+                                    <th>Status</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="appointmentsBody">
+                                <tr *ngFor="let a of appointments; let i = index">
+                                    <td>{{myAppointmentDates[i] | date: 'medium'}}</td>
+                                    <td>{{a.customer.fname}} {{a.customer.lname}}</td>
+                                    <td>{{a.stylingService.description}}</td>
+                                    <td>{{a.status.status}}</td>
+                                    <td class="appTableButtons">
+                                        <div class="btn-group-vertical">
+                                            <button type="button" (click)="completeAppointment(i)" class="btn btn-primary btn-sm">Complete</button>
+                                            <button type="button" (click)="cancelAppointment(i)" class="btn btn-danger btn-sm">Cancel</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -114,79 +192,6 @@
             </div>
         </div>
     </div>
-    <div *ngIf="!isLogged">
-        <div id="accordion3" role="tablist">
-            <div class="card">
-                <div class="card-header" role="tab" id="headingThree">
-                    <h5 class="mb-0">
-                        <a data-toggle="collapse" href="#collapseThree" role="button" aria-expanded="false" aria-controls="collapsethree">
-                            Schedule an Appointment
-                        </a>
-                    </h5>
-                </div>
-
-                <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion3">
-                    <div class="card-body">
-                        <h4>Select A Date to See Available Times</h4>
-                        <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next" (click)="getTimeslots()"></ngb-datepicker>
-                        <br>
-                        <label for="timeSelect">Available Times: </label>
-                        <select id="timeSelect" [(ngModel)]="scheduleDate">
-                            <option *ngFor="let timeSlot of availableTimeslots; let i = index" [value]="i">
-                                {{timeSlot | date: 'shortTime'}}
-                            </option>
-                        </select>
-                        <br>
-                        <label for="serviceSelect">Select a service: </label>
-                        <select id="serviceSelect" [(ngModel)]="scheduleService">
-                            <option *ngFor="let se of services; let j = index" [value]="j">
-                                {{se.id}}
-                            </option>
-                        </select>
-                        <br>
-                        <button id="newAppButton" class="btn btn-primary" (click)="addAppointment()">Add New Appointment</button>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div *ngIf="isLogged">
-        <div id="accordion4" role="tablist">
-            <div class="card">
-                <div class="card-header" role="tab" id="headingFour">
-                    <h5 class="mb-0">
-                        <a data-toggle="collapse" href="#collapseFour" role="button" aria-expanded="false" aria-controls="collapsefour">
-                            My Appointments
-                        </a>
-                    </h5>
-                </div>
-
-                <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour" data-parent="#accordion4">
-                    <div class="card-body">
-                        <h2 class="tableTitle">Appointments</h2>
-                        <table id="barberAppointmentsTable" class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Date/Time</th>
-                                    <th>Customer</th>
-                                    <th>Service</th>
-                                </tr>
-                            </thead>
-                            <tbody id="appointmentsBody">
-                                <tr *ngFor="let a of appointments; let i = index">
-                                    <td>{{myAppointmentDates[i]}}</td>
-                                    <td>{{a.customer.fname}} {{a.customer.lname}}</td>
-                                    <td>{{a.stylingService.description}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div id="accordion5" role="tablist">
         <div class="card">
             <div class="card-header" role="tab" id="heading5">
@@ -196,7 +201,7 @@
                     </a>
                 </h5>
             </div>
-    
+
             <div id="collapse5" class="collapse" role="tabpanel" aria-labelledby="heading5" data-parent="#accordion5">
                 <div class="card-body">
                     <app-barberartwork *ngIf="barber" [barber]="barber"></app-barberartwork>
@@ -212,7 +217,7 @@
                 <div id="ratingDiv">
                     <h5 class="ui top attached header">Rating</h5>
                     <div id="ratingBox" class="ui attached segment">
-                        <sui-rating class="star" id="rRating" [(ngModel)]="rating" [maximum]="5"></sui-rating>
+                        <sui-rating class="star" id="rRating" [(ngModel)]="rating" (click)="ratingCheck()" [maximum]="5"></sui-rating>
                     </div>
                 </div>
                 <div id="commentDiv">
@@ -222,10 +227,11 @@
                     </div>
                 </div>
             </div>
+            <!-- <ngb-alert *ngIf="ratingWarningCheck" [type]="danger" [dismissible]="true">Please Select a Rating</ngb-alert> -->
         </div>
         <div id="actions" class="actions">
             <button class="ui red button" (click)="modal.deny('denied')">Cancel</button>
-            <button class="ui green button" (click)="modal.approve('approved')" autofocus>Add</button>
+            <button *ngIf="ratingWarningCheck" class="ui green button" (click)="modal.approve('approved')" autofocus>Add</button>
         </div>
     </ng-template>
 

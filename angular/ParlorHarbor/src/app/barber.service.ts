@@ -8,6 +8,7 @@ import { StylingService } from './types/Styling-Service.type';
 import { Appointment } from './types/appointment.type';
 import { DateComparer } from 'ng2-semantic-ui/dist';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-date-struct';
+import { ServiceType } from './types/servicetype.type';
 
 @Injectable()
 export class BarberService {
@@ -19,6 +20,7 @@ export class BarberService {
   public services: StylingService[] = [];
   public appointments: Appointment[] = [];
   public subAppoint = new BehaviorSubject<Appointment>(null);
+  public serviceTypesArray: ServiceType[] = [];
 
 
   constructor(private http: HttpClient) { }
@@ -33,7 +35,11 @@ export class BarberService {
             this.services = s;
             this.http.get<Appointment[]>(environment.API_URL + "/barber/" + b.id + "/appntmnts").subscribe(a => {
               this.appointments = a;
-              this.barber.next(b);
+              this.http.get<ServiceType[]>(environment.API_URL + "/servicetype").subscribe(sts => {
+                this.serviceTypesArray = sts;
+                console.log(this.serviceTypesArray);
+                this.barber.next(b);
+              });
             });
           });
         });
@@ -50,28 +56,30 @@ export class BarberService {
     });
   }
 
-  addService(barberId: number, description: string, price: number, type: number) {
-    this.http.post<StylingService>(environment.API_URL + "/service/add", [barberId, description, price, type]).subscribe(serv => {
+  addService(barber: Barber, description: string, price: number, type: number) {
+    var newService = new StylingService();
+    newService.barber = barber;
+    newService.description = description;
+    newService.price = price;
+    newService.type = this.serviceTypesArray[type];
+    console.log(newService.type);
+    this.http.post<StylingService>(environment.API_URL + "/service/add", newService).subscribe(serv => {
       if (serv) {
+        console.log(serv);
         this.services.push(serv);
         this.barber.next(this.barb);
       }
     });
   }
 
-  addAppointment(date: Date, barber: Barber, user: User, service: StylingService) :Appointment  {
-    // for (let i = 0; i < this.services.length; i++) {
-    //   if (this.services[i].id = serviceId) {
-    //     var appService = this.services[i];
-    //   }
-    // }
+  addAppointment(date: Date, barber: Barber, user: User, service: StylingService): Appointment {
 
     let appToAdd = new Appointment();
     appToAdd.time = date.toISOString();
     appToAdd.customer = user;
     appToAdd.barber = barber;
     appToAdd.stylingService = service;
-    
+
 
     this.http.post<Appointment>(environment.API_URL + "/appointment/add", appToAdd).subscribe(appoint => {
       if (appoint) {
@@ -83,18 +91,21 @@ export class BarberService {
 
     return appToAdd;
   }
+  completeAppointment(id: number){
+    // this.http.post<Appointment>(environment.API_URL + "/appointment", id).subscribe(b => {
+    //   if (b) {
+  }
+  cancelAppointment(id: number){
+    // this.barberService.cancelAppointment(id);
+  }
 
   populateTimeArray(checkDate: NgbDateStruct) {
     let availableTimeslots: Date[] = [];
-    if(new Date(checkDate.year, checkDate.month - 1, checkDate.day, hour, 0, 0, 0).getTime() < Date.now()){
+    if (new Date(checkDate.year, checkDate.month - 1, checkDate.day, hour, 0, 0, 0).getTime() < Date.now()) {
       return availableTimeslots;
     }
-    var hour = 8;
-    // var opening = this.barb.shop.openingTime;
-    // var oDate = new Date(opening);
-    // var closing = this.barb.shop.closingTime;
-    // console.log(opening + "  " + closing);
-    for (let i = 0; i < 24; i++) {
+    var hour = 10;
+    for (let i = 0; i < 20; i++) {
       if (i % 2 == 0) {
         let addDate = new Date(checkDate.year, checkDate.month - 1, checkDate.day, hour, 0, 0, 0);
         if (addDate > new Date(Date.now())) {
