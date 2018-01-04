@@ -76,6 +76,9 @@ export class BarberService {
 
   populateTimeArray(checkDate: NgbDateStruct) {
     let availableTimeslots: Date[] = [];
+    if(new Date(checkDate.year, checkDate.month - 1, checkDate.day, hour, 0, 0, 0).getTime() < Date.now()){
+      return availableTimeslots;
+    }
     var hour = 8;
     // var opening = this.barb.shop.openingTime;
     // var oDate = new Date(opening);
@@ -84,15 +87,15 @@ export class BarberService {
     for (let i = 0; i < 24; i++) {
       if (i % 2 == 0) {
         let addDate = new Date(checkDate.year, checkDate.month - 1, checkDate.day, hour, 0, 0, 0);
-        // if (oDate.getHours > addDate && new Date(closing) < addDate) {
+        if (addDate > new Date(Date.now())) {
           availableTimeslots.push(addDate);
-        // }
+        }
       }
       else {
         let addDate = new Date(checkDate.year, checkDate.month - 1, checkDate.day, hour, 30, 0, 0);
-        // if (oDate.getHours > addDate && new Date(closing) < addDate) {
+        if (addDate > new Date(Date.now())) {
           availableTimeslots.push(addDate);
-        // }
+        }
         hour++;
       }
     }

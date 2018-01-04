@@ -127,20 +127,23 @@
 
                 <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion3">
                     <div class="card-body">
-
+                        <h4>Select A Date to See Available Times</h4>
                         <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next" (click)="getTimeslots()"></ngb-datepicker>
-                        <div>
-                        </div>
+                        <br>
+                        <label for="timeSelect">Available Times: </label>
                         <select id="timeSelect" [(ngModel)]="scheduleDate">
                             <option *ngFor="let timeSlot of availableTimeslots; let i = index" [value]="i">
                                 {{timeSlot | date: 'shortTime'}}
                             </option>
                         </select>
+                        <br>
+                        <label for="serviceSelect">Select a service: </label>
                         <select id="serviceSelect" [(ngModel)]="scheduleService">
                             <option *ngFor="let se of services; let j = index" [value]="j">
                                 {{se.id}}
                             </option>
                         </select>
+                        <br>
                         <button id="newAppButton" class="btn btn-primary" (click)="addAppointment()">Add New Appointment</button>
 
                     </div>
